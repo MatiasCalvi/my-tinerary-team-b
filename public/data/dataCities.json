@@ -1,0 +1,97 @@
+[
+	{
+        "id": "city1",
+        "name": "London",
+        "continent": "Europe",
+        "photo": "https://www.pexels.com/photo/administration-architecture-big-ben-booth-221166/",
+        "population":  9002488 ,
+        "userId":  "admin4" 
+	},
+	{
+        "id": "city2",
+        "name": "Paris",
+        "continent": "Europe",
+        "photo": "https://www.pexels.com/photo/architecture-blue-sky-city-cityscape-532826/",
+        "population":  	2240621  ,
+        "userId":  "admin3"
+	},
+	{
+        "id": "city3",
+        "name": "Moscow",
+        "continent": "Europe",
+        "photo": "https://www.pexels.com/photo/st-basil-s-cathedral-3629813/",
+        "population":  25121000 ,
+        "userId":  "admin4" 
+	},
+	{
+        "id": "city4",
+        "name": "Dubai",
+        "continent": "Asia",
+        "photo": "https://www.pexels.com/photo/photography-of-woman-walking-on-seashore-1089645/",
+        "population":3478300 ,
+        "userId":"admin1"  
+	},
+	{
+        "id":"city5",
+        "name":"Tokyo",
+        "continent":"Asia",
+        "photo": "https://www.pexels.com/photo/black-and-white-mountain-over-yellow-white-and-blue-sky-46253/",
+        "population":14215906 ,
+        "userId":"admin2" 
+	},
+	{
+        "id":"city6",
+        "name":"Singapore",
+        "continent":"Asia",
+        "photo":"https://www.pexels.com/photo/gardens-by-the-bay-at-night-4021539/",
+        "population":5677000 ,
+        "userId":"admin1"
+	},
+	{
+        "id":"city7",
+        "name":"Barcelona",
+        "continent":"Europe",
+        "photo":"https://www.pexels.com/photo/low-angle-shot-of-the-construction-of-the-sagrada-familia-1782436/",
+        "population":1636732  ,
+        "userId":"admin2" 
+	},
+        {
+        "id":"city8",
+        "name":"Luxor",
+        "continent":"America",
+        "photo":"https://www.pexels.com/photo/tourists-visiting-the-karnak-temple-in-egypt-6102263/",
+        "population":1328429 ,
+        "userId":"admin4" 
+        },
+	{
+        "id":"city9",
+        "name":"Lima",
+        "continent":"America",
+        "photo":"https://www.pexels.com/photo/cityscape-of-medieval-church-and-houses-with-old-tile-roof-in-cusco-peru-5198285/",
+        "population":9943800 ,
+        "userId":"admin3"  
+	},	{
+        "id":"city10",
+        "name":"Rome",
+        "continent":"Europe",
+        "photo":"https://www.pexels.com/photo/colosseum-italy-1797158/",
+        "population":2857321 ,
+        "userId":"admin3" 
+	},
+	{
+        "id":"city11",
+        "name":"Doha",
+        "continent":"Asia",
+        "photo":"https://www.pexels.com/photo/anonymous-women-walking-in-city-near-illuminated-skyscrapers-at-night-6562904/",
+        "population":998651 ,
+        "userId":"admin2"
+	},
+	{
+        "id":"city12",
+        "name":"Marrakech",
+        "continent":"Africa",
+        "photo": "https://www.pexels.com/photo/bahia-palace-13759765/",
+        "population":1070838  ,
+        "userId":"admin3"  
+	}
+]
