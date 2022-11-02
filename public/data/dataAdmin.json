@@ -1,0 +1,46 @@
+[
+	{
+		"id": "admin1",
+		"name": "Sasha",
+		"lastName": "Keller",
+		"age": 46,
+		"email": "tortor.at@outlook.couk",
+		"pasword": "amet2",
+		"code": "magnatellusfaucibusleo",
+		"verified": true,
+		"logged": true
+	},
+	{
+		"id": "admin2" ,
+		"name": "Lane",
+		"lastName": "Buckley",
+		"age": 30,
+		"email": "et.pede.nunc@google.net",
+		"pasword": "velitPellentesque",
+		"code": "Nuncmauris",
+		"verified": true,
+		"logged": true
+	},
+	{
+		"id": "admin3",
+		"name": "Isadora",
+		"lastName": "Haley",
+		"age": 25,
+		"email": "orci@yahoo.org",
+		"pasword": "velfaucibusid",
+		"code": "quisaccumsan",
+		"verified": true,
+		"logged": true
+	},
+	{
+		"id": "admin4" ,
+		"name": "Jescie",
+		"lastName": "Hawkins",
+		"age": 57,
+		"email": "duis@protonmail.couk",
+		"pasword": "nostraperinceptos",
+		"code": "enim.Sednulla",
+		"verified": true,
+		"logged": true
+	}
+]
