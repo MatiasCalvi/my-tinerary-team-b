@@ -1,0 +1,122 @@
+[
+	{
+        "id": "it1",
+        "hotelId": "ho5",
+        "name": "Sega Championship",
+        "photo": "https://www.katherinetimes.com.au/images/transform/v1/crop/frm/silverstone-feed-data/b591af6a-60a6-4414-a475-98b435c2eb85.jpg/r0_0_800_600_w800_h600_fmax.jpg",
+        "description": "Gamers from all over the world come to play the Sonic the Hedgehog tournament sponsored by sega ",
+        "price": 130,
+        "date":"2020-07-23",
+        "userId":  "user4"
+	},
+	{
+        "id": "it2",
+        "hotelId": "ho5",
+        "name": "Kabuki in the hotel",
+        "photo": "https://i0.wp.com/www.geek-otaku-news.com/wp-content/uploads/2019/12/GON_Kabuki.jpg?w=1140&ssl=1",
+        "description": "come to see one of japan's classic cultural attractions, the kabuki theater",
+        "price": 60,
+        "date":"2021-05-12",
+        "userId":  "user4"
+	},
+	{
+        "id": "it3",
+        "hotelId": "ho3",
+        "name": "Hudson Tavern Doha watch party",
+        "photo": "https://www.pexels.com/photo/friends-at-a-bar-smiling-3851358/",
+        "description": "come watch the world cup football matches in our tavern with people from all over the world.",
+        "price": 100,
+        "date":"2022-07-05",
+        "userId":  "user2"
+	},
+	{
+        "id": "it4",
+        "hotelId": "ho3",
+        "name": "Tennis in the sky",
+        "photo": "https://weburbanist.com/wp-content/uploads/2015/02/sky-high-tennis.jpg",
+        "description": "the unique experience of playing tennis in the sky can be real thanks to our facilities, you can't miss it.",
+        "price": 100,
+        "date":"2022-02-26",
+        "userId":  "user1"
+	},
+    {
+        "id": "it5",
+        "hotelId": "ho8",
+        "name": "belly dance session",
+        "photo": "https://www.pexels.com/photo/monochrome-photography-of-women-performing-on-stage-1250653/",
+        "description": "A dance session demonstrating the classical skills of this ancient dance.",
+        "price": 150,
+        "date":"2022-06-08",
+        "userId":  "user3"
+	},
+    {
+        "id": "it6",
+        "hotelId": "ho8",
+        "name": "a night with Zahi Hawass",
+        "photo": "https://www.pexels.com/photo/low-angle-photography-of-camel-194455/",
+        "description": "a night where Zahi will tell you all the details about Egypt and its pharaohs",
+        "price": 260,
+        "date":"2021-08-27",
+        "userId":  "user3"
+	},
+    {
+        "id": "it7",
+        "hotelId": "ho12",
+        "name": "gourmet cooking demo",
+        "photo": "https://www.pexels.com/photo/man-and-woman-wearing-black-and-white-striped-aprons-cooking-2696064/",
+        "description": "our chefs teach how to make our dishes, with practical and theoretical classes",
+        "price": 300,
+        "date":"2021-04-15",
+        "userId":  "user1"
+	},
+    {
+        "id": "it8",
+        "hotelId": "ho12",
+        "name": "Musical afternoon",
+        "photo": "https://www.pexels.com/photo/empty-seat-391535/",
+        "description": "the musical classic of paris, les miserables, in a private session",
+        "price": 80,
+        "date":"2022-01-10",
+        "userId":  "user2"
+	},
+    {
+        "id": "it9",
+        "hotelId": "ho4",
+        "name": "Arm wrestling at the bar",
+        "photo": "https://www.pexels.com/photo/men-arm-wrestling-at-a-bar-3851378/",
+        "description": "come and test your arm strength in a arm wrestling competition held in the hotel bar",
+        "price": 20,
+        "date":"2020-10-20",
+        "userId":  "user2"
+	},
+    {
+        "id": "it10",
+        "hotelId": "ho4",
+        "name": "Magic show with Dynamo",
+        "photo": "https://www.pexels.com/photo/playing-cards-on-black-surface-127053/",
+        "description": "a spectacular magic show from one of london's most renowned magicians",
+        "price": 30,
+        "date":"2022-03-27",
+        "userId":  "user1"
+	},
+    {
+        "id": "it11",
+        "hotelId": "ho5",
+        "name": "EXPO PESCA & ACUIPERU 2022",
+        "photo": "https://www.pexels.com/photo/group-of-people-inside-building-301930/",
+        "description": "EXPO PESCA & ACUIPERU 2022 happens in Lima, Peru Nov, 2022 focus on Fish Supplies,Snack Machines. The cycle of the trade fair is , organize by Thais Corporation S.A.C. at our Hotel.",
+        "price": 400,
+        "date":"2021-05-25",
+        "userId":  "user4"
+	},
+    {
+        "id": "it12",
+        "hotelId": "ho5",
+        "name": "Expo Cafe Peru ",
+        "photo": "https://www.pexels.com/photo/two-persons-in-a-restaurant-1055054/",
+        "description": "Expo Cafe Peru aims to promote coffee identity and culture by integrating producers and consumers into a sustainable chain, promote the productivity and competitiveness of the sector, coffee as a flagship product, and within the framework of the commemoration of Peru's Bicentennial, articulate the various actions and initiatives of companies, cooperatives, tasters, public and cooperation institutions in the promotion of Peruvian coffee.",
+        "price": 250,
+        "date":"2022-03-12",
+        "userId":  "user3"
+	}
+]
