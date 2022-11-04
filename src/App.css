@@ -1,0 +1,129 @@
+
+.home2{
+  width: 100%;
+  height: 100vh;
+  background-color: #313D52;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.c-button__custom{
+  text-decoration: none;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 20px;
+  color: hsl(0, 1%, 30%);
+  background-color: rgb(217, 217, 217);
+  border-radius: 6px;
+  border: 2px solid #0016b0;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  height: 50px;
+}
+.c-button__custom:hover{
+  color: #1883ba;
+  background-color: #ffffff;
+}
+footer{
+  width: 100%;
+  padding: 40px 0px;
+  background-color: hwb(44 31% 1% / 0.898);
+}
+.c-container__footer{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: auto;
+  max-width: 1200px;
+}
+.c-box__footer{
+  display: flex;
+  flex-direction: column;
+  margin: 40px;
+}
+.c-box__footer .logo img{
+  width: 150px;
+}
+.c-box__footer .c_terms{
+  max-width: 300px;
+  margin-top: 20px;
+  font-weight: 500;
+  color: #7a7a7a;
+  font-size: 18px;
+}
+.c-box__footer h2{
+  margin-bottom: 30px;
+  color: #343434;
+  font-weight: 700;
+}
+.c-box__footer p{
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+  color: #7a7a7a;
+  font-weight: 600;
+}
+.c-box__footer p:hover{
+  color: #ffffff;
+}
+.icon{
+font-size: 20px;
+}
+.c-box__copyright{
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+  padding: 0 40px;
+}
+.c-box__copyright p{
+  margin-top: 20px;
+  color: #7a7a7a;
+}
+.c-box__copyright hr{
+  border: none;
+  height: 1px;
+  background-color: #7a7a7a;
+}
+.c-carousel{
+  min-height: 800px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(12, 12, 12);
+  box-sizing: border-box;
+}
+.c-titulo-img{
+  height: 376.55px;
+}
+.c-carousel .c-titulo-img p{
+  text-align: center;
+  margin: 0;
+  width: 100%;
+  background-color: rgb(172, 172, 172);
+  padding: 10px 0;
+  font-weight: 500;
+}
+.c-imgCarousel{
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+.arrows-container{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+}
+.arrows{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgb(172, 172, 172);
+}
+
+.arrows:hover{
+  background-color: #ffffff;
+}
+

@@ -9,9 +9,9 @@ import AutoToTop from './components/AutoToTop'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
-  <BrowserRouter>
+  <
     <AutoToTop />
     <App />
-  </BrowserRouter>
+  
 );
 
