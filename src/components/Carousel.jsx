@@ -39,15 +39,12 @@ export default function Carousel()
   
 
   let clickAfter = () => {
-    if (number < generalEstate.length - 1) {
+    if (number <= generalEstate.length - 1) {
       setNumber(number+1);
     } else {
       setNumber(0);
     }
-    console.log("se ejecuto")
-    console.log(timeId)
     clearInterval(timeId)
-    console.log(number)
   };
   let clickBefore = () => {
     if (number>0) {

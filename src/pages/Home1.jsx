@@ -1,5 +1,5 @@
 import React from "react"
-import Home1Css from "../Home1Css.css"
+import "../home1Css.css"
 import NavBar from "../components/NavBar"
 import CallToAction from "../components/CallToAction"
 

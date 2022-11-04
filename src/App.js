@@ -1,17 +1,16 @@
-
-import './App.css';
-import Home1 from './pages/Home1'
+import "./App.css";
+import Home1 from "./pages/Home1";
 import Home2 from "./pages/Home2";
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <>
-  <Home1 />
-   <Home2></Home2>
-    </>
-
-  );
+    <Routes>
+      <Route path="/" element={<Home1 />}/>
+      <Route path="/" element={<Home2 />}/>
+    </Routes>
+  
+    );
 }
 
 export default App;
