@@ -3,7 +3,7 @@ import Input from '../components/Input';
 import { Link as Navlink } from 'react-router-dom';
 import { useRef } from 'react';
 
-export default function BoxSignUp() {
+export default function BoxSignIn() {
 
     const emailInputElement = useRef(null);
     const passwordInputElement = useRef(null);
