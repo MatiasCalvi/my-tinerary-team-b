@@ -89,15 +89,22 @@ font-size: 20px;
 }
 .c-carousel{
   min-height: 800px;
-  max-width: 500px;
+  max-width: 900px;
   display: flex;
   flex-direction: column;
   border: 1px solid rgb(12, 12, 12);
   box-sizing: border-box;
 }
+
+.c-titleImgColumn{
+  width: 50%;
+}
+
 .c-titulo-img{
   height: 376.55px;
+  display: flex;
 }
+
 .c-carousel .c-titulo-img p{
   text-align: center;
   margin: 0;
