@@ -5,7 +5,7 @@ import Home2 from "./Home2"
 export default function Home () {
     return (
             <>
-
+            
             <Home1 />
             <Home2 />
 
