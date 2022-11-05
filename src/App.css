@@ -1,12 +1,12 @@
-
 .home2{
   width: 100%;
   height: 100vh;
-  background: rgb(49,61,82);
-  background: linear-gradient(0deg, rgba(49,61,82,1) 0%, rgba(253,242,240,1) 100%);
+  background-color: #313D52;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgb(49,61,82);
+  background: linear-gradient(0deg, rgba(49,61,82,1) 0%, rgba(253,242,240,1) 100%);
 }
 .c-button__custom{
   text-decoration: none;
@@ -29,8 +29,7 @@
 footer{
   width: 100%;
   padding: 40px 0px;
-  background: rgb(255,188,29);
-  background: linear-gradient(0deg, rgba(255,188,29,1) 67%, rgba(46,61,82,1) 100%);
+  background-color: hwb(44 31% 1% / 0.898);
 }
 .c-container__footer{
   display: flex;
@@ -136,3 +135,52 @@ font-size: 20px;
   background-color: #ffffff;
 }
 
+.c-bodyNotFound404{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.c-ButtonNotFound{
+  padding: 20px;
+  background-color: #7a7a7a;
+  border-radius: 12px;
+}
+
+.c-ButtonNotFound:hover{
+  background-color: #bfbfbf;
+}
+
+.c-bodyNotFound404{
+  display: flex;
+}
+
+.c-containterImgNotFound404{
+  height: 700px;
+  width: 600px;
+}
+
+.c-containterImgNotFound404 img{
+  height: 100%;
+  width: 100%;
+}
+
+.c-bodyNotFound404Article{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 20px;
+}
+
+@media (max-width: 687px) {
+  .c-bodyNotFound404{
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .c-containterImgNotFound404{
+    width: 70%;
+  }
+}

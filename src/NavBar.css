@@ -83,7 +83,7 @@ header{
   height: 24vh;
   align-items:center ;
   background: rgb(43,75,157);
-  background: linear-gradient(0deg, rgba(43,75,157,1) 0%, rgba(255,188,29,1) 40%);
+  background: linear-gradient(0deg, rgba(123, 151, 220, 0.404) 0%, hwb(44 31% 1% / 0.9) 40%);
 }
 
 
