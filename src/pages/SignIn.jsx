@@ -15,7 +15,7 @@ export default function BoxSignIn() {
             password: passwordInputElement.current?.value
         };
 
-    localStorage.setItem('user-registered', JSON.stringify(data))
+    localStorage.setItem('user-access', JSON.stringify(data))
 
     alert("Welcome to MyTinerary!")
 
