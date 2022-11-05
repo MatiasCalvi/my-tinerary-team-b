@@ -5,6 +5,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/index" element={<Home />} />
         <Route path="/*" element={<NotFound />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/signiup" element={<SignUp />} />
       </Routes>
    </Layout>
   );
