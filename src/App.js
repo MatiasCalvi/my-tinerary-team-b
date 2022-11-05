@@ -14,7 +14,7 @@ function App() {
         <Route path="/index" element={<Home />} />
         <Route path="/*" element={<NotFound />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/signiup" element={<SignUp />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
    </Layout>
   );
