@@ -22,6 +22,6 @@ export default function ScrollToTop() {
     }
 
     return ( <>
-        {backToTopButton && ( <p class="c-button__custom" href="" onClick={scrollUp}>&#129045;</p>)}
+        {backToTopButton && ( <p className="c-button__custom" href="" onClick={scrollUp}>&#129045;</p>)}
         </>)
 }
