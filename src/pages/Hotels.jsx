@@ -1,6 +1,6 @@
 import {useEffect,useState,React} from 'react'
 import Select from '../components/Select'
-import Cards from '../components/Cards'
+import HotelCards from '../components/HotelCards'
 import SearchBar from '../components/SearchBar'
 
 
@@ -72,8 +72,8 @@ export default function Hotels() {
         </div>
         <div>
         {(!print)
-        ? hotels.map(hotel=><Cards key={hotel?.id} name={hotel?.name} capacity={hotel?.capacity} photo={hotel?.photo[0]}/>)
-        : newHotels.map(hotel=><Cards key={hotel?.id} name={hotel?.name} capacity={hotel?.capacity} photo={hotel?.photo[0]}/>)}
+        ? hotels.map(hotel=><HotelCards key={hotel?.id} name={hotel?.name} capacity={hotel?.capacity} photo={hotel?.photo[0]}/>)
+        : newHotels.map(hotel=><HotelCards key={hotel?.id} name={hotel?.name} capacity={hotel?.capacity} photo={hotel?.photo[0]}/>)}
         </div>
     </div>
     )
