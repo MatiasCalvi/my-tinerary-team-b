@@ -34,7 +34,7 @@ export default function BoxSignIn() {
             <div className='c-form-form-signIn-buttons'>
                 <button type='submit' onClick={handleSubmit} className='c-access'>Sign In</button>
                 <p>Don't have an account yet?</p>
-                <Navlink to='/signiup'><button >Register now</button></Navlink>
+                <Navlink to='/signup'><button >Register now</button></Navlink>
                 <h6>or</h6>
                 <Navlink to="#"><button>Access with Google</button></Navlink>
             </div>

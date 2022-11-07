@@ -8,7 +8,9 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Hotels from "./pages/Hotels";
 import Cities from "./pages/Cities"
+import NewCity from "./pages/NewCity"
 import NewHotel from "./pages/NewHotel";
+
 
 
 function App() {
@@ -21,7 +23,9 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/hotels" element={<Hotels />} />
         <Route path="/cities" element={<Cities />} />
+        <Route path="/newcity" element={<NewCity />} />
         <Route path="/newhotel" element={<NewHotel/>}/>
+
       </Routes>
     </Layout>
   );

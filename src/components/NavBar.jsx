@@ -38,7 +38,7 @@ export default function NavBar () {
                             <li><p>Users</p>
                                 <ul className="submenu">
                                     <li>
-                                    <NavLink to="/signiup">
+                                    <NavLink to="/signup">
                                     <button className="bt-nav-c">Sign Up</button>
                                     </NavLink>
                                     </li>
