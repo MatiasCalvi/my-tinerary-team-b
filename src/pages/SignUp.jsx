@@ -5,7 +5,7 @@ import '../Signiu.css';
 import { useRef } from 'react';
 
 
-export default function SignUp() {
+export default function BoxSignUp() {
 
     const nameImputElement = useRef(null)
     const lastNameImputElement = useRef(null)
