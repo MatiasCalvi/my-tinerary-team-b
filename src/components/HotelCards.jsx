@@ -2,8 +2,8 @@ import React from 'react'
 import '../App.css'
 import { Link as Navlink } from 'react-router-dom'
 
-export default function cards(props) {
-    let{name,capacity,photo}=props
+export default function Hotelcards(props) {
+  let{name,capacity,photo}=props
   return (<>
     <div className="blog-card">
         <div className="meta">
@@ -19,7 +19,7 @@ export default function cards(props) {
             <h2>certain places make you live unique moments</h2>
             <p>Capacity: {capacity}</p>
             <p className="read-more">
-            <Navlink to='#'>Read More</Navlink>
+            <Navlink to='/'>Read More</Navlink>
             </p>
         </div>
     </div>
