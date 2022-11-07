@@ -2,6 +2,7 @@ import React from 'react'
 import Input from '../components/Input';
 import { Link as Navlink } from 'react-router-dom';
 import { useRef } from 'react';
+import "../newcity.css"
 
 export default function BoxSignIn() {
 
@@ -24,10 +25,10 @@ export default function BoxSignIn() {
     }
 
     return (
-    <div className='c-form-signIn'>
+    <div className='flex j-center a-center total bg column'>
         <h1>Log In</h1>
-        <form className='c-form-form-signIn'>
-            <div className='c-form-inputs'>
+        <form className='flex column g-10'>
+            <div className='flex column g-10'>
                 <Input ref={emailInputElement} type='email' placeholder='Email:'/>
                 <Input ref={passwordInputElement} type='password' placeholder='Password:'/>
             </div>

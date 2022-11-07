@@ -1,6 +1,7 @@
 import React from 'react'
 import Input from '../components/Input';
 import { useRef } from 'react';
+import "../newcity.css"
 
 
 export default function NewHotel() {
@@ -41,11 +42,11 @@ export default function NewHotel() {
         <h1>Whant to add a new hotel?</h1>
 
         <form className='flex column'>
-            <div className='flex column '>
-                <Input ref={hotelNameImputElement} type='text' id='name' placeholder='Hotel Name:'/>
-                <Input ref={cityInputElement} type='text' id='lastName' placeholder='City Name:'/>
-                <Input ref={photoImputElement} type='text' id='email' placeholder='photo url:'/>
-                <Input ref={capacityInputElement} type='text' id='population' placeholder='Capacity:'/>
+            <div className='flex column g-10 '>
+                <Input ref={hotelNameImputElement} type='text' id='hotelName' placeholder='Hotel Name:'/>
+                <Input ref={cityInputElement} type='text' id='cityName' placeholder='City Name:'/>
+                <Input ref={photoImputElement} type='text' id='photo' placeholder='photo url:'/>
+                <Input ref={capacityInputElement} type='text' id='Capacity' placeholder='Capacity:'/>
                 <div >
                     <h2>Access your admin code to proceed </h2>
                     <Input ref={hotelNameImputElement} type='text' name='admin' value='' placeholder='admin code'/>

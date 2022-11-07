@@ -10,6 +10,8 @@ import Hotels from "./pages/Hotels";
 import Cities from "./pages/Cities"
 import NewCity from "./pages/NewCity"
 import NewHotel from "./pages/NewHotel";
+import Dcities from "./pages/Dcities"
+import City from "./components/City"
 
 
 
@@ -17,7 +19,8 @@ function App() {
   return (
     <Layout>
       <Routes>
-        <Route path="/index" element={<Home />} />
+        <Route path="/city" element={<City />} />
+        <Route path="/" element={<Home />} />
         <Route path="/*" element={<NotFound />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
@@ -25,6 +28,7 @@ function App() {
         <Route path="/cities" element={<Cities />} />
         <Route path="/newcity" element={<NewCity />} />
         <Route path="/newhotel" element={<NewHotel/>}/>
+        <Route path="/dcities" element={<Dcities/>}/>
 
       </Routes>
     </Layout>

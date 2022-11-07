@@ -16,11 +16,14 @@ export default function Footer() {
              </div>
             <div className='c-box__footer'>
                 <h2>Pages</h2>
-                <NavLink to="/index">
+                <NavLink to="/">
                     <button className="bt-nav-c">Home</button>
                 </NavLink>
                 <NavLink to="/newcity">
                     <button className="bt-nav-c">Add city</button>
+                </NavLink>
+                <NavLink to="/newhotel">
+                    <button className="bt-nav-c">Add Hotel</button>
                 </NavLink>
             </div>
             <div className='c-box__footer'>
