@@ -3,6 +3,7 @@ import Input from '../components/Input';
 import { Link as Navlink } from 'react-router-dom';
 import '../Signiu.css';
 import { useRef } from 'react';
+import "../newcity.css"
 
 
 export default function BoxSignUp() {
@@ -36,10 +37,10 @@ export default function BoxSignUp() {
     }
 
     return (
-    <div className='flex jc-center column al-item-c form-h'>
+    <div className='flex j-center a-center total bg column'>
         <h1>Sign Up</h1>
-        <form className='flex column al-item-c g-10'>
-            <div className='c-form-inputs flex column g-10'>
+        <form className='flex column'>
+            <div className=' flex column g-10'>
                 <Input ref={nameImputElement} type='text' id='name' placeholder='Name:'/>
                 <Input ref={lastNameImputElement} type='text' id='lastName' placeholder='Last Name:'/>
                 <Input ref={emailInputElement} type='email' id='email' placeholder='Email:'/>
