@@ -3,6 +3,7 @@ import Select from '../components/Select'
 import Cards from '../components/Cards'
 import SearchBar from '../components/SearchBar'
 
+
 let aplied={}
 
 export default function Hotels() {
@@ -23,12 +24,10 @@ export default function Hotels() {
         console.log(aplied)
         
         for(let date in aplied){
-            
+
             if(date==="searchBar"){
-                if(aplied["searchBar"] !== ''){
-                    setNewHotels(newHotels.filter(element=>element.name.toLowerCase().includes(aplied[date].toLowerCase())))
-                } 
-                newHotels=hotels
+                setNewHotels(hotels.filter(element=>element.name.toLowerCase().includes(aplied[date].toLowerCase())))
+                /* newHotels=hotels */
             }
             if(date==="select"){
                 
@@ -41,7 +40,7 @@ export default function Hotels() {
                         } else {
                             return 0;
                         }
-                        }).filter(hotel=>hotel.capacity<=3000))
+                    }).filter(hotel=>hotel.capacity<=3000))
                 } 
                 if (aplied["select"] === '2') {
                     setNewHotels(hotels.sort(function (a, b) {
@@ -52,14 +51,13 @@ export default function Hotels() {
                         } else {
                             return 0;
                         }
-                        }).filter(hotel=>hotel.capacity>3000))
-                    }
-                
+                    }).filter(hotel=>hotel.capacity>3000))
                 }
-                
-            if(newHotels.length===0){
-                console.log("vacio")
             }
+            
+            /* if(newHotels.length===0){
+                console.log("vacio")
+            } */
         }
         setPrint(true)
     }

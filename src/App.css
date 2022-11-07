@@ -373,6 +373,8 @@ font-size: 20px;
   flex-wrap: wrap;
 }
 
+
+
 @media (min-width: 640px) {
   .blog-card {
     flex-direction: row;
