@@ -99,14 +99,18 @@ header{
   .title {
     width: 100vw;
     text-align: center;
+    font-size: small;
+    margin-top: -20% ;
   }
   
   .dropdown1 {
     width: 40%;
+    margin-top: -48%;
   }
 
   .dropdown2 {
     width: 40%;
+    margin-top: -48%;
   }
   .navegation{
     width: 60%;
