@@ -1,0 +1,110 @@
+[
+	{
+        "id": "city1",
+        "name": "London",
+        "continent": "Europe",
+        "photo": "https://images.pexels.com/photos/221166/pexels-photo-221166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "description": "London is the capital city of the United Kingdom. It is the U.K.'s largest metropolis and its economic, transportation, and cultural centre. London is also among the oldest of the world's great cities, with its history spanning nearly two millennia.",
+        "population":  9002488 ,
+        "userId":  "admin4"  
+	},
+	{
+        "id": "city2",
+        "name": "Paris",
+        "continent": "Europe",
+        "photo": "https://images.pexels.com/photos/532826/pexels-photo-532826.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "description": "Paris is one of the most beautiful cities in the world. It is known worldwide for the Louvre Museum, Notre-Dame cathedral, and the Eiffel tower. It has a reputation of being a romantic and cultural city. " ,
+        "population":  	2240621  ,
+        "userId":  "admin3"
+	},
+	{
+        "id": "city3",
+        "name": "Moscow",
+        "continent": "Europe",
+        "photo": "https://images.pexels.com/photos/3629813/pexels-photo-3629813.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "description": "Moscow is situated on the Moskva River in the Central Federal District of European Russia making it the world's most populated inland city." ,
+        "population":  25121000 ,
+        "userId":  "admin4" 
+	},
+	{
+        "id": "city4",
+        "name": "Dubai",
+        "continent": "Asia",
+        "photo": "https://images.pexels.com/photos/1089645/pexels-photo-1089645.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "description": "Dubai is a city of skyscrapers, ports, and beaches, where big business takes place alongside sun-seeking tourism.",
+        "population":3478300 ,
+        "userId":"admin1"  
+	},
+	{
+        "id":"city5",
+        "name":"Tokyo",
+        "continent":"Asia",
+        "photo": "https://images.pexels.com/photos/46253/mt-fuji-sea-of-clouds-sunrise-46253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "description": "Tokyo is the administrative, cultural, financial, commercial, and educational centre of Japan and the focus of an extensive urban complex that includes Kawasaki and Yokohama. ",
+        "population":14215906 ,
+        "userId":"admin2" 
+	},
+	{
+        "id":"city6",
+        "name":"Singapore",
+        "continent":"Asia",
+        "photo":"https://images.pexels.com/photos/1842332/pexels-photo-1842332.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "description": "Singapore is a sunny, tropical island in South-east Asia, off the southern tip of the Malay Peninsula.",
+        "population":5677000 ,
+        "userId":"admin1"
+	},
+	{
+        "id":"city7",
+        "name":"Barcelona",
+        "continent":"Europe",
+        "photo":"https://images.pexels.com/photos/1782436/pexels-photo-1782436.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "description": "Barcelona is the capital city of Catalonia, which is a region of Spain. Barcelona is the largest city on the Mediterranean coast. " ,
+        "population":1636732  ,
+        "userId":"admin2" 
+	},
+        {
+        "id":"city8",
+        "name":"Luxor",
+        "continent":"America",
+        "photo":"https://images.pexels.com/photos/6102263/pexels-photo-6102263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "description": "Luxor means in Arabic as “The Palaces” and during ancient times used to be known as “The city of Hundred Doors“. It is considered by many to be the globe’s greatest open-air museum",
+        "population":1328429 ,
+        "userId":"admin4" 
+        },
+	{
+        "id":"city9",
+        "name":"Lima",
+        "continent":"America",
+        "photo":"https://images.pexels.com/photos/5198285/pexels-photo-5198285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "description": "Lima  is the capital and the largest city of Peru. It is located in the valleys of the Chillón, Rímac and Lurín Rivers, in the desert zone of the central coastal part of the country, overlooking the Pacific Ocean" ,
+        "population":9943800 ,
+        "userId":"admin3"  
+	},	
+        {
+        "id":"city10",
+        "name":"Rome",
+        "continent":"Europe",
+        "photo":"https://images.pexels.com/photos/1797158/pexels-photo-1797158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "description": "Rome, the Eternal City, is the capital and largest city of Italy and of the Lazio region. It is famous for being the home of the ancient Roman Empire, the Seven Hills, La Dolce Vita, the Vatican City and Three Coins in the Fountain.",
+        "population":2857321 ,
+        "userId":"admin3" 
+	},
+	{
+        "id":"city11",
+        "name":"Doha",
+        "continent":"Asia",
+        "photo":"https://images.pexels.com/photos/6562904/pexels-photo-6562904.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "description": "Doha is famous for its many mosques and modern buildings. It is also increasing in the libraries, most notably the Qatari Book House and the National Library. " ,
+        "population":998651 ,
+        "userId":"admin2"
+	},
+	{
+        "id":"city12",
+        "name":"Marrakech",
+        "continent":"Africa",
+        "photo": "https://images.pexels.com/photos/13759765/pexels-photo-13759765.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "description": "The first of Morocco’s four imperial cities, it lies in the centre of the fertile, irrigated Haouz Plain, south of the Tennsift River.",
+        "population":1070838  ,
+        "userId":"admin3"  
+	}
+]

@@ -1,0 +1,34 @@
+.flex {
+    display: flex;
+  }
+
+.ac-spabet {
+    align-content: space-between;
+  }
+
+.al-item-c {
+align-items: center;
+}
+
+.g-10 {
+gap: 10px;
+}
+
+.jc-center {
+    justify-content: center;
+}
+.column {
+    flex-direction: column;
+}
+
+.pr {
+    padding-right: 20px;
+}
+
+.form-h{
+    height: 600px;
+  }
+  
+  .SU-buttons{
+    width: 40%;
+  }

@@ -1,0 +1,46 @@
+[
+	{
+		"id": "user1",
+		"name": "Hayes",
+		"lastName": "Nieto",
+		"age": 33,
+		"email": "sem.semper@yahoo.edu",
+		"pasword": "magna.",
+		"code": "bibendumsedest.Nunc",
+		"verified": true,
+		"logged": true
+	},
+	{
+		"id": "user2",
+		"name": "Carson",
+		"lastName": "Alonso",
+		"age": 42,
+		"email": "lacinia.at@icloud.net",
+		"pasword": "sitamet",
+		"code": "nullamagnamalesuada",
+		"verified": true,
+		"logged": true
+	},
+	{
+		"id": "user3",
+		"name": "Hedley",
+		"lastName": "Ramirez",
+		"age": 30,
+		"email": "vivamus.nisi.mauris@aol.edu",
+		"pasword": "maurissagittisplacerat",
+		"code": "vestibulum.Mauris",
+		"verified": true,
+		"logged": true
+	},
+	{
+		"id": "user4",
+		"name": "Holly",
+		"lastName": "Gomez",
+		"age": 35,
+		"email": "parturient.montes@hotmail.edu",
+		"pasword": "etultrices",
+		"code": "Suspendisseseddolor.",
+		"verified": true,
+		"logged": true
+	}
+]
