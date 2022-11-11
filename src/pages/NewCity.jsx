@@ -1,8 +1,10 @@
 import React from 'react'
 import Input from '../components/Input';
 import "../newcity.css"
-import { useRef } from 'react';
-
+import { useRef,useEffect } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+import {BASE_URL} from '../api/url';
 
 export default function CreateNewCity() {
 
@@ -10,31 +12,24 @@ export default function CreateNewCity() {
     const continentimputElement = useRef(null);
     const photoImputElement = useRef(null);
     const populationImputElement = useRef(null);
-    const adminImputElement = useRef(null);
-    
+    const adminImputElement = useRef(0);
+    let [form,setForm]=useState({});
 
-    let handleCreateCity = (event) => {
+    console.log(form)
+
+    let handleCreateCity = async (event) => {
     event.preventDefault();
         const data = {
             name: cityNameImputElement.current?.value,
             continent: continentimputElement.current?.value,
             photo: photoImputElement.current?.value,
             population: populationImputElement.current?.value,
-            admin: adminImputElement.current?.value,
+            userId: adminImputElement.current?.value
         };
-
-    localStorage.setItem('new-city', JSON.stringify(data))
-
-    alert("You have submited a city!")
-
-    cityNameImputElement.current.value=''
-    continentimputElement.current.value=''
-    photoImputElement.current.value=''
-    populationImputElement.current.value=''
-    adminImputElement.current.value=''
-
-    event.target.reset()
     
+        axios.post((`${BASE_URL}/cities`),data)
+        .then(respon=>console.log(respon))
+        .catch(err=>{console.log(err)})
     }
 
     return (
@@ -48,10 +43,7 @@ export default function CreateNewCity() {
                 <Input ref={continentimputElement} type='text' id='lastName' placeholder='Continent:'/>
                 <Input ref={photoImputElement} type='text' id='email' placeholder='photo url:'/>
                 <Input ref={populationImputElement} type='text' id='population' placeholder='Population:'/>
-                <div >
-                    <h2>Access your admin code to proceed </h2>
-                    <Input ref={cityNameImputElement} type='text' name='admin' value='' placeholder='admin code'/>
-                </div>
+                <Input ref={adminImputElement} type='text' id='userId' placeholder='AdminCode:'/>
                 <div className='flex j-between'>
                     <input className='w-50 fs-2' type="reset" value="Clear Form" />
                     <input className='w-50 fs-2' onClick={handleCreateCity} type="submit" value="Submit" />
