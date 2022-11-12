@@ -10,7 +10,6 @@ import Hotels from "./pages/Hotels";
 import Cities from "./pages/Cities"
 import NewCity from "./pages/NewCity"
 import NewHotel from "./pages/NewHotel";
-import City from "./components/City"
 
 
 
@@ -18,15 +17,14 @@ function App() {
   return (
     <Layout>
       <Routes>
-        {/* <Route path="/city" element={<City/>} />
         <Route path="/" element={<Home />}/>
         <Route path="/*" element={<NotFound />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/hotels" element={<Hotels />} />
-        <Route path="/cities" element={<Cities />} /> */}
+        <Route path="/cities" element={<Cities />} />
         <Route path="/newcity" element={<NewCity />} />
-   {/*      <Route path="/newhotel" element={<NewHotel/>}/> */}
+        <Route path="/newhotel" element={<NewHotel/>}/>
       </Routes>
     </Layout>
   );
