@@ -2,6 +2,8 @@ import {useEffect,useState,React} from 'react'
 import CitiesCards from '../components/CitiesCards.jsx'
 import "../cities.css"
 import { useRef } from 'react'
+import axios from 'axios';
+import {BASE_URL} from '../api/url';
 
 
 export default function Cities() {
@@ -9,37 +11,36 @@ export default function Cities() {
     let [cities,setcities]=useState([])
     let [checked,setChecked]=useState([])
     let [searched,setSearched]=useState([])
+    let [filter,setFilter]=useState([])
 
     useEffect(()=>{
-        fetch('./data/dataCities.json')
-        .then(cities=>cities.json())
-        .then(cities=>setcities(cities))
-        .catch(error=>console.log(error))
+        axios.get(`${BASE_URL}/cities`)
+        .then(response=>setcities(response.data.allcities))
     },[])
- 
-    let checkboxH = (event) => {
-        let array = [...checked]
-        if(event.target.checked){
-            array.push(event.target.value)
-        }else {
-            array = array.filter(element => element !== event.target.value)
+
+
+    function listen(value){
+        
+        if(value.target.checked){
+            if(value.target.type==="checkbox"){
+            setChecked(checked.concat("&continent="+value.target.value))
         }
-        setChecked(array)
-        console.log(array)
-    }
-    
-    let searchImput = (event) => {
-        setSearched (event.target.value)
+        }else{
+            setChecked(checked.filter(element=>element!=="&continent="+value.target.value))
+        }
+
+        if(value.target.type==="text"){
+            setSearched(value.target.value)
+        }
+       
     }
 
-    const dataFiltered = useRef (null)
-    dataFiltered.current = (checked + " " + searched)
-
-    console.log(dataFiltered)
+    useEffect(()=>{
+        axios.get(`${BASE_URL}/cities?name=${searched}${checked.join('')}`)
+        .then(response=>setFilter(response.data.allcities))
+    },[checked,searched])
     console.log(checked)
-    console.log(searched)
-    console.log(setSearched)
-    console.log(setChecked)
+    console.log(filter)
 
   return ( 
     <div className=''>
@@ -49,21 +50,21 @@ export default function Cities() {
                             <input
                         type="text"
                         placeholder="Search"
-                        onChange={searchImput}
+                        onChange={listen}
                                 />
                 </div>
                 <div className='w-100 flex j-center'>
                     {
                         Array.from(new Set(cities.map(city => city.continent))).map(element => {
                             return (
-                                <label key={element}><input onClick={checkboxH} type="checkbox" id={element} value={element} /> {element}</label>
+                                <label key={element}><input onClick={listen} type="checkbox" id={element} value={element} /> {element}</label>
                             )
-                        })
+                        })  
                     }
                 </div>
             </div>
             <div className='w-100 grow'>
-                {cities.map(city=><CitiesCards key={city?.id} name={city?.name} photo={city?.photo}/>)}
+                { filter.map(city=><CitiesCards key={city?._id} name={city?.name} photo={city?.photo}/>)}
             </div>
         </div>
     </div>
