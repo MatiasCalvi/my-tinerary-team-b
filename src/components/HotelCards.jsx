@@ -19,7 +19,7 @@ export default function Hotelcards(props) {
             <h2>certain places make you live unique moments</h2>
             <p>Capacity: {capacity}</p>
             <p className="read-more">
-            <Navlink to='/'>Read More</Navlink>
+            <Navlink to='/detailsHotels/:id'>Read More</Navlink>
             </p>
         </div>
     </div>
