@@ -64,7 +64,7 @@ export default function Cities() {
                 </div>
             </div>
             <div className='w-100 grow'>
-                { filter.map(city=><CitiesCards key={city?._id} name={city?.name} photo={city?.photo}/>)}
+                { filter.map(city=><CitiesCards key={city?._id} id={city?._id} name={city?.name} photo={city?.photo}/>)}
             </div>
         </div>
     </div>

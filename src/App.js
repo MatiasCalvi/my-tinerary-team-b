@@ -10,6 +10,8 @@ import Hotels from "./pages/Hotels";
 import Cities from "./pages/Cities"
 import NewCity from "./pages/NewCity"
 import NewHotel from "./pages/NewHotel";
+import Citiesdetails from "./pages/Citiesdetails";
+import Hoteldetails from "./pages/Hoteldetails";
 
 
 
@@ -25,6 +27,8 @@ function App() {
         <Route path="/cities" element={<Cities />} />
         <Route path="/newcity" element={<NewCity />} />
         <Route path="/newhotel" element={<NewHotel/>}/>
+        <Route path="/detailsCities/:id" element={<Citiesdetails/>}/>
+        <Route path="/detailsHotels" element={<Hoteldetails/>} />
       </Routes>
     </Layout>
   );
