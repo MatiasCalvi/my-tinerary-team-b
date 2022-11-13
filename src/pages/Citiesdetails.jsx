@@ -47,7 +47,9 @@ export default function Citiesdetails() {
         </div>
     </div>
     <div className='c-containerDetailsYoungInter'>
-        <CardUserDetails name={user[0]?.name} photo={user[0]?.photo} />
+        {(show.length!=0)?
+            <CardUserDetails name={user[0]?.name} photo={user[0]?.photo} /> : console.log(true)
+        }
     </div>  
     <div className='c-containerDetailsYoung'>
         {
