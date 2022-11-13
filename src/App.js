@@ -15,6 +15,7 @@ import Hoteldetails from "./pages/Hoteldetails";
 
 
 
+
 function App() {
   return (
     <Layout>
