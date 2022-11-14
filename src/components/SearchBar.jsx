@@ -1,13 +1,11 @@
 import React from 'react'
 
 export default function SearchBar(props) {
-    let{functionFilter}=props
-    function catchEvent(event){
-        functionFilter(event.target.value,"searchBar")
-    }
+    let{value}=props
+ 
     return (
             <div className="c-topnav">
-                <input type="text" onKeyUp={catchEvent} placeholder="Search.."/>
+                <input type="text" onKeyUp={value} placeholder="Search.."/>
             </div>
         )
     }

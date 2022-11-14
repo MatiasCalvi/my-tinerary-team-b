@@ -2,79 +2,60 @@ import {useEffect,useState,React} from 'react'
 import Select from '../components/Select'
 import HotelCards from '../components/HotelCards'
 import SearchBar from '../components/SearchBar'
+import axios from 'axios';
+import {BASE_URL} from '../api/url';
 
-
-let aplied={}
 
 export default function Hotels() {
     let [hotels,sethotels]=useState([])
-    let [newHotels,setNewHotels]=useState([])
     let [print,setPrint]=useState(false)
+    let [searched,setSearched]=useState([])
+    let [order,setOrder]=useState('')
+ 
+    
     useEffect(()=>{
-        fetch('./data/dataHousing.json')
-        .then(hotels=>hotels.json())
-        .then(hotels=>sethotels(hotels))
-        .catch(error=>console.log(error))
-    },[])
+        axios.get(`${BASE_URL}/hotels?order=${order}&name=${searched}`)
+        .then(response=>sethotels(response.data.allhotels))
+    },[order,searched])
 
-    function onFilterValueSelected(FilterValue,especialist){
-
-        aplied[especialist] = FilterValue;
+    function onFilterValueSelected(value){
         
-        console.log(aplied)
         
-        for(let date in aplied){
-
-            if(date==="searchBar"){
-                setNewHotels(hotels.filter(element=>element.name.toLowerCase().includes(aplied[date].toLowerCase())))
-                /* newHotels=hotels */
-            }
-            if(date==="select"){
-                
-                if (aplied["select"] === '1') {
-                    setNewHotels(hotels.sort(function (a, b) {
-                        if (a.capacity > b.capacity) {
-                            return -1;
-                        } else if (a.capacity < b.capacity) {
-                            return 1; 
-                        } else {
-                            return 0;
-                        }
-                    }).filter(hotel=>hotel.capacity<=3000))
-                } 
-                if (aplied["select"] === '2') {
-                    setNewHotels(hotels.sort(function (a, b) {
-                        if (a.capacity < b.capacity) {
-                            return -1;
-                        } else if (a.capacity > b.capacity) {
-                            return 1; 
-                        } else {
-                            return 0;
-                        }
-                    }).filter(hotel=>hotel.capacity>3000))
-                }
-            }
             
-            /* if(newHotels.length===0){
-                console.log("vacio")
-            } */
+        if(value.target.type==="text"){
+            setSearched(value.target.value)
         }
-        setPrint(true)
-    }
 
-    console.log(newHotels)
+        if(value.target.name==="hotelsSelect"){
+            
+                    if (value.target.value == '1') {
+                    setOrder("asc")
+                  
+                     }
+                    if (value.target.value == '2') {
+                    setOrder("desc")
+                    
+                    }
+                    if(value.target.value == '3') {
+                    setOrder ("")
+                    
+                    }
+            
+            }
+        }
+    
     
     return (
     <div className='c-container-hotels'>
         <div className='c-container-hotels-inputs'>
-            <Select functionFilter={onFilterValueSelected}/>
-            <SearchBar functionFilter={onFilterValueSelected}/>
+            <Select value={onFilterValueSelected}/>
+            <SearchBar value={onFilterValueSelected}/>
         </div>
         <div>
         {(!print)
         ? hotels.map(hotel=><HotelCards key={hotel?.id} name={hotel?.name} capacity={hotel?.capacity} photo={hotel?.photo[0]}/>)
-        : newHotels.map(hotel=><HotelCards key={hotel?.id} name={hotel?.name} capacity={hotel?.capacity} photo={hotel?.photo[0]}/>)}
+        : hotels.map(hotel=><HotelCards key={hotel?.id} name={hotel?.name} capacity={hotel?.capacity} photo={hotel?.photo[0]}/>)}
         </div>
     </div>
-    )
-}
+    )   
+} 
