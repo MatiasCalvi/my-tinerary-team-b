@@ -1,10 +1,13 @@
 import React from 'react'
 import Input from '../components/Input';
 import "../newcity.css"
-import { useRef,useEffect } from 'react';
+import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import axios from 'axios';
-import {BASE_URL} from '../api/url';
+import { useDispatch,useSelector } from 'react-redux';
+import toDoActions from '../redux/actions/toDoActions.js';
+import alertActions from '../redux/actions/alertaCity';
+import Swal from 'sweetalert2'
 
 export default function CreateNewCity() {
 
@@ -14,11 +17,17 @@ export default function CreateNewCity() {
     const populationImputElement = useRef(null);
     const adminImputElement = useRef(0);
     let [form,setForm]=useState({});
+    let nav=useNavigate()
 
-    console.log(form)
+    let {newCity}=toDoActions
+    let {alerta}=alertActions
+
+    const dispatch= useDispatch()
+    const {cities} = useSelector((state) => state.cities);
+
 
     let handleCreateCity = async (event) => {
-    event.preventDefault();
+        event.preventDefault();
         const data = {
             name: cityNameImputElement.current?.value,
             continent: continentimputElement.current?.value,
@@ -26,10 +35,31 @@ export default function CreateNewCity() {
             population: populationImputElement.current?.value,
             userId: adminImputElement.current?.value
         };
-    
-        axios.post((`${BASE_URL}/cities`),data)
-        .then(respon=>console.log(respon))
-        .catch(err=>{console.log(err)})
+        try{
+            let res= await dispatch(newCity(data))
+            if(res.payload.success){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Created',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                nav(`/detailsCities/:${res.payload.id}`)
+            }
+            else{
+               
+                dispatch(alerta(Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: res.payload.response,
+                  })))
+            }
+        }
+        catch(error){
+
+            console.log(error)
+        }
     }
 
     return (

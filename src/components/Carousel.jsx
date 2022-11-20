@@ -12,7 +12,7 @@ export default function Carousel()
   let [timeId,setTimeId] = useState(0)
   let [timeIdA,setTimeIdA] = useState(0)
 
-  console.log(generalEstate)
+ /*  console.log(generalEstate) */
 
   useEffect(()=>{
     fetch('./data/dataHousing.json')
