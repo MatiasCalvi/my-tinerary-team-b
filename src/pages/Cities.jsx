@@ -9,8 +9,7 @@ export default function Cities() {
     let {getCitiesFilter,getCities}=toDoActions
     const dispatch= useDispatch()
     
-   const {cities} = useSelector((state) => state.cities);
-   const {categories} = useSelector((state) => state.cities); 
+   const {cities,categories} = useSelector((state) => state.cities);
 
    
     let [checked,setChecked]=useState([])

@@ -36,9 +36,31 @@ const getCities = createAsyncThunk("getCities", async (value) => {
     }
   });
 
+const newCity = createAsyncThunk("newCity", async (data) => {
+  let url=`${BASE_URL}/cities`  
+  try {
+      
+      let res = await axios.post(url,data);
+      if(res.data.id){
+          
+          return {success:true, response:data, id: res.data.id}
+
+      }
+      else{
+          
+          return {success:false, response: res.data.message}
+
+      }
+    } catch (error) {
+    
+      return {success:false, response:"ocurrio un error"}  
+
+    }
+}); 
 const toDoActions = {
   getCitiesFilter,
-  getCities
+  getCities,
+  newCity
 };
 
 export default toDoActions;
