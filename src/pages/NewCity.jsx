@@ -63,20 +63,20 @@ export default function CreateNewCity() {
     }
 
     return (
-    <div className='flex j-center a-center total bg'>
+    <div className='flex j-center a-center total bg '>
         <div className='flex P80 j-center a-center column'>
         <h1>Whant to add a City?</h1>
 
-        <form className='flex column'>
-            <div className='flex column '>
+        <form className='flex column m20'>
+            <div className='flex column g-10 '>
                 <Input ref={cityNameImputElement} type='text' id='name' placeholder='City Name:'/>
                 <Input ref={continentimputElement} type='text' id='lastName' placeholder='Continent:'/>
                 <Input ref={photoImputElement} type='text' id='email' placeholder='photo url:'/>
                 <Input ref={populationImputElement} type='text' id='population' placeholder='Population:'/>
                 <Input ref={adminImputElement} type='text' id='userId' placeholder='AdminCode:'/>
                 <div className='flex j-between'>
-                    <input className='w-50 fs-2' type="reset" value="Clear Form" />
-                    <input className='w-50 fs-2' onClick={handleCreateCity} type="submit" value="Submit" />
+                    <input className='w-50 fs-2 input-form-newHotel' type="reset" value="Clear Form" />
+                    <input className='w-50 fs-2 input-form-newHotel' onClick={handleCreateCity} type="submit" value="Submit" />
                 </div>
             </div>
         </form>

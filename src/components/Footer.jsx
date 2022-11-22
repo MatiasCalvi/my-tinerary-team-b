@@ -25,6 +25,12 @@ export default function Footer() {
                 <NavLink to="/newhotel">
                     <button className="bt-nav-c">Add Hotel</button>
                 </NavLink>
+                <NavLink to="/mycities">
+                    <button className="bt-nav-c">My Cities</button>
+                </NavLink>
+                <NavLink to="/myitineraries">
+                    <button className="bt-nav-c">My Itineraries</button>
+                </NavLink>
             </div>
             <div className='c-box__footer'>
                 <h2>Social Medias</h2>
