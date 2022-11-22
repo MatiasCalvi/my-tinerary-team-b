@@ -1,22 +1,41 @@
-import {useEffect,useState,React} from 'react'
+import {useEffect,useState, useRef,React} from 'react'
 import Select from '../components/Select'
 import HotelCards from '../components/HotelCards'
 import SearchBar from '../components/SearchBar'
-import axios from 'axios';
-import {BASE_URL} from '../api/url';
-
+import { useDispatch , useSelector } from 'react-redux';
+import hotelActions from '../redux/actions/hotelActions';
 
 export default function Hotels() {
-    let [hotels,sethotels]=useState([])
-    let [print,setPrint]=useState(false)
-    let [searched,setSearched]=useState([])
+    
+  
+    let [searched,setSearched]=useState('')
     let [order,setOrder]=useState('')
- 
+    let [Aproved, setAproved ] = useState(true)
+
+
+
+    let{ getHotels, getHotelsFilter } = hotelActions
+
+    const dispatch= useDispatch()
+
+    const {hotels} = useSelector(state => state.hotels);
+    
     
     useEffect(()=>{
-        axios.get(`${BASE_URL}/hotels?order=${order}&name=${searched}`)
-        .then(response=>sethotels(response.data.allhotels))
-    },[order,searched])
+
+        if (getHotels && Aproved) {
+            dispatch(getHotels())
+            setAproved(false)
+
+          }else {
+            dispatch(getHotelsFilter({hotels:'hotels',searched:searched ,order:order}))
+        }
+    },[searched,order]) 
+
+    console.log(order)
+    console.log(searched)
+
+
 
     function onFilterValueSelected(value){
         
@@ -52,9 +71,7 @@ export default function Hotels() {
             <SearchBar value={onFilterValueSelected}/>
         </div>
         <div>
-        {(!print)
-        ? hotels.map(hotel=><HotelCards key={hotel?.id} name={hotel?.name} capacity={hotel?.capacity} photo={hotel?.photo[0]}/>)
-        : hotels.map(hotel=><HotelCards key={hotel?.id} name={hotel?.name} capacity={hotel?.capacity} photo={hotel?.photo[0]}/>)}
+            {hotels?.map(hotel=><HotelCards key={hotel?.id} id={hotel?._id} name={hotel?.name} capacity={hotel?.capacity} photo={hotel?.photo[0]}/>)} 
         </div>
     </div>
     )   
