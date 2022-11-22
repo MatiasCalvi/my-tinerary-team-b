@@ -12,7 +12,7 @@ import NewCity from "./pages/NewCity"
 import NewHotel from "./pages/NewHotel";
 import Citiesdetails from "./pages/Citiesdetails";
 import Hoteldetails from "./pages/Hoteldetails";
-
+import MyCities from "./pages/MyCities/MyCities";
 
 import MyHotels from "./pages/MyHotels/MyHotels";
 
@@ -30,8 +30,8 @@ function App() {
         <Route path="/newcity" element={<NewCity />} />
         <Route path="/newhotel" element={<NewHotel/>}/>
         <Route path="/detailsCities/:id" element={<Citiesdetails/>}/>
+        <Route path="/mycities" element={<MyCities/>}></Route>
         <Route path="/detailsHotels/:id" element={<Hoteldetails/>} />
-        
         <Route path="/myhotels" element={<MyHotels />} />
       </Routes>
     </Layout>
