@@ -141,7 +141,7 @@
     text-align: center;
   }
   
-  @media (max-width: 425 ) {
+  @media (max-width: 425px ) {
   
     .title {
       width: 100vw;
