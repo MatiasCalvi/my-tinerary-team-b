@@ -65,6 +65,27 @@ footer{
   color: #7a7a7a;
   font-weight: 600;
 }
+
+.c-box__footer a{
+  padding: 10px;
+}
+
+.bt-nav-c{
+  padding: 15px;
+  width: 100%;
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.bt-nav-c:hover{
+   background-color: white;
+   color: black;
+   overflow: hidden;
+}
+
 .c-box__footer p:hover{
   color: #ffffff;
 }

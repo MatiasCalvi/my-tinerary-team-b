@@ -4,7 +4,7 @@ import toDoActions from "../actions/toDoActions";
 const {getCitiesFilter,getCities,newCity,getCitiesUser,getAndEdit,getAndDestroy}= toDoActions
 
 const initialState={
-    value: "",
+    value1: "",
     value2: [],
     cities: [],
     categories:[],
@@ -15,21 +15,20 @@ const initialState={
 const toDoReducer = createReducer(initialState,
     (builder)=>{
         builder
-        .addCase(getCitiesFilter.fulfilled,(state,action)=>{
-            console.log(action.payload)
-            
-                return {
-                    ...state,
-                    ...action.payload
-                }
-        })
         .addCase(getCities.fulfilled,(state,action)=>{
             let categories=Array.from(new Set(action.payload.cities.map(city=>city.continent)))
             console.log(action.payload)
                 return {
                     ...state,
-                    value:action.payload.value,
                     categories,
+                    cities: action.payload.cities
+                }
+        })
+        .addCase(getCitiesFilter.fulfilled,(state,action)=>{
+            console.log(action.payload)
+            
+                return {
+                    ...state,
                     cities: action.payload.cities
                 }
         })
@@ -42,6 +41,8 @@ const toDoReducer = createReducer(initialState,
             console.log(action.payload)     
             return {
                     ...state,
+                    ... action.payload.value,
+                    ... action.payload.value2,
                     citiesAdmin: action.payload.cities
                 }
         })
