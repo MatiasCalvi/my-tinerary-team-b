@@ -1,45 +1,11 @@
-import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
+import {createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BASE_URL } from "../../api/url";
 
-const getCitiesFilter = createAsyncThunk("getCitiesFilter", async ({ cities, search ,check }) => {
-  /* let url=`${BASE_URL}/${value}` */
-  try {
-    console.log(check);
-    const res = await axios.get(
-      `http://localhost:8000/api/${cities}?name=${search}${check.join('')}`
-    );
-
-    console.log(res.data.allcities);
-    return {value2:check, value: search, cities: res.data.allcities };
-  } catch (error) {
-    console.log(error);
-    return {
-      payload: "Error",
-    };
-  }
-});
-
-const getCities = createAsyncThunk("getCities", async (value) => {
+const getCities = createAsyncThunk("getCities", async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/${value}`
-      );
-  
-      console.log(res.data.allcities);
-      return { value, cities: res.data.allcities };
-    } catch (error) {
-      console.log(error);
-      return {
-        payload: "Error",
-      };
-    }
-  });
-
-  const getCitiesUser = createAsyncThunk("getCitiesUser", async ({userId}) => {
-    try {
-      const res = await axios.get(
-        `http://localhost:8000/api/cities?userId=${userId}`
+        `${BASE_URL}/cities`
       );
   
       console.log(res.data.allcities);
@@ -51,6 +17,23 @@ const getCities = createAsyncThunk("getCities", async (value) => {
       };
     }
   });
+const getCitiesFilter = createAsyncThunk("getCitiesFilter", async ({ search ,check }) => {
+  /* let url=`${BASE_URL}/${value}` */
+  try {
+    console.log(check);
+    const res = await axios.get(
+      `${BASE_URL}?name=${search}${check.join('')}`
+    );
+
+    console.log(res.data.allcities);
+    return {value2:check, value: search, cities: res.data.allcities };
+  } catch (error) {
+    console.log(error);
+    return {
+      payload: "Error",
+    };
+  }
+});
 
 const newCity = createAsyncThunk("newCity", async (data) => {
   let url=`${BASE_URL}/cities`  
@@ -74,38 +57,75 @@ const newCity = createAsyncThunk("newCity", async (data) => {
     }
 });
 
-const EditCity = createAsyncThunk("EditCity", async ({id,data}) => {
-  let url=`${BASE_URL}/cities/:${id}`  
-  try {
-      
-      let res = await axios.post(url,data);
-      if(res.data.id){
-          
-          return {success:true, response:data, id: res.data.id}
+  const getCitiesUser = createAsyncThunk("getCitiesUser", async (userId) => {
+  
+    try {
+      const res = await axios.get(
+        `${BASE_URL}/cities?userId=${userId}`
+      );
 
+      console.log(res.data.allcities);
+      return { cities: res.data.allcities };
+    } catch (error) {
+      console.log(error);
+      return {
+        payload: "Error",
+      };
+    }
+  });
+
+  const getAndDestroy = createAsyncThunk("getAndDestroy", async ({cityId})=> {
+    try {
+      const res = await axios.delete(
+        `${BASE_URL}/cities/${cityId}`
+      )
+      return { cities: res.data.city }
+    } catch (error) {
+      console.log(error)
+      return {
+        payload: "Error"
       }
     }
-  catch(error){
-    console.log(error)
-  }
-      /* else{
-          
-          return {success:false, response: res.data.message}
+  })
 
-      }
-    } catch (error) {
+  const getAndEdit = createAsyncThunk("getAndEdit", async ({data, go})=> {
+
+    let url = `${BASE_URL}/cities/${go}`
     
-      return {success:false, response:"ocurrio un error"}  
+    try {
+      let res = await axios.put(url,data)
+      console.log(res.data)
+      
+      if (res.data.success){
+        return {
+          success: true,
+          response: data,
+          responseid: res.data.success
+        }
+      } else {
+        return {
+          success: false,
+          response: res.data.message
+        }
+      }
+    } catch(error) {
+      return {
+        success: false,
+        response: 'un error'
+      }
+    }
+  })
 
-    } */
-});
+
+
 
 const toDoActions = {
   getCitiesFilter,
   getCities,
   newCity,
   getCitiesUser,
-  EditCity
+  getAndDestroy,
+  getAndEdit
 };
 
 export default toDoActions;

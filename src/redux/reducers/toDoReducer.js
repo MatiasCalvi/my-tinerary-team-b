@@ -1,13 +1,15 @@
 import { createReducer } from "@reduxjs/toolkit";
 import toDoActions from "../actions/toDoActions";
 
-const {getCitiesFilter,getCities,newCity,getCitiesUser,EditCity}= toDoActions
+const {getCitiesFilter,getCities,newCity,getCitiesUser,getAndEdit,getAndDestroy}= toDoActions
 
 const initialState={
     value: "",
     value2: [],
     cities: [],
-    categories:[]
+    categories:[],
+    citiesAdmin:[],
+    cityId:"",
 }
 
 const toDoReducer = createReducer(initialState,
@@ -37,18 +39,27 @@ const toDoReducer = createReducer(initialState,
             }
         })
         .addCase(getCitiesUser.fulfilled,(state,action)=>{
-                return {
+            console.log(action.payload)     
+            return {
                     ...state,
-                    cities: action.payload.cities
+                    citiesAdmin: action.payload.cities
                 }
         })
-        .addCase(EditCity.fulfilled,(state,action)=>{
+        .addCase(getAndDestroy.fulfilled,(state,action)=>{
             return {
                 ...state,
-                cities: action.payload.cities
+                cityId : action.payload.cityId
             }
-    })
-        
+        })
+        .addCase(getAndEdit.fulfilled,(state,action)=>{
+            console.log(action.payload.success)
+            if (action.payload.success) {
+                return {
+                        ...state,
+                        cityId : action.payload.cityId
+                        }
+                    }
+                })
 })
 
 export default toDoReducer;
