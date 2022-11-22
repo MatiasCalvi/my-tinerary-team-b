@@ -58,7 +58,7 @@ const getHotels = createAsyncThunk("getHotels", async () => {
   
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/hotels?userId=${userId}`
+        `http://localhost:8000/api/myhotels?userId=${userId}`
       );
 
       console.log(res.data.allhotels);

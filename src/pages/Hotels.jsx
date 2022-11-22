@@ -10,6 +10,7 @@ export default function Hotels() {
   
     let [searched,setSearched]=useState('')
     let [order,setOrder]=useState('')
+    let [Aproved, setAproved ] = useState(true)
 
 
 
@@ -22,8 +23,9 @@ export default function Hotels() {
     
     useEffect(()=>{
 
-        if (hotels === "") {
+        if (getHotels && Aproved) {
             dispatch(getHotels())
+            setAproved(false)
 
           }else {
             dispatch(getHotelsFilter({hotels:'hotels',searched:searched ,order:order}))
