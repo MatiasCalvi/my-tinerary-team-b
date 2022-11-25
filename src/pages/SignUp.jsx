@@ -4,58 +4,76 @@ import { Link as Navlink } from 'react-router-dom';
 import '../Signiu.css';
 import { useRef } from 'react';
 import "../newcity.css"
-
+import { useDispatch } from 'react-redux';
+import alertActions from '../redux/actions/alertaCity';
+import Swal from 'sweetalert2'
+import Modal from '../components/Modal/Modal'
+import usersActions from '../redux/actions/usersActions';
+import { useState } from 'react';
 
 export default function BoxSignUp() {
 
-    const nameImputElement = useRef(null)
-    const lastNameImputElement = useRef(null)
-    const emailInputElement = useRef(null);
-    const passwordInputElement = useRef(null);
+    let form = useRef()
+    let [state,setState]=useState()
+    let dispatch = useDispatch()
+    let { alerta } = alertActions
+
+    let { userCreation } = usersActions 
     
 
-    let handleSignUp = (event) => {
-    event.preventDefault();
-        const data = {
-            name: nameImputElement.current?.value,
-            lastName: lastNameImputElement.current?.value,
-            email: emailInputElement.current?.value,
-            password: passwordInputElement.current?.value
-        };
+      async function register (event) {
+        
+        event.preventDefault()
+        console.log(event)
+        let data = {}
+        Array.from(form.current).forEach(input=>{
+            if(input.name) {
+                data[input.name] = input.value.trim()
+            }
+        })
+        try{
+            const res = await dispatch(userCreation(data))
+            if(res.payload.success){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Created',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+               event.target.reset()
+            }
+            else{
+               
+                dispatch(alerta(Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: res.payload.response,
+                  })))
+                  console.log(res)
+            }
+        }
+        catch(error){
 
-    localStorage.setItem('user-registered', JSON.stringify(data))
-
-    alert("You are signed up!")
-
-    nameImputElement.current.value=''
-    lastNameImputElement.current.value=''
-    emailInputElement.current.value=''
-    passwordInputElement.current.value=''
-
-    event.target.reset()
-    
+            console.log(error)
+        }
+        
     }
 
     return (
     <div className='flex j-center a-center total bg column'>
-        <h1>Sign Up</h1>
-        <form className='flex column'>
-            <div className=' flex column g-10'>
-                <Input ref={nameImputElement} type='text' id='name' placeholder='Name:'/>
-                <Input ref={lastNameImputElement} type='text' id='lastName' placeholder='Last Name:'/>
-                <Input ref={emailInputElement} type='email' id='email' placeholder='Email:'/>
-                <Input ref={passwordInputElement} type='password' id='password' placeholder='Password:'/>
-                <div className='flex ac-spabet'>
-                <button type='submit' onClick={handleSignUp} className='SU-buttons'>Sign Up</button>
-                <h6>or</h6>
-                <Navlink to="#"><button>Register with Google</button></Navlink>
-                </div>
-            </div>
-            <div className='flex column g-10'>
-                <p>Have an account already?</p>
-                <Navlink to='/signin'><button >Sign In</button></Navlink>
-            </div>
+
+        <h1 className='new-title-SignUp'>Sign Up</h1>
+        <form onSubmit={register} ref={form} className='New-container'>
+                <input type='text' name='name' placeholder='Enter your name' className='New-text'/>
+                <input type='text' name='lastName' placeholder='Enter your lastname' className='New-text'/>
+                <input type='text' name='photo' placeholder='Enter your photo' className='New-text'/>
+                <input type='number' name='age' placeholder='Enter your age' className='New-text'/>
+                <input type='mail' name='email' placeholder='Enter your e-mail' className='New-text'/>
+                <input type='password' name='password' placeholder='Enter your password' className='New-text'/>
+                <input type="submit" className='New-title-Submit' required value='register!' />
         </form>
+                
     </div>
   )
 }

@@ -3,14 +3,15 @@ import toDoReducer from "./toDoReducer"
 import itineraryReducer from "./itineraryReducer";
 import hotelReducer from "./hotelReducer";
 import alertHotelReducer from "./alertHotelReducer";
-
+import usersReducer from "./usersReducer"
 
 const rootReducer={
     cities : toDoReducer,
     alerta : alertReducer,
-    itinerary: itineraryReducer
+    itinerary: itineraryReducer,
     hotels : hotelReducer,
-    alertHotel : alertHotelReducer
+    alertHotel : alertHotelReducer,
+    users : usersReducer 
 }
 
 export default rootReducer;
