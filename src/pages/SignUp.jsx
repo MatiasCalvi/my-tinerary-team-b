@@ -31,6 +31,7 @@ export default function BoxSignUp() {
                 data[input.name] = input.value.trim()
             }
         })
+        data.role='user'
         try{
             const res = await dispatch(userCreation(data))
             if(res.payload.success){
@@ -58,8 +59,8 @@ export default function BoxSignUp() {
             console.log(error)
         }
         
+        console.log(data)
     }
-
     return (
     <div className='flex j-center a-center total bg column'>
 
