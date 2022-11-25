@@ -14,7 +14,8 @@ import Citiesdetails from "./pages/Citiesdetails";
 import Hoteldetails from "./pages/Hoteldetails";
 import MyCities from "./pages/MyCities/MyCities";
 import MyItineraries from "./pages/MyItineraries/MyItineraries";
-/* import MyHotels from "./pages/MyHotels/MyHotels"; */
+import ProtectedRoute from "./components/ProtectedRoute";
+import { useDispatch,useSelector } from "react-redux";
 
 
 
@@ -22,20 +23,24 @@ function App() {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/*" element={<NotFound />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/hotels" element={<Hotels />} />
-        <Route path="/cities" element={<Cities />} />
+        <Route element={<ProtectedRoute isAllowed={""} reDirect={"/"} />}>
+          <Route path="/" element={<Home />}/>
+          <Route path="/*" element={<NotFound />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/hotels" element={<Hotels />} />
+          <Route path="/cities" element={<Cities />} />
+          <Route path="/detailsCities/:id" element={<Citiesdetails/>}/>
+          <Route path="/myitineraries" element={<MyItineraries/>}></Route>
+          <Route path="/detailsHotels/:id" element={<Hoteldetails/>} /> 
+        </Route>
+        
+
         <Route path="/newcity" element={<NewCity />} />
         <Route path="/newhotel" element={<NewHotel/>}/>
-        <Route path="/detailsCities/:id" element={<Citiesdetails/>}/>
         <Route path="/mycities" element={<MyCities/>}></Route>
-        <Route path="/myitineraries" element={<MyItineraries/>}></Route>
-        <Route path="/detailsHotels/:id" element={<Hoteldetails/>} />
-        {/* <Route path="/myhotels" element={<MyHotels />} /> */}
-
+        
+        
       </Routes>
     </Layout>
   );
