@@ -19,7 +19,25 @@ import { useDispatch,useSelector } from "react-redux";
 
 
 
+import { useDispatch, useSelector } from "react-redux";
+import userActions from './redux/actions/userActions';
+import { useEffect } from 'react';
+
 function App() {
+  let {enterAgain}= userActions
+let dispatch = useDispatch()
+let { logged } = useSelector(store => store.usuario)
+  useEffect(()=>{
+    let token = JSON.parse(localStorage.getItem("token"))
+
+    if (token){
+      dispatch(enterAgain(token.token.user))
+    }
+  },[])
+
+
+  console.log(logged)
+
   return (
     <Layout>
       <Routes>
