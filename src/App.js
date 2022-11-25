@@ -17,13 +17,31 @@ import Hoteldetails from "./pages/Hoteldetails";
 import MyHotels from "./pages/MyHotels/MyHotels";
 
 
+import { useDispatch, useSelector } from "react-redux";
+import userActions from './redux/actions/userActions';
+import { useEffect } from 'react';
+
 function App() {
+  let {enterAgain}= userActions
+let dispatch = useDispatch()
+let { logged } = useSelector(store => store.usuario)
+  useEffect(()=>{
+    let token = JSON.parse(localStorage.getItem("token"))
+
+    if (token){
+      dispatch(enterAgain(token.token.user))
+    }
+  },[])
+
+
+  console.log(logged)
+
   return (
     <Layout>
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/*" element={<NotFound />} />
-        <Route path="/signin" element={<SignIn />} />
+        <Route path='/signin' element={logged ? <Home></Home>:<SignIn/>}></Route>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/hotels" element={<Hotels />} />
         <Route path="/cities" element={<Cities />} />
