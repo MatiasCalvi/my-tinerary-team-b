@@ -4,11 +4,12 @@ import Footer from "../components/Footer"
 import AutoToTop from "../components/AutoToTop"
 import ScrollToTop from "../components/ScrollToTop"
 
-const Layout = ({ children }) => {
+const Layout = ({ children}) => {
+ /*  console.log(display) */
     return (
       <>
         <AutoToTop />
-        <NavBar />
+        <NavBar display={false}/>
         <main>{children}</main>
         <ScrollToTop />
         <Footer />

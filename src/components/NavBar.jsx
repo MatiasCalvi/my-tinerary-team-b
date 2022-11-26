@@ -2,8 +2,10 @@ import React from "react"
 import '../NavBar.css';
 import { Link as NavLink} from 'react-router-dom'
 
-export default function NavBar () {
-    return (
+export default function NavBar (props) {
+    let{display}=props
+    console.log(display+"hola")
+    return (<>
         <div>
             <div className="NavBar">
 
@@ -43,9 +45,10 @@ export default function NavBar () {
                                     </NavLink>
                                     </li>
                                     <li>
-                                    <NavLink to="/signin">
-                                    <button className="bt-nav-c">Sign In</button>
-                                    </NavLink>
+                                {/* {(display)
+                                    ? <NavLink to="/signin"><button className="bt-nav-c">Sign In</button></NavLink>
+                                    : <NavLink to="/signin"><button className="bt-nav-c dNone">Sign Out</button></NavLink>
+                                } */}<NavLink to="/signin"><button className="bt-nav-c">Sign In</button></NavLink>
                                     </li>
                                 </ul>
                             </li>
@@ -56,5 +59,5 @@ export default function NavBar () {
         </div>
 
         
-    )
+    </>)
 }

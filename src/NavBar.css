@@ -32,7 +32,9 @@ header{
 	list-style: none;
 }
 
-
+/* .dNone{
+  display: none;
+} */
 
 .menu > li{
 	position: relative;
