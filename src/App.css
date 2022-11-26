@@ -465,3 +465,31 @@ background: radial-gradient(circle, rgba(43,75,156,1) 22%, rgba(252,206,79,1) 10
   }
 }
 
+.d-none{
+  display: none;
+}
+
+.container-img-iconUser{
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+.title-iconUser{
+  color: white;
+  font-weight: 600;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  width: 100%;
+  text-align: center;
+}
+.title-iconUser:hover{
+  color: white!important;
+}
+
+.imgIconUser{
+    width: 100%;
+    height: 100%;
+}

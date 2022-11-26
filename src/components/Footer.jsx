@@ -2,7 +2,9 @@ import React from 'react'
 import '../App.css'
 import { Link as NavLink} from 'react-router-dom'
 
-export default function Footer() {
+export default function Footer(props) {
+    let {logged,role}=props
+    console.log(role)
   return (
     <footer>
         <div className='c-container__footer'>
@@ -16,21 +18,27 @@ export default function Footer() {
              </div>
             <div className='c-box__footer'>
                 <h2>Pages</h2>
-                <NavLink to="/">
-                    <button className="bt-nav-c">Home</button>
-                </NavLink>
-                <NavLink to="/newcity">
-                    <button className="bt-nav-c">Add city</button>
-                </NavLink>
-                <NavLink to="/newhotel">
-                    <button className="bt-nav-c">Add Hotel</button>
-                </NavLink>
-                <NavLink to="/mycities">
-                    <button className="bt-nav-c">My Cities</button>
-                </NavLink>
-                <NavLink to="/myitineraries">
-                    <button className="bt-nav-c">My Itineraries</button>
-                </NavLink>
+                
+                                <NavLink to="/">
+                                    <button className="bt-nav-c">Home</button>
+                                </NavLink>
+                                
+                                
+                    {logged && role==='admin'   ? <NavLink to="/newcity"><button className="bt-nav-c">Add city</button></NavLink>
+                                                : console.log("hola")}
+                                
+                    {logged && role==='admin'   ? <NavLink to="/newhotel"><button className="bt-nav-c">Add Hotel</button></NavLink>
+                                                : console.log("hola")}
+
+                                
+                    {logged && role==='admin'   ?<NavLink to="/mycities"><button className="bt-nav-c">My Cities</button></NavLink>
+                                                : console.log("hola")}
+
+                               
+                    {logged ? <NavLink to="/myitineraries"><button className="bt-nav-c">My Itineraries</button></NavLink> 
+                            : console.log("hola")}
+                    
+                    
             </div>
             <div className='c-box__footer'>
                 <h2>Social Medias</h2>

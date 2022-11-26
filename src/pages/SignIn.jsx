@@ -6,11 +6,10 @@ import { useDispatch } from 'react-redux'
 import Swal from "sweetalert2";
 import userActions from '../redux/actions/userActions'
 
-function SignIn(props) {
+function SignIn() {
 let dispatch = useDispatch()
 let navigate = useNavigate()
-let {display}=props
-console.log(display)
+
 
   let {enter}=userActions
   let form = useRef()

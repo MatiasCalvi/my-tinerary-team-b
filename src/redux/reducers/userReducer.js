@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import userActions from "../actions/userActions"
 
-const {enter,enterAgain} = userActions
+const {enter,enterAgain,exit} = userActions
 const initialState ={
     name:"",
     photo:"",
@@ -63,7 +63,31 @@ const userReducer = createReducer (initialState,
             }
             return newState
         }
-    }) })
+        
+    })
+    .addCase(exit.fulfilled,(state,action)=>{
+        const {success,response}=action.payload
+        if(success){
+            localStorage.removeItem('token')
+            let newState={
+                ...state,
+                name: '',
+                photo: '',
+                role: '',
+                logged: false,
+                token: ''
+            }
+            return newState
+        }
+        else {
+            let newState = {
+                ...state,
+                message: response
+            }
+            return newState
+        }
+    }) 
+})
     
 
 
