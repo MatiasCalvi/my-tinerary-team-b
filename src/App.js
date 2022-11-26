@@ -15,7 +15,6 @@ import Hoteldetails from "./pages/Hoteldetails";
 import MyCities from "./pages/MyCities/MyCities";
 import MyItineraries from "./pages/MyItineraries/MyItineraries";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { useDispatch,useSelector } from "react-redux";
 
 
 
@@ -26,7 +25,7 @@ import { useEffect } from 'react';
 function App() {
   let {enterAgain}= userActions
 let dispatch = useDispatch()
-let { logged } = useSelector(store => store.usuario)
+let { logged, role  } = useSelector(store => store.usuario)
   useEffect(()=>{
     let token = JSON.parse(localStorage.getItem("token"))
 
@@ -36,12 +35,11 @@ let { logged } = useSelector(store => store.usuario)
   },[])
 
 
-  console.log(logged)
+  console.log(role)
 
   return (
     <Layout>
       <Routes>
-        <Route element={<ProtectedRoute isAllowed={""} reDirect={"/"} />}>
           <Route path="/" element={<Home />}/>
           <Route path="/*" element={<NotFound />} />
           <Route path="/signin" element={<SignIn />} />
@@ -49,15 +47,29 @@ let { logged } = useSelector(store => store.usuario)
           <Route path="/hotels" element={<Hotels />} />
           <Route path="/cities" element={<Cities />} />
           <Route path="/detailsCities/:id" element={<Citiesdetails/>}/>
-          <Route path="/myitineraries" element={<MyItineraries/>}></Route>
-          <Route path="/detailsHotels/:id" element={<Hoteldetails/>} /> 
-        </Route>
-        
+          <Route path="/detailsHotels/:id" element={<Hoteldetails/>} />
 
-        <Route path="/newcity" element={<NewCity />} />
-        <Route path="/newhotel" element={<NewHotel/>}/>
-        <Route path="/mycities" element={<MyCities/>}></Route>
+
+
+      <Route element={<ProtectedRoute isAllowed={!!logged} reDirect={"/"} />}>
+        <Route path="/myitineraries" element={<MyItineraries/>}></Route>
         
+      </Route>
+        
+       {/*  <Route path='/myhotel' element={
+          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <MyHotels/> </ProtectedRoute>
+       }
+        ></Route> */}
+        
+        <Route path='/mycities' element={
+          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <MyCities/></ProtectedRoute>}
+        ></Route>
+        <Route path='/newcity' element={
+          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <NewCity/></ProtectedRoute>} 
+        ></Route>
+        <Route path='/newhotel' element={
+          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <NewHotel/></ProtectedRoute>}
+        ></Route>  
         
       </Routes>
     </Layout>
@@ -65,3 +77,5 @@ let { logged } = useSelector(store => store.usuario)
 }
 
 export default App;
+
+     

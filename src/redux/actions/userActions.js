@@ -38,7 +38,7 @@ import axios from "axios";
             return {
                 success: true,
                 response: {
-                    user: user.data.response,
+                    user: user.data.response.user,
                     token
                 }
             }
