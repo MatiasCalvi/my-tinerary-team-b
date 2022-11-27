@@ -55,13 +55,13 @@ const getHotels = createAsyncThunk("getHotels", async () => {
       }
   }); 
   const getHotelUser = createAsyncThunk("getHotelUser", async (userId) => {
-  
+ 
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/myhotels?userId=${userId}`
+        `http://localhost:8000/api/hotels?userId=${userId}`
       );
 
-      console.log(res.data.allhotels);
+      console.log(res);
       return { hotels: res.data.allhotels };
     } catch (error) {
       console.log(error);
@@ -71,26 +71,36 @@ const getHotels = createAsyncThunk("getHotels", async () => {
     }
   });
 
-  const getAndDestroy = createAsyncThunk("getAndDestroy", async ({hotelId})=> {
+  const getAndDestroy = createAsyncThunk("getAndDestroy", async ({id})=> {
     try {
       const res = await axios.delete(
-        `http://localhost:8000/api/hotels${hotelId}`
+        `http://localhost:8000/api/hotels/${id}`
       )
-      return { hotels: res.data.hotel }
-    } catch (error) {
+      if (res.data.success){
+        return {
+          success: true,
+          response: res.data.success
+        }
+      } else {
+        return {
+          success: false,
+          response: res.data.message
+        }
+      }
+    }catch (error) {
       console.log(error)
       return {
         payload: "Error"
       }
     }
-  })
+  });
 
   const getAndEdit = createAsyncThunk("getAndEdit", async ({data, go})=> {
 
-    let url = `http://localhost:8000/api/hotels${go}`
+    let url = `http://localhost:8000/api/hotels/${go}`
     
     try {
-      let res = await axios.put(url,data)
+      let res = await axios.patch(url,data)
       console.log(res.data)
       
       if (res.data.success){
