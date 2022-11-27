@@ -25,7 +25,7 @@ import { useEffect } from 'react';
 function App() {
   let {enterAgain}= userActions
   let dispatch = useDispatch()
-  let { logged, role  } = useSelector(store => store.usuario)
+  let { logged, role ,id } = useSelector(store => store.usuario)
 
   useEffect(()=>{
     let token = JSON.parse(localStorage.getItem("token"))
@@ -34,7 +34,6 @@ function App() {
       dispatch(enterAgain(token.token.user))
     }
   },[])
-
 
   return (
     <Layout role={role}>
@@ -56,7 +55,7 @@ function App() {
 
 
       <Route element={<ProtectedRoute isAllowed={logged ? true : false} reDirect={"/"} />}>
-        <Route path="/myitineraries" element={<MyItineraries/>}></Route>
+        <Route path="/myitineraries" element={<MyItineraries id={id}/>}></Route>
         
       </Route>
         

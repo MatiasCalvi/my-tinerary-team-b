@@ -19,7 +19,7 @@ export default function Cities() {
 
         if( typeof getCities== 'function' && aproved){
 
-            dispatch(getCities('cities'))
+            dispatch(getCities())
             setAproved(false)
 
         }
