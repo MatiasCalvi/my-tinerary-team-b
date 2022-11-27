@@ -71,14 +71,39 @@ import axios from "axios";
       }
     }
   })
+  
+  const showCreator = createAsyncThunk("itineraryCreation", async (data) => {
+    
+    const url=`http://localhost:8000/api/shows`
+  
+      try {
+      
+        let res = await axios.post(url,data)
+        console.log(res)
+        if(res.data.success){
+            
+            return {success:true, response:data}
+  
+        }
+        else{
+            
+            return {success:false, response: res.data.message}
+  
+        } 
+      } catch (error) {
 
+            return {success:false, response:error.response.data.message}  
+  
+      }
+});
 
 
 
 const showActions = {
     getShowsUser,
     getAndDestroy,
-    getAndEdit
+    getAndEdit,
+    showCreator
 };
 
 export default showActions;

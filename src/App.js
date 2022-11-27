@@ -12,10 +12,12 @@ import NewCity from "./pages/NewCity"
 import NewHotel from "./pages/NewHotel";
 import Citiesdetails from "./pages/Citiesdetails";
 import Hoteldetails from "./pages/Hoteldetails";
+/* import MyCities from "../pages/MyCities/MyCities";
+import MyItineraries from "../pages/MyItineraries/MyItineraries"; */
+import ProtectedRoute from "../src/components/protectedRoute";
 import MyShow from "./pages/MyShows/MyShow";
+import MyHotels from "../src/pages/MyHotels/MyHotels"
 
-
-import MyHotels from "./pages/MyHotels/MyHotels";
 
 
 import { useDispatch, useSelector } from "react-redux";
@@ -24,11 +26,12 @@ import { useEffect } from 'react';
 
 function App() {
   let {enterAgain}= userActions
-let dispatch = useDispatch()
-let { logged } = useSelector(store => store.usuario)
+  let dispatch = useDispatch()
+  let { logged, role  } = useSelector(store => store.usuario)
+
   useEffect(()=>{
     let token = JSON.parse(localStorage.getItem("token"))
-
+    
     if (token){
       dispatch(enterAgain(token.token.user))
     }
@@ -37,25 +40,44 @@ let { logged } = useSelector(store => store.usuario)
 
   console.log(logged)
 
+
   return (
-    <Layout>
+    <Layout display={logged}>
       <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/*" element={<NotFound />} />
-        <Route path='/signin' element={logged ? <Home></Home>:<SignIn/>}></Route>
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/hotels" element={<Hotels />} />
-        <Route path="/cities" element={<Cities />} />
-        <Route path="/newcity" element={<NewCity />} />
-        <Route path="/newhotel" element={<NewHotel/>}/>
-        <Route path="/detailsCities/:id" element={<Citiesdetails/>}/>
-        <Route path="/detailsHotels/:id" element={<Hoteldetails/>} />
+          <Route path="/" element={<Home />}/>
+          <Route path="/*" element={<NotFound />} />
+
+          <Route path='/signin' element={logged ? <Home></Home>:<SignIn/>}></Route>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/hotels" element={<Hotels />} />
+          <Route path="/cities" element={<Cities />} />
+          <Route path="/detailsCities/:id" element={<Citiesdetails/>}/>
+          <Route path="/detailsHotels/:id" element={<Hoteldetails/>} />
+
+          <Route element={<ProtectedRoute isAllowed={logged ? true : false} reDirect={"/"} />}>
+              {/* <Route path="/myitineraries" element={<MyItineraries/>}></Route>  */}
+              <Route path="/myshows" element={<MyShow />} />
+          </Route>
         
-        <Route path="/myhotels" element={<MyHotels />} />
-        <Route path="/myshows" element={<MyShow />} />
+          <Route path='/newcity' element={
+            <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <NewCity/></ProtectedRoute>} 
+        ></Route>
+          <Route path='/newhotel' element={
+            <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <NewHotel/></ProtectedRoute>}
+          ></Route>  
+    
+{/*           <Route path='/mycities' element={
+            <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <MyCities/></ProtectedRoute>}
+          ></Route> */} 
+          <Route path='/myhotels' element={
+            <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <MyHotels/></ProtectedRoute>}
+          ></Route>
+        
       </Routes>
     </Layout>
   );
 }
 
 export default App;
+
+

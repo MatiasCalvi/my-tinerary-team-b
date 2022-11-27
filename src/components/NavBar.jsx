@@ -46,6 +46,7 @@ export default function NavBar () {
                                     <NavLink to="/signin">
                                     <button className="bt-nav-c">Sign In</button>
                                     </NavLink>
+                                    
                                     </li>
                                 </ul>
                             </li>
