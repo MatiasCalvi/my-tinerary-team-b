@@ -65,6 +65,28 @@ footer{
   color: #7a7a7a;
   font-weight: 600;
 }
+
+.c-box__footer a{
+  padding: 10px;
+}
+
+.bt-nav-c{
+  padding: 15px;
+  width: 100%;
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+
+.bt-nav-c:hover{
+   background-color: white;
+   color: black;
+   overflow: hidden;
+}
+
 .c-box__footer p:hover{
   color: #ffffff;
 }
@@ -441,4 +463,33 @@ background: radial-gradient(circle, rgba(43,75,156,1) 22%, rgba(252,206,79,1) 10
   .c-topnav input[type=text] {
     border: 1px solid #ccc;
   }
+}
+
+.d-none{
+  display: none;
+}
+
+.container-img-iconUser{
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+.title-iconUser{
+  color: white;
+  font-weight: 600;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  width: 100%;
+  text-align: center;
+}
+.title-iconUser:hover{
+  color: white!important;
+}
+
+.imgIconUser{
+    width: 100%;
+    height: 100%;
 }
