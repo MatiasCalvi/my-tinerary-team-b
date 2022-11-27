@@ -12,6 +12,7 @@ import NewCity from "./pages/NewCity"
 import NewHotel from "./pages/NewHotel";
 import Citiesdetails from "./pages/Citiesdetails";
 import Hoteldetails from "./pages/Hoteldetails";
+import MyShow from "./pages/MyShows/MyShow";
 
 
 import MyHotels from "./pages/MyHotels/MyHotels";
@@ -51,6 +52,7 @@ let { logged } = useSelector(store => store.usuario)
         <Route path="/detailsHotels/:id" element={<Hoteldetails/>} />
         
         <Route path="/myhotels" element={<MyHotels />} />
+        <Route path="/myshows" element={<MyShow />} />
       </Routes>
     </Layout>
   );
