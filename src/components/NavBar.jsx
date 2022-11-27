@@ -18,13 +18,11 @@ export default function NavBar (props) {
         listen(logged)
     }
 
-   console.log(photo)
-
     async function sesionOut(){
         
         let res= await dispatch(exit(token))
         if (res.payload.success) {
-            console.log(res);
+        
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
@@ -47,7 +45,7 @@ export default function NavBar (props) {
 
     useEffect(()=>{
        listen2() 
-       console.log(logged)
+       
     },[logged])
     
     
