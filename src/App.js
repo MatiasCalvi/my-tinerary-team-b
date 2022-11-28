@@ -12,6 +12,10 @@ import NewCity from "./pages/NewCity"
 import NewHotel from "./pages/NewHotel";
 import Citiesdetails from "./pages/Citiesdetails";
 import Hoteldetails from "./pages/Hoteldetails";
+import MyShow from "./pages/MyShows/MyShow";
+import { useDispatch, useSelector } from "react-redux";
+import userActions from './redux/actions/userActions';
+import { useEffect } from 'react';
 import MyCities from "./pages/MyCities/MyCities";
 import MyItineraries from "./pages/MyItineraries/MyItineraries";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -24,12 +28,16 @@ import { useEffect } from 'react';
 
 function App() {
   let {enterAgain}= userActions
-  let dispatch = useDispatch()
+
   let { logged, role  } = useSelector(store => store.usuario)
 
   useEffect(()=>{
     let token = JSON.parse(localStorage.getItem("token"))
     
+
+let dispatch = useDispatch()
+
+
     if (token){
       dispatch(enterAgain(token.token.user))
     }
@@ -41,13 +49,9 @@ function App() {
   return (
     <Layout display={logged}>
       <Routes>
+
           <Route path="/" element={<Home />}/>
           <Route path="/*" element={<NotFound />} />
-          {/* {(!logged)
-              ?<Route path="/signin" element={<SignIn/>}/>
-              :console.log("iria un signout")} */}
-           
-              
           <Route path="/signin"  element={logged ? <Home></Home>:<SignIn/>}/>  
           <Route path="/signup" element={<SignUp />} />
           <Route path="/hotels" element={<Hotels />} />
@@ -60,12 +64,10 @@ function App() {
       <Route element={<ProtectedRoute isAllowed={logged ? true : false} reDirect={"/"} />}>
         <Route path="/myitineraries" element={<MyItineraries/>}></Route>
         
-      </Route>
-        
-       {/*  <Route path='/myhotel' element={
-          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <MyHotels/> </ProtectedRoute>
-       }
-        ></Route> */}
+
+        <Route path="/myhotels" element={<MyHotels />} />
+        <Route path="/myshows" element={<MyShow />} />
+
 
         <Route path='/mycities' element={
           <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <MyCities/></ProtectedRoute>}
