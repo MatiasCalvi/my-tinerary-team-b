@@ -12,6 +12,10 @@ import NewCity from "./pages/NewCity"
 import NewHotel from "./pages/NewHotel";
 import Citiesdetails from "./pages/Citiesdetails";
 import Hoteldetails from "./pages/Hoteldetails";
+import MyShow from "./pages/MyShows/MyShow";
+import { useDispatch, useSelector } from "react-redux";
+import userActions from './redux/actions/userActions';
+import { useEffect } from 'react';
 import MyCities from "./pages/MyCities/MyCities";
 import MyItineraries from "./pages/MyItineraries/MyItineraries";
 /* import MyHotels from "./pages/MyHotels/MyHotels"; */
@@ -19,12 +23,26 @@ import MyItineraries from "./pages/MyItineraries/MyItineraries";
 
 
 function App() {
+  let {enterAgain}= userActions
+let dispatch = useDispatch()
+let { logged } = useSelector(store => store.usuario)
+  useEffect(()=>{
+    let token = JSON.parse(localStorage.getItem("token"))
+
+    if (token){
+      dispatch(enterAgain(token.token.user))
+    }
+  },[])
+
+
+  console.log(logged)
+
   return (
     <Layout>
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/*" element={<NotFound />} />
-        <Route path="/signin" element={<SignIn />} />
+        <Route path='/signin' element={logged ? <Home></Home>:<SignIn/>}></Route>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/hotels" element={<Hotels />} />
         <Route path="/cities" element={<Cities />} />
@@ -34,7 +52,8 @@ function App() {
         <Route path="/mycities" element={<MyCities/>}></Route>
         <Route path="/myitineraries" element={<MyItineraries/>}></Route>
         <Route path="/detailsHotels/:id" element={<Hoteldetails/>} />
-        {/* <Route path="/myhotels" element={<MyHotels />} /> */}
+        <Route path="/myhotels" element={<MyHotels />} />
+        <Route path="/myshows" element={<MyShow />} />
 
       </Routes>
     </Layout>

@@ -4,6 +4,10 @@ import itineraryReducer from "./itineraryReducer";
 import hotelReducer from "./hotelReducer";
 import alertHotelReducer from "./alertHotelReducer";
 import usersReducer from "./usersReducer"
+import userReducer from "./userReducer";
+import showsReducer from "./showsReducer";
+
+
 
 const rootReducer={
     cities : toDoReducer,
@@ -11,7 +15,11 @@ const rootReducer={
     itinerary: itineraryReducer,
     hotels : hotelReducer,
     alertHotel : alertHotelReducer,
+
     users : usersReducer 
+
+    usuario: userReducer,
+    shows: showsReducer
 }
 
 export default rootReducer;
