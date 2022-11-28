@@ -3,23 +3,31 @@ import "./MyShow.css"
 import { useDispatch,useSelector } from 'react-redux';
 import showActions from '../../redux/actions/showActions';
 import MyHotelsCard from '../../components/MyHotelsCard';
-import { useState } from 'react';
+import { useState, useRef , useEffect } from 'react';
 import alertActions from '../../redux/actions/alertaCity';
 import Swal from 'sweetalert2'
 import Modal from '../../components/modals/ModalsHotel'
+import hotelActions from "../../redux/actions/hotelActions"
 
 
-export default function MyShow() {
-    let {getShowsUser,getAndDestroy,getAndEdit}=showActions
+export default function MyShow(props) {
+    let {getShowsUser,getAndDestroy,getAndEdit,showCreator}=showActions
+    let {getHotels}=hotelActions
+
+    let {id}=props
+    let form = useRef()
+
+    console.log(id)
 
     const dispatch= useDispatch()
 
-    let [userId,setUserId]=useState('')
-
     const {showUsers} = useSelector((state) => state.shows);
-
+    const {hotels} = useSelector((state) => state.hotels);
+    
+    
     const [go, setGo] = useState('')
-
+    let [hotel,setHotel]=useState('')
+    
     const [isOpen, setIsOpen] = useState(false)
 
     const [name, setName] = useState('');
@@ -30,6 +38,22 @@ export default function MyShow() {
     const [date, setDate] = useState('');
 
     let { alerta } = alertActions
+    
+    async function get(){
+      await dispatch(getShowsUser(id))
+    } 
+
+    useEffect(()=>{
+      get()
+    },[])
+
+    async function obtainHotels(){
+      await dispatch(getHotels())
+    } 
+
+    useEffect(()=>{
+      obtainHotels()
+    },[])
 
 
     let listenEditGO = (id) => {
@@ -37,7 +61,7 @@ export default function MyShow() {
         setGo(id)
 
     }
-
+    
     let listenEdit = async (event) => {
             event.preventDefault()
         
@@ -64,7 +88,7 @@ export default function MyShow() {
                   imageAlt: 'image',
                 })
                 setIsOpen(false)
-                dispatch(getShowsUser(userId))
+                dispatch(getShowsUser(id))
               } else {
                 dispatch(alerta(
                   Swal.fire({
@@ -83,64 +107,103 @@ export default function MyShow() {
 
     }
 
-      let listenDeleted= (id)=>{
-        
+    let listenDeleted= (idd)=>{
+      
 
-        Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire(
-              'Deleted!',
-              'Your show has been deleted.',
-              'success'
-            )
-            console.log(id)
-            
-           
-                dispatch(getAndDestroy({id: id}))
-
-                
-                if (userId.length !== 24){
-                    alert('invalid admin')
-                    dispatch(getShowsUser())
-                }
-                dispatch(getShowsUser(userId))
-            }
-            dispatch(getShowsUser(userId))
-            })
-    
-            
-      }
-
-    let listenInput=()=>{
-
-        if(userId.length !== 24){
-            alert('rejected')
-        }else{
-            dispatch(getShowsUser(userId))
-        }
-        
-        
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Deleted!',
+            'Your show has been deleted.',
+            'success'
+          )
+          console.log(id)
+          
+         
+              dispatch(getAndDestroy({id: idd}))
+              dispatch(getShowsUser(id))
+          }
+          dispatch(getShowsUser(id))
+          })
+  
+          
     }
 
-    
 
-    console.log(showUsers)
+    let a=(e)=>{
+
+      setHotel(e.target.value)
+  
+      console.log(e.target.value)
+  }
+
+  console.log(hotel)
+
+  async function creation (event) {
+    event.preventDefault()
+    console.log(hotel)
+    console.log(id)
+    let data = {}
+    Array.from(form.current).forEach(input=>{
+        if(input.name) {
+            data[input.name] = input.value.trim()
+        }
+       
+    })
+    if(hotel){
+      data.hotelId=hotel;
+    }else{
+      data.hotelId=hotel[0]._id  
+    }
+    
+    data.userId=id;
+    try{
+        const res = await dispatch(showCreator(data))
+        if(res.payload.success){
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Created',
+                showConfirmButton: false,
+                timer: 1500
+              })
+           event.target.reset()
+           dispatch(getShowsUser(id))
+        }
+        else{
+           
+            dispatch(alerta(Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: res.payload.response,
+              })))
+              console.log(res)
+        }
+    }
+    catch(error){
+
+        console.log(error)
+    }
+    
+    console.log(data)
+}
+
+
+
+
+console.log(showUsers)
+
+
   return (<>
-    <div className='inputSearch-mycities'>
-        <input type="text"  onChange={e=>setUserId(e.target.value)}   placeholder="CodeAdmin..." />
-        <button type='submit'
-        className='save-new-button' onClick={listenInput}>
-            send user code
-         </button> 
-    </div>
+
     <div className='container-mycities'>
          { showUsers!==undefined 
           ? showUsers.map(e=><MyHotelsCard key={e._id} name={e.name} event1={listenDeleted} event2={()=> setIsOpen(true)} go={listenEditGO} id={e._id} img={e.photo} />)
@@ -172,5 +235,22 @@ export default function MyShow() {
             </button>  
       </div>
     </Modal>
+    <div className='flex j-center a-center total bg column'>
+
+    <h1 className='new-title-SignUp'>Create Shows</h1>
+    <form onSubmit={creation} ref={form} className='New-container'>
+            <select className='New-text' onClick={a}>
+              { hotels.map(e=><option className='New-text' name={e.name} value={e._id}>{e.name}</option>) }
+            </select>
+            <input type='text' name='name' placeholder='Enter name' className='New-text'/>
+            <input type='text' name='photo' placeholder='Enter photo' className='New-text'/>
+            <input type='text' name='description' placeholder='Enter description of the show' className='New-text'/>
+            <input type='number' name='price' placeholder='Enter price of the show' className='New-text'/>
+            <input type='date' name='date' placeholder='Enter date of the show' className='New-text'/>
+            <input type="submit" className='New-title-Submit' required value='register!' />
+    </form>
+            
+    </div>
+    
   </>)
 }

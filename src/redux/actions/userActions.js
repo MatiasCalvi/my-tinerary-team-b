@@ -1,5 +1,6 @@
 import {  createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BASE_URL } from "../../api/url";
 
     const enter = createAsyncThunk('enter', async (datos) => { 
         let url = `http://localhost:8000/api/auth/signin`
@@ -38,7 +39,7 @@ import axios from "axios";
             return {
                 success: true,
                 response: {
-                    user: user.data.response,
+                    user: user.data.response.user,
                     token
                 }
             }
@@ -50,10 +51,30 @@ import axios from "axios";
             }
         }
     })
+    const exit= createAsyncThunk('exit',async(token)=>{
+        const url=`${BASE_URL}/auth/sign-out`
+        let headers={headers:{'Authorization': `Bearer ${token}`}}
+        try{
+          let user= await axios.put(url,null,headers)
+          console.log(user.data)
+          return{
+            success:  true,
+            response:   user.data.message
+          }
+        }
+        catch (error) {
+          console.log(error.response)
+          return {
+            success:  false, 
+            response:  error.response.data.message}  
+    
+        }
+    })
     
     const userActions={
         enter,
-        enterAgain
+        enterAgain,
+        exit
     }
     
     export default userActions

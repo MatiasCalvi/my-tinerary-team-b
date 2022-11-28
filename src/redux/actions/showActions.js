@@ -72,7 +72,7 @@ import axios from "axios";
     }
   })
   
-  const showCreator = createAsyncThunk("itineraryCreation", async (data) => {
+  const showCreator = createAsyncThunk("showCreator", async (data) => {
     
     const url=`http://localhost:8000/api/shows`
   
@@ -96,6 +96,9 @@ import axios from "axios";
   
       }
 });
+
+
+
 
 
 

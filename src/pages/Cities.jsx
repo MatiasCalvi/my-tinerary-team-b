@@ -10,41 +10,41 @@ export default function Cities() {
     const dispatch= useDispatch()
     
    const {cities,categories} = useSelector((state) => state.cities);
-
+   let [aproved,setAproved]=useState(true)
    
     let [checked,setChecked]=useState([])
     let [searched,setSearched]=useState('')
     
     useEffect(()=>{
-        dispatch(getCities('cities'))
-    },[]) 
+
+        if( typeof getCities== 'function' && aproved){
+
+            dispatch(getCities())
+            setAproved(false)
+
+        }
+        else{
+            dispatch(getCitiesFilter({cities:'cities',search:searched,check:checked}))
+        }
     
-    useEffect(()=>{
-        dispatch(getCitiesFilter({cities:'cities',search:searched,check:checked}))
     },[checked,searched]) 
 
     function listen(value) {
-        if (checked.length < 1) {
-            setChecked(['&continent=' + value.target.value])
-        } else {
-
-            if (value.target.checked) {
-                if (value.target.type === "checkbox") {
-                    setChecked(checked.concat("&continent=" + value.target.value))
-                }
-            } else {
-                setChecked(checked.filter(element => element !== "&continent=" + value.target.value))
-            }
+        
+        if(value.target.checked){
+            if(value.target.type==="checkbox"){
+            setChecked(checked.concat("&continent="+value.target.value))
+        }
+        }else{
+            setChecked(checked.filter(element=>element!=="&continent="+value.target.value))
         }
 
-        if (value.target.type === "text") {
+        if(value.target.type==="text"){
             setSearched(value.target.value)
+        }
     }
-}
     console.log(cities)
-    console.log(checked)
-
-    
+    console.log(checked) 
 
   return ( 
     <div className=''>
@@ -64,7 +64,9 @@ export default function Cities() {
                 </div>
             </div>
             <div className='w-100 grow'>
-                { cities.map(city=><CitiesCards key={city._id} id={city._id} name={city.name} photo={city.photo}/>)}
+                { cities!==undefined
+                ? cities.map(city=><CitiesCards key={city._id} id={city._id} name={city.name} photo={city.photo}/>)
+                : <h2>There are no results that match your search.</h2>}
             </div>
         </div>
     </div>
