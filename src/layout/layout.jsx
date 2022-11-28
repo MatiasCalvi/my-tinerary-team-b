@@ -3,16 +3,23 @@ import NavBar from "../components/NavBar"
 import Footer from "../components/Footer"
 import AutoToTop from "../components/AutoToTop"
 import ScrollToTop from "../components/ScrollToTop"
+import { useState } from "react"
 
-const Layout = ({ children}) => {
- /*  console.log(display) */
-    return (
+
+const Layout = ({ children,role }) => {
+  let [boolean,setBoolean]=useState(null)  
+
+  let listen=(logged)=>{
+    setBoolean(logged)
+  }  
+  
+  return (
       <>
         <AutoToTop />
-        <NavBar display={false}/>
+        <NavBar listen={listen}/>
         <main>{children}</main>
         <ScrollToTop />
-        <Footer />
+        <Footer logged={boolean} role={role}/>
       </>
     )
   }
