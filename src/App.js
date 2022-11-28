@@ -68,7 +68,7 @@ function App() {
           <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <MyCities id={id}/></ProtectedRoute>}
         ></Route>
         <Route path='/newcity' element={
-          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <NewCity/></ProtectedRoute>} 
+          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <NewCity id={id}/></ProtectedRoute>} 
         ></Route>
         <Route path='/newhotel' element={
           <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <NewHotel/></ProtectedRoute>}

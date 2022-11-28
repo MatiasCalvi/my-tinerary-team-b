@@ -72,7 +72,7 @@ export default function MyCities(props) {
                   imageAlt: 'image',
                 })
                 setIsOpen(false)
-                dispatch(getCitiesUser(userId))
+                dispatch(getCitiesUser(id))
               } else {
                 dispatch(alerta(
                   Swal.fire({
@@ -91,10 +91,10 @@ export default function MyCities(props) {
 
     }
 
-      let listenDeleted= (id, e)=>{
+      let listenDeleted= (idCities, e)=>{
         
+        console.log(idCities)
         console.log(id)
-        console.log(userId)
 
         Swal.fire({
           title: 'Are you sure?',
@@ -114,16 +114,10 @@ export default function MyCities(props) {
             console.log(id)
             
            
-                dispatch(getAndDestroy({cityId: id}))
-
-                
-                if (userId.length !== 24){
-                    alert('el admin id es invalido')
-                    dispatch(getCitiesUser())
-                }
-                dispatch(getCitiesUser(userId))
+                dispatch(getAndDestroy({cityId: idCities}))
+                dispatch(getCitiesUser(id))
             }
-            dispatch(getCitiesUser(userId))
+            dispatch(getCitiesUser(id))
             })
     
             
