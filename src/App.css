@@ -80,6 +80,7 @@ footer{
   border-radius: 10px;
 }
 
+
 .bt-nav-c:hover{
    background-color: white;
    color: black;
@@ -463,3 +464,4 @@ background: radial-gradient(circle, rgba(43,75,156,1) 22%, rgba(252,206,79,1) 10
     border: 1px solid #ccc;
   }
 }
+

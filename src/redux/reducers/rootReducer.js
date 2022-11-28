@@ -5,8 +5,9 @@ import hotelReducer from "./hotelReducer";
 import alertHotelReducer from "./alertHotelReducer";
 import usersReducer from "./usersReducer"
 import userReducer from "./userReducer";
-import showsReducer from "./showsReducer";
 
+
+import showsReducer from "./showsReducer";
 
 
 const rootReducer={
@@ -17,9 +18,9 @@ const rootReducer={
     alertHotel : alertHotelReducer,
 
     users : usersReducer 
-
     usuario: userReducer,
     shows: showsReducer
+
 }
 
 export default rootReducer;
