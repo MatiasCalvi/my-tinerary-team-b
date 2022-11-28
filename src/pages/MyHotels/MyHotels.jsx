@@ -120,7 +120,7 @@ export default function MyHotels(props) {
                     dispatch(getHotelUser(id))
             
             }
-
+                dispatch(getHotelUser(id))
             })
     
             
