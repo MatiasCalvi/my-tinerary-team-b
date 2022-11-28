@@ -39,7 +39,9 @@ import { BASE_URL } from "../../api/url";
             return {
                 success: true,
                 response: {
+
                     user: user.data.response.user,
+
                     token
                 }
             }
