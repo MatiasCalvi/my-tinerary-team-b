@@ -5,6 +5,7 @@ import AutoToTop from "../components/AutoToTop"
 import ScrollToTop from "../components/ScrollToTop"
 import { useState } from "react"
 
+
 const Layout = ({ children,role }) => {
   let [boolean,setBoolean]=useState(null)  
 

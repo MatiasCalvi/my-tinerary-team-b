@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function NavBar (props) {
 
+
     let {listen}=props
     let dispatch=useDispatch()
     let {exit}=userActions
@@ -48,7 +49,7 @@ export default function NavBar (props) {
        
     },[logged])
     
-    
+   
     return (<>
         <div>
             <div className="NavBar">
@@ -100,6 +101,7 @@ export default function NavBar (props) {
                                    
                                     </li>
                                     <li>
+
                                     { logged?       
                                     
                                             <NavLink to="/">
@@ -108,6 +110,7 @@ export default function NavBar (props) {
                                     
                                             : <NavLink to="/signin"><button className="bt-nav-c">Sign In</button></NavLink>     }
                                     
+
                                     </li>
                                     
                                 </ul>

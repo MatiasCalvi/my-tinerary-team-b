@@ -21,6 +21,7 @@ export default function Footer(props) {
                     <button className="bt-nav-c">Home</button>
                 </NavLink>
 
+
                     {logged && role==='admin'   ? <NavLink to="/newcity"><button className="bt-nav-c">Add city</button></NavLink>
                                                 : <hr className='d-none'/>}
                                 
@@ -38,8 +39,12 @@ export default function Footer(props) {
                     {logged ? <NavLink to="/myshows"><button className="bt-nav-c">My Shows</button></NavLink> 
                                                 : <hr className='d-none'/>}
                     
-                    
+                  <NavLink to="/myhotels">
+                    <button className="bt-nav-c">My Hotel</button>
+                  </NavLink>
+           
 
+               
 
             </div>
             <div className='c-box__footer'>
