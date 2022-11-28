@@ -1,14 +1,15 @@
 import { createReducer } from "@reduxjs/toolkit";
 import userActions from "../actions/userActions";
 
-const { enter, enterAgain, exit } = userActions;
+const { enter, enterAgain, exit, getOneUser,  editUser } = userActions;
 const initialState = {
   name: "",
   photo: "",
   logged: false,
   token: "",
   role: "",
-  id: "",
+  id:"",
+  profile: []
 };
 
 const userReducer = createReducer(initialState, (builder) => {
@@ -67,6 +68,19 @@ const userReducer = createReducer(initialState, (builder) => {
         return newState;
       }
     })
+    .addCase(getOneUser.fulfilled,(state,action)=>{
+      console.log(action.payload);
+      return{
+          ...state,
+      profile: action.payload.user
+      }
+  
+      }).addCase(editUser.fulfilled,(state,action)=>{
+          return{
+              ...state,
+              id:action.payload.id
+          }
+      })
     .addCase(exit.fulfilled, (state, action) => {
       const { success, response } = action.payload;
       if (success) {
