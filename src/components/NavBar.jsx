@@ -60,7 +60,7 @@ export default function NavBar (props) {
                 <div className="dropdown1">               
                     <nav className="navegation">
                     <ul className="menu">
-                        <li><p>Pages</p>
+                        <li ><p>Pages</p>
                             <ul className="submenu">
                                 <li>
                                 <NavLink to="/Cities">
