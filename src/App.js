@@ -20,14 +20,18 @@ import MyShows from "./pages/MyShows/MyShow"
 import MyProfile from "./components/MyProfile/MyProfile";
 
 
+
 import { useDispatch, useSelector } from "react-redux";
 import userActions from './redux/actions/userActions';
 import { useEffect } from 'react';
 
 function App() {
   let {enterAgain}= userActions
+
   let dispatch = useDispatch()
+
   let { logged, role ,id } = useSelector(store => store.usuario)
+
 
   useEffect(()=>{
     let token = JSON.parse(localStorage.getItem("token"))
@@ -40,14 +44,15 @@ function App() {
   return (
     <Layout role={role}>
       <Routes>
+
           <Route path="/" element={<Home />}/>
           <Route path="/*" element={<NotFound />} />
-          {/* {(!logged)
-              ?<Route path="/signin" element={<SignIn/>}/>
-              :console.log("iria un signout")} */}
+
+    
            
               
           <Route path="/signin"  element={logged ? <Home></Home>:<SignIn/>}/>  
+
           <Route path="/signup" element={<SignUp />} />
           <Route path="/hotels" element={<Hotels />} />
           <Route path="/cities" element={<Cities />} />
@@ -56,8 +61,13 @@ function App() {
 
 
 
+
       <Route element={<ProtectedRoute isAllowed={logged ? true : false} reDirect={"/"} />}>
         <Route path="/myitineraries" element={<MyItineraries id={id}/>}></Route>
+        <Route path="/myshows" element={<MyShow />} />
+      </Route>
+
+
         
       </Route>
         
@@ -67,10 +77,10 @@ function App() {
         ></Route> */}
 
         <Route path='/mycities' element={
-          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <MyCities/></ProtectedRoute>}
+          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <MyCities id={id}/></ProtectedRoute>}
         ></Route>
         <Route path='/newcity' element={
-          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <NewCity/></ProtectedRoute>} 
+          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <NewCity id={id}/></ProtectedRoute>} 
         ></Route>
         <Route path='/newhotel' element={
           <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <NewHotel/></ProtectedRoute>}
@@ -85,6 +95,7 @@ function App() {
           <ProtectedRoute isAllowed={!!logged} reDirect={"/"}> <MyProfile id={id}/></ProtectedRoute>}
         ></Route> 
         
+
       </Routes>
     </Layout>
   );
@@ -92,4 +103,4 @@ function App() {
 
 export default App;
 
-     
+

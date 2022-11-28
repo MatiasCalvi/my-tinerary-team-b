@@ -3,18 +3,21 @@ import "./MyCities.css"
 import { useDispatch,useSelector } from 'react-redux';
 import toDoActions from '../../redux/actions/toDoActions';
 import MyCitiesCard from '../../components/MyCitiesCard';
-import { useState,useRef } from 'react';
+import { useState,useRef,useEffect } from 'react';
 import Input from '../../components/Input';
 import alertActions from '../../redux/actions/alertaCity';
 import Swal from 'sweetalert2'
 import Modal from '../../components/Modal/Modal'
 
 
-export default function MyCities() {
+export default function MyCities(props) {
     let {getCitiesUser,getAndDestroy,getAndEdit}=toDoActions
     const dispatch= useDispatch()
 
     let [userId,setUserId]=useState('')
+    let {id}=props
+
+    console.log(id)
 
     const {citiesAdmin} = useSelector((state) => state.cities);
 
@@ -29,6 +32,13 @@ export default function MyCities() {
 
     let { alerta } = alertActions
 
+    async function get(){
+      await dispatch(getCitiesUser(id))
+    }
+    
+    useEffect(()=>{
+      get()
+    },[])
 
     let listenEditGO = (id) => {
         
@@ -62,7 +72,7 @@ export default function MyCities() {
                   imageAlt: 'image',
                 })
                 setIsOpen(false)
-                dispatch(getCitiesUser(userId))
+                dispatch(getCitiesUser(id))
               } else {
                 dispatch(alerta(
                   Swal.fire({
@@ -81,10 +91,10 @@ export default function MyCities() {
 
     }
 
-      let listenDeleted= (id, e)=>{
+      let listenDeleted= (idCities, e)=>{
         
+        console.log(idCities)
         console.log(id)
-        console.log(userId)
 
         Swal.fire({
           title: 'Are you sure?',
@@ -104,43 +114,25 @@ export default function MyCities() {
             console.log(id)
             
            
-                dispatch(getAndDestroy({cityId: id}))
-
-                
-                if (userId.length !== 24){
-                    alert('el admin id es invalido')
-                    dispatch(getCitiesUser())
-                }
-                dispatch(getCitiesUser(userId))
+                dispatch(getAndDestroy({cityId: idCities}))
+                dispatch(getCitiesUser(id))
             }
-            dispatch(getCitiesUser(userId))
+            dispatch(getCitiesUser(id))
             })
     
             
       }
-
-    let listenInput=()=>{
-
-        if(userId.length != 24){
-            alert('no se pudo')
-        }else{
-            dispatch(getCitiesUser(userId))
-        }
-        
-        
-    }
-
     
 
     console.log(citiesAdmin)
   return (<>
-    <div className='inputSearch-mycities'>
+    {/* <div className='inputSearch-mycities'>
         <input type="text"  onChange={e=>setUserId(e.target.value)}   placeholder="CodeAdmin..." />
         <button type='submit'
         className='save-new-button' onClick={listenInput}>
             send adminCode
          </button> 
-    </div>
+    </div> */}
     <div className='container-mycities'>
          { citiesAdmin!==undefined 
           ? citiesAdmin.map(e=><MyCitiesCard key={e._id} name={e.name} event1={listenDeleted} event2={()=> setIsOpen(true)} go={listenEditGO} id={e._id} img={e.photo}/>)

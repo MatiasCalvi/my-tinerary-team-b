@@ -67,6 +67,7 @@ const userReducer = createReducer(initialState, (builder) => {
         };
         return newState;
       }
+
     })
     .addCase(getOneUser.fulfilled,(state,action)=>{
       console.log(action.payload);
@@ -103,5 +104,6 @@ const userReducer = createReducer(initialState, (builder) => {
       }
     });
 });
+
 
 export default userReducer;
