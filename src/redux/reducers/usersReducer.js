@@ -4,7 +4,7 @@ import usersActions from '../actions/usersActions'
 const {userCreation}= usersActions
 
 const initialState={
-    users:[]
+    users:[],
 }
 
 const usersReducer = createReducer(initialState,
@@ -16,6 +16,29 @@ const usersReducer = createReducer(initialState,
             } 
             console.log(action)
         })
+        /* .addCase(exit.fulfilled,(state,action)=>{
+            const {success,response}=action.payload
+            if(success){
+                localStorage.removeItem('token')
+                let newState={
+                    ...state,
+                    name: '',
+                    photo: '',
+                    role: '',
+                    logged: false,
+                    token: ''
+                }
+                return newState
+            }
+            else {
+                let newState = {
+                    ...state,
+                    message: response
+                }
+                return newState
+            }
+        }) */
+        
 })
 
 export default usersReducer;

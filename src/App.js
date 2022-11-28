@@ -41,11 +41,10 @@ function App() {
   },[])
 
 
-  console.log(logged)
 
 
   return (
-    <Layout display={logged}>
+    <Layout role={role}>
       <Routes>
 
           <Route path="/" element={<Home />}/>

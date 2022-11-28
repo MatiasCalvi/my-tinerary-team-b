@@ -26,9 +26,29 @@ const userCreation = createAsyncThunk("userCreation", async (data) => {
   
       }
 });
+/* const exit= createAsyncThunk('exit',async(token)=>{
+    const url=`${BASE_URL}/auth/sign-out`
+    let headers={headers:{'Authorization': `Bearer ${token}`}}
+    try{
+      let user= await axios.put(url,null,headers)
+      console.log(user.data)
+      return{
+        success:  true,
+        response:   user.data.message
+      }
+    }
+    catch (error) {
+      console.log(error.response)
+      return {
+        success:  false, 
+        response:  error.response.data.message}  
+
+    }
+}) */
 
 const usersActions = {
     userCreation,
+   /*  exit */
   };
   
   export default usersActions;
