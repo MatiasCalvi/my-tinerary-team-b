@@ -17,7 +17,7 @@ const rootReducer={
     hotels : hotelReducer,
     alertHotel : alertHotelReducer,
 
-    users : usersReducer 
+    users : usersReducer ,
     usuario: userReducer,
     shows: showsReducer,
 
