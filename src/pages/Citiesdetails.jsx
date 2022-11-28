@@ -23,7 +23,7 @@ export default function Citiesdetails() {
 
     useEffect (()=>{
         axios.get(`${BASE_URL}/itineraries`)
-        .then(response=>setShows(response.data.itineraries))
+        .then(response=>setShows(response.data.itinerary))
     },[])
     
     let show=shows.filter(e=>e.cityId==a)
