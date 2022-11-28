@@ -17,7 +17,6 @@ const Layout = ({ children,role}) => {
       <>
         <AutoToTop />
         <NavBar listen={listen} />
-
         <main>{children}</main>
         <ScrollToTop />
         <Footer logged={boolean} role={role}/>

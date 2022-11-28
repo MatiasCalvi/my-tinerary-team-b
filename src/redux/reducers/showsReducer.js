@@ -5,7 +5,7 @@ const {getShowsUser,getAndEdit,getAndDestroy}= showActions
 
 const initialState={
     showUsers:[],
-    showId:"",
+    id:"",
 }
 
 const showReducer = createReducer(initialState,
@@ -23,7 +23,7 @@ const showReducer = createReducer(initialState,
             console.log(action.payload)
             return {
                 ...state,
-                showId : action.payload.shows
+                id : action.payload.id
             }
         })
         .addCase(getAndEdit.fulfilled,(state,action)=>{
@@ -31,7 +31,7 @@ const showReducer = createReducer(initialState,
             if (action.payload.success) {
                 return {
                         ...state,
-                        showId : action.payload.showId
+                        id : action.payload.id
                         }
                     } 
                 })

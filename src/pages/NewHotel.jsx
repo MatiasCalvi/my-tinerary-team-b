@@ -76,11 +76,12 @@ export default function NewHotel() {
         <form className='flex column m20'>
             <div className='flex column g-10 '>
 
-                <Input ref={hotelNameImputElement} type='text' id='hotelName' placeholder='Hotel Name:'/>
-                <Input ref={photoImputElement} type='text' id='photo' placeholder='photo url:'/>
-                <Input ref={capacityInputElement} type='text' id='Capacity' placeholder='Capacity:'/>
-                <Input ref={cityIdInputElement} type='text' id='cityName' placeholder='City ID:'/>
-                <Input ref={userIdImputElement} type='text' name='admin' value='' placeholder='admin code'/>
+                <Input ref={hotelNameImputElement}  type='text' id='hotelName' placeholder='Hotel Name:'/>
+                <Input ref={cityIdInputElement}  type='text' id='cityName' placeholder='City Name:'/>
+                <Input ref={photoImputElement}  type='text' id='photo' placeholder='photo url:'/>
+                <Input ref={capacityInputElement}  type='text' id='Capacity' placeholder='Capacity:'/>
+                <Input ref={userIdImputElement}  type='text' name='admin' value='' placeholder='admin code'/>
+
                 <div className='flex j-between'>
                     <input className='w-50 fs-2 input-form-newHotel' type="reset" value="Clear Form" />
                     <input className='w-50 fs-2 input-form-newHotel' onClick={handleCreateHotel} type="submit" value="Submit" />

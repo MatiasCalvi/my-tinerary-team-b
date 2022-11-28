@@ -19,7 +19,7 @@ const rootReducer={
 
     users : usersReducer 
     usuario: userReducer,
-    shows: showsReducer
+    shows: showsReducer,
 
 }
 

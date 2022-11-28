@@ -12,12 +12,12 @@ import NewCity from "./pages/NewCity"
 import NewHotel from "./pages/NewHotel";
 import Citiesdetails from "./pages/Citiesdetails";
 import Hoteldetails from "./pages/Hoteldetails";
-/* import MyCities from "../pages/MyCities/MyCities";
-import MyItineraries from "../pages/MyItineraries/MyItineraries"; */
-import ProtectedRoute from "../src/components/protectedRoute";
-import MyShow from "./pages/MyShows/MyShow";
-import MyHotels from "../src/pages/MyHotels/MyHotels"
-
+import MyCities from "./pages/MyCities/MyCities";
+import MyItineraries from "./pages/MyItineraries/MyItineraries";
+import ProtectedRoute from "./components/ProtectedRoute";
+import MyHotels from "./pages/MyHotels/MyHotels"
+import MyShows from "./pages/MyShows/MyShow"
+import MyProfile from "./components/MyProfile/MyProfile";
 
 
 
@@ -48,8 +48,11 @@ function App() {
           <Route path="/" element={<Home />}/>
           <Route path="/*" element={<NotFound />} />
 
-          <Route path='/signin' element={logged ? <Home></Home>:<SignIn/>}></Route>
-          
+    
+           
+              
+          <Route path="/signin"  element={logged ? <Home></Home>:<SignIn/>}/>  
+
           <Route path="/signup" element={<SignUp />} />
           <Route path="/hotels" element={<Hotels />} />
           <Route path="/cities" element={<Cities />} />
@@ -61,23 +64,36 @@ function App() {
 
       <Route element={<ProtectedRoute isAllowed={logged ? true : false} reDirect={"/"} />}>
         <Route path="/myitineraries" element={<MyItineraries id={id}/>}></Route>
-            <Route path="/myshows" element={<MyShow />} />
+        <Route path="/myshows" element={<MyShow />} />
       </Route>
 
+
         
-          <Route path='/newcity' element={
-            <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <NewCity/></ProtectedRoute>} 
+      </Route>
+        
+       {/*  <Route path='/myhotel' element={
+          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <MyHotels/> </ProtectedRoute>
+       }
+        ></Route> */}
+
+        <Route path='/mycities' element={
+          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <MyCities/></ProtectedRoute>}
         ></Route>
-          <Route path='/newhotel' element={
-            <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <NewHotel/></ProtectedRoute>}
-          ></Route>  
-    
-{/*           <Route path='/mycities' element={
-            <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <MyCities/></ProtectedRoute>}
-          ></Route> */} 
-          <Route path='/myhotels' element={
-            <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <MyHotels/></ProtectedRoute>}
-          ></Route>
+        <Route path='/newcity' element={
+          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <NewCity/></ProtectedRoute>} 
+        ></Route>
+        <Route path='/newhotel' element={
+          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <NewHotel/></ProtectedRoute>}
+        ></Route>
+        <Route path='/myhotels' element={
+          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <MyHotels id={id}/></ProtectedRoute>}
+        ></Route>  
+        <Route path='/myshows' element={
+          <ProtectedRoute isAllowed={!!logged} reDirect={"/"}> <MyShows id={id}/></ProtectedRoute>}
+        ></Route>  
+        <Route path='/myprofile' element={
+          <ProtectedRoute isAllowed={!!logged} reDirect={"/"}> <MyProfile id={id}/></ProtectedRoute>}
+        ></Route> 
         
 
       </Routes>
@@ -86,4 +102,5 @@ function App() {
 }
 
 export default App;
+
 
