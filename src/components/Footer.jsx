@@ -5,7 +5,6 @@ import { Link as NavLink} from 'react-router-dom'
 export default function Footer(props) {
     let {logged,role}=props
 
-    console.log(role)
   return (
 
     <footer>
@@ -28,18 +27,18 @@ export default function Footer(props) {
                                 
                                 
                     {logged && role==='admin'   ? <NavLink to="/newcity"><button className="bt-nav-c">Add city</button></NavLink>
-                                                : console.log("hola")}
+                                                : <hr className='d-none'/>}
                                 
                     {logged && role==='admin'   ? <NavLink to="/newhotel"><button className="bt-nav-c">Add Hotel</button></NavLink>
-                                                : console.log("hola")}
+                                                : <hr className='d-none'/>}
 
                                 
                     {logged && role==='admin'   ?<NavLink to="/mycities"><button className="bt-nav-c">My Cities</button></NavLink>
-                                                : console.log("hola")}
+                                                : <hr className='d-none'/>}
 
                                
                     {logged ? <NavLink to="/myitineraries"><button className="bt-nav-c">My Itineraries</button></NavLink> 
-                            : console.log("hola")}
+                            : <hr className='d-none'/>}
                     
                     
 

@@ -8,10 +8,10 @@ import { BASE_URL } from "../../api/url";
   
     try {
       const res = await axios.get(
-        `${BASE_URL}/itineraries/?userId=${userId}`
+        `${BASE_URL}/itineraries?userId=${userId}`
       );
 
-      console.log(res.data.Itinerary);
+      console.log(res.data.itinerary);
       return { itinerary: res.data.itinerary };
     } catch (error) {
       console.log(error);
@@ -71,14 +71,38 @@ import { BASE_URL } from "../../api/url";
       }
     }
   })
+  const itineraryCreation = createAsyncThunk("itineraryCreation", async (data) => {
+    
+    const url=`${BASE_URL}/itineraries`
+  
+      try {
+      
+        let res = await axios.post(url,data)
+        console.log(res)
+        if(res.data.success){
+            
+            return {success:true, response:data}
+  
+        }
+        else{
+            
+            return {success:false, response: res.data.message}
+  
+        } 
+      } catch (error) {
 
+            return {success:false, response:error.response.data.message}  
+  
+      }
+});
 
 
 
 const itinerariesActions = {
   getItinerariesUser,
   getAndDestroy,
-  getAndEdit
+  getAndEdit,
+  itineraryCreation
 };
 
 export default itinerariesActions;

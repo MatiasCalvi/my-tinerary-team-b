@@ -30,7 +30,8 @@ function App() {
 
   let dispatch = useDispatch()
 
-  let { logged, role  } = useSelector(store => store.usuario)
+  let { logged, role ,id } = useSelector(store => store.usuario)
+
 
   useEffect(()=>{
     let token = JSON.parse(localStorage.getItem("token"))
@@ -39,9 +40,6 @@ function App() {
       dispatch(enterAgain(token.token.user))
     }
   },[])
-
-
-
 
   return (
     <Layout role={role}>
@@ -59,10 +57,13 @@ function App() {
           <Route path="/detailsHotels/:id" element={<Hoteldetails/>} />
 
 
-          <Route element={<ProtectedRoute isAllowed={logged ? true : false} reDirect={"/"} />}>
-              {/* <Route path="/myitineraries" element={<MyItineraries/>}></Route>  */}
-              <Route path="/myshows" element={<MyShow />} />
-          </Route>
+
+
+      <Route element={<ProtectedRoute isAllowed={logged ? true : false} reDirect={"/"} />}>
+        <Route path="/myitineraries" element={<MyItineraries id={id}/>}></Route>
+            <Route path="/myshows" element={<MyShow />} />
+      </Route>
+
         
           <Route path='/newcity' element={
             <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <NewCity/></ProtectedRoute>} 

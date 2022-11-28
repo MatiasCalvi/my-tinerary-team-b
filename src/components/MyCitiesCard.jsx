@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function MyCitiesCard(props) {
   
-  let {name,img,id,event1, event2, go}=props  
+  let {name,img,id,event1, event2, go, cityId,cityIdGo}=props  
 
   let listen=(e)=>{
     event1(id,e)
@@ -11,6 +11,7 @@ export default function MyCitiesCard(props) {
   let listenEdit=(e)=>{
     event2(id,e)
     go(id)
+    cityIdGo(cityId)
   }
 
   return (
