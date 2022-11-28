@@ -6,15 +6,21 @@ import alertHotelReducer from "./alertHotelReducer";
 import usersReducer from "./usersReducer"
 import userReducer from "./userReducer";
 
+
+import showsReducer from "./showsReducer";
+
+
 const rootReducer={
     cities : toDoReducer,
     alerta : alertReducer,
     itinerary: itineraryReducer,
     hotels : hotelReducer,
     alertHotel : alertHotelReducer,
-    users : usersReducer, 
-    usuario: userReducer
-    
+
+    users : usersReducer 
+    usuario: userReducer,
+    shows: showsReducer
+
 }
 
 export default rootReducer;

@@ -4,8 +4,9 @@ import { Link as NavLink} from 'react-router-dom'
 
 export default function Footer(props) {
     let {logged,role}=props
-   
+
   return (
+
     <footer>
         <div className='c-container__footer'>
             <div className='c-box__footer'>
@@ -18,6 +19,7 @@ export default function Footer(props) {
              </div>
             <div className='c-box__footer'>
                 <h2>Pages</h2>
+
                 
                                 <NavLink to="/">
                                     <button className="bt-nav-c">Home</button>
@@ -39,6 +41,14 @@ export default function Footer(props) {
                             : <hr className='d-none'/>}
                     
                     
+
+                    {logged ? <NavLink to="/myshows"><button className="bt-nav-c">My Shows</button></NavLink> 
+                                                : <hr className='d-none'/>}
+                    
+                  <NavLink to="/myhotels">
+                    <button className="bt-nav-c">My Hotel</button>
+                  </NavLink>
+
             </div>
             <div className='c-box__footer'>
                 <h2>Social Medias</h2>

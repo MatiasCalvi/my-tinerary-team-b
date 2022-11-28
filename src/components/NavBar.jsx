@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom'
 
 export default function NavBar (props) {
 
+
+
     let {listen}=props
     let dispatch=useDispatch()
     let {exit}=userActions
@@ -18,11 +20,12 @@ export default function NavBar (props) {
         listen(logged)
     }
 
+
     async function sesionOut(){
         
         let res= await dispatch(exit(token))
         if (res.payload.success) {
-        
+
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
@@ -45,10 +48,11 @@ export default function NavBar (props) {
 
     useEffect(()=>{
        listen2() 
-       
+
     },[logged])
     
     
+
     return (<>
         <div>
             <div className="NavBar">
@@ -100,6 +104,7 @@ export default function NavBar (props) {
                                    
                                     </li>
                                     <li>
+
                                     { logged?       
                                     
                                             <NavLink to="/">
@@ -108,6 +113,7 @@ export default function NavBar (props) {
                                     
                                             : <NavLink to="/signin"><button className="bt-nav-c">Sign In</button></NavLink>     }
                                     
+
                                     </li>
                                     
                                 </ul>

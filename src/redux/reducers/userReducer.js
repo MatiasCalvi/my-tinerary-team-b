@@ -66,6 +66,7 @@ const userReducer = createReducer(initialState, (builder) => {
         };
         return newState;
       }
+
     })
     .addCase(exit.fulfilled, (state, action) => {
       const { success, response } = action.payload;
