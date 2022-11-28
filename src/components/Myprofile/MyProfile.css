@@ -1,0 +1,65 @@
+.full-height{
+    height: 100vh;
+    width: 100%;
+}
+
+
+
+
+.profile-user-page .img-user-profile {
+	margin: 0 auto;
+  text-align: center; 
+  width: 100%;
+  
+}
+.profile-user-page .img-user-profile .profile-bgHome {
+	border-bottom: .2em solid hwb(44 31% 1% / 0.898);
+  width: 100%;
+  height: 40vh;
+  object-fit: cover;
+  }
+.profile-user-page .img-user-profile .avatar {
+	margin: 0 auto;
+  background: hwb(44 31% 1% / 0.898);
+  width: 17em;
+  height: 17em;
+  padding: 0.25em;
+  border-radius: 5rem;
+  margin-top: -10em;
+  box-shadow: 0 0 .1em rgba(0, 0, 0, 0.35);
+  object-fit: cover;
+}
+
+
+
+.profile-user-page .user-profile-data, .profile-user-page .description-profile {
+  text-align: center;
+  padding: 0 1.5em; 
+}
+
+.profile-user-page .user-profile-data p {
+  color: #8899a6; 
+  font-size: 3rem;
+  margin-top: 0;
+  margin-bottom: 0.5em; 
+}
+
+.profile-user-page .user-profile-data bt-nav-c {
+    background-color: white;
+    color: black;
+    overflow: hidden;
+  
+}
+.profile-user-page .description-profile {
+  color: #75787b;
+  font-size: 3rem; 
+}
+.profile-user-page .data-user {
+	font-family: "Quicksand", sans-serif;
+  margin-bottom: 0;
+  cursor: pointer;
+  padding: 0;
+  list-style: none;
+  display: table;
+  width: 100.15%; 
+}

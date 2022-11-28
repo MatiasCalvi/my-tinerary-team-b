@@ -17,7 +17,7 @@ import MyItineraries from "./pages/MyItineraries/MyItineraries";
 import ProtectedRoute from "./components/ProtectedRoute";
 import MyHotels from "./pages/MyHotels/MyHotels"
 import MyShow from "./pages/MyShows/MyShow"
-/* import MyProfile from "./components/MyProfile/MyProfile"; */
+import MyProfile from "../src/pages/MyProfile";
 
 
 
@@ -79,9 +79,9 @@ function App() {
         <Route path='/myshows' element={
           <ProtectedRoute isAllowed={!!logged} reDirect={"/"}> <MyShow id={id}/></ProtectedRoute>}
         ></Route>  
-        {/* <Route path='/myprofile' element={
+        <Route path='/myprofile' element={
           <ProtectedRoute isAllowed={!!logged} reDirect={"/"}> <MyProfile id={id}/></ProtectedRoute>}
-        ></Route>  */}
+        ></Route> 
 
 
 
