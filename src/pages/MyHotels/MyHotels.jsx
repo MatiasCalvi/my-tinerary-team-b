@@ -2,7 +2,7 @@ import React from 'react'
 import "./MyHotels.css"
 import { useDispatch,useSelector } from 'react-redux';
 import MyHotelsCard from '../../components/MyHotelsCard';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import alertActions from '../../redux/actions/alertaCity';
 import Swal from 'sweetalert2'
 import Modal from '../../components/modals/ModalsHotel'
@@ -10,15 +10,17 @@ import hotelsActions from '../../redux/actions/hotelActions';
 
 
 
-export default function MyHotels() {
+export default function MyHotels(props) {
     let {getHotelUser,getAndDestroy,getAndEdit}=hotelsActions
     const dispatch= useDispatch()
 
-    let [userId,setUserId]=useState('')
+    let {id}=props
+    console.log(id)
+    /* let [userId,setUserId]=useState('') */
 
     const {hotelAdmin} = useSelector((state) => state.hotels);
-    console.log(hotelAdmin)
-    console.log(userId)
+   
+    /* console.log(userId) */
     const [go, setGo] = useState('')
 
     const [isOpen, setIsOpen] = useState(false)
@@ -26,9 +28,17 @@ export default function MyHotels() {
     const [name, setName] = useState('');
     const [photo, setPhoto] = useState('');
     const [capacity,  setCapacity] = useState('')
-    const [city, setCity] = useState('');
+    const [user, setUser] = useState('');
 
     let { alerta } = alertActions
+
+    async function get(){
+      await dispatch(getHotelUser(id))
+    } 
+
+    useEffect(()=>{
+      get()
+    },[])
 
 
     let listenEditGO = (id) => {
@@ -40,9 +50,9 @@ export default function MyHotels() {
     let listenEdit = async (event) => {
             event.preventDefault()
         
-            let data = { name,capacity,photo,city}
+            let data = { name,capacity,photo,user}
         
-            if (name === '' || capacity === '' || photo === '' || photo === null || city === '') {
+            if (name === '' || capacity === '' || photo === '' || photo === null || user === '') {
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -63,7 +73,7 @@ export default function MyHotels() {
                   imageAlt: 'image',
                 })
                 setIsOpen(false)
-                dispatch(getHotelUser(userId))
+                dispatch(getHotelUser(id))
               } else {
                 dispatch(alerta(
                   Swal.fire({
@@ -82,7 +92,7 @@ export default function MyHotels() {
 
     }
 
-      let Delete= (id)=>{
+      let Delete= (idd)=>{
         
         console.log(id)
         console.log(id)
@@ -105,42 +115,19 @@ export default function MyHotels() {
             console.log(id)
             
            
-                dispatch(getAndDestroy({id: id }))
-
+                dispatch(getAndDestroy({id: idd }))
                 
-                if (userId.length !== 24){
-                    alert('invalid admin')
-                    dispatch(getHotelUser())
-                }
-                dispatch(getHotelUser(userId))
+                    dispatch(getHotelUser(id))
+            
             }
-            dispatch(getHotelUser(userId))
+
             })
     
             
       }
 
-    let listenInput=()=>{
-
-        if(userId.length !== 24){
-            alert('doesnt match with requirements')
-        }else{
-            dispatch(getHotelUser(userId))
-        }
-        
-        
-    }
-
-    console.log(userId)
-
   return (<>
-    <div className='inputSearch-mycities'>
-        <input type="text"  onChange={e=>setUserId(e.target.value)}   placeholder="CodeAdmin..." />
-        <button type='submit'
-        className='save-new-button' onClick={listenInput}>
-            send adminCode
-         </button> 
-    </div>
+
     <div className='container-mycities'>
          { hotelAdmin!==undefined 
           ? hotelAdmin.map(e=><MyHotelsCard key={e._id} name={e.name} event1={Delete} event2={()=> setIsOpen(true)} go={listenEditGO} id={e._id} img={e.photo}/>)
@@ -158,9 +145,9 @@ export default function MyHotels() {
         <input htmlFor='capacity' className='new-input input' name='capacity' type="text"
         placeholder='Enter hotel capacity' required 
         onChange={(e) => setCapacity(e.target.value)} />
-        <input htmlFor='city' className='new-input input' name='city' type="cityID" min="0"
-        placeholder='Enter hotel city' required
-        onChange={(e) => setCity(e.target.value)} />
+        <input htmlFor='user' className='new-input input' name='user' type="userID" min="0"
+        placeholder='Enter user ID' required
+        onChange={(e) => setUser(e.target.value)} />
         <button type='submit'
         className='edit-new-button input' onClick={listenEdit}>
             Save

@@ -9,6 +9,7 @@ const initialState = {
   value: "",
   filter: " ",
   hotelId: " ",
+  
  
 };
 
@@ -45,7 +46,7 @@ const hotelsReducers = createReducer(initialState, (builder) => {
         console.log(action)
         return {
             ...state,
-            id : action.payload.id
+            hotelId : action.payload.id
         }
         })
     .addCase(getAndEdit.fulfilled,(state,action)=>{
