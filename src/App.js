@@ -1,6 +1,6 @@
 import "./App.css";
 import Home from "./pages/Home";
-import Layout from "./layout/Layout";
+import Layout from "./layout/layout";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound";
@@ -65,7 +65,7 @@ function App() {
         ></Route> */}
 
         <Route path='/mycities' element={
-          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <MyCities/></ProtectedRoute>}
+          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <MyCities id={id}/></ProtectedRoute>}
         ></Route>
         <Route path='/newcity' element={
           <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <NewCity/></ProtectedRoute>} 
