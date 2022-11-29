@@ -28,18 +28,17 @@ const itineraryReducer = createReducer(initialState,
         })
         .addCase(getAndEdit.fulfilled,(state,action)=>{
             console.log(action.payload.success)
-            if (action.payload.success) {
+           if (action.payload.success) {
                 return {
                         ...state,
                         itineraryId : action.payload.itneraryId
                         }
-                } 
+                }  
         })
         .addCase(itineraryCreation.fulfilled,(state,action)=>{
-                if(action.payload.success){
+                 if(action.payload.success){
                         state.itinariesAdmin.push(action.payload.response)
                 } 
-                console.log(action)
         })
 })
 

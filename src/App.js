@@ -41,6 +41,10 @@ function App() {
     }
   },[])
 
+  console.log(logged)
+  console.log(role)
+  console.log(id)
+  
   return (
     <Layout role={role}>
       <Routes>
