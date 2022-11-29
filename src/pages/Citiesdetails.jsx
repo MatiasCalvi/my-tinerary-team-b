@@ -14,7 +14,6 @@ export default function Citiesdetails() {
     let user=[]
     a=(a.id).slice(1)
     
-    
     useEffect(()=>{
         axios.get(`${BASE_URL}/cities`)
         .then(response=>setFilter(response.data.allcities.find((x) => x._id === a)))
@@ -24,12 +23,12 @@ export default function Citiesdetails() {
 
     useEffect (()=>{
         axios.get(`${BASE_URL}/itineraries`)
-        .then(response=>setShows(response.data.itineraries))
+        .then(response=>setShows(response.data.itinerary))
     },[])
     
     let show=shows.filter(e=>e.cityId==a)
     user.push(userId)
-    console.log(user)
+    console.log(photo)
     return (<>
     <div className='c-containerDetailsOld'>
         <div className="card1">

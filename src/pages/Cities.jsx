@@ -1,25 +1,35 @@
 import {useEffect,useState,React} from 'react'
 import CitiesCards from '../components/CitiesCards.jsx'
 import "../cities.css"
-import { useRef } from 'react'
-import axios from 'axios';
-import {BASE_URL} from '../api/url';
-
+import { useDispatch,useSelector } from 'react-redux';
+import toDoActions from '../redux/actions/toDoActions.js';
 
 export default function Cities() {
 
-    let [cities,setcities]=useState([])
+    let {getCitiesFilter,getCities}=toDoActions
+    const dispatch= useDispatch()
+    
+   const {cities,categories} = useSelector((state) => state.cities);
+   let [aproved,setAproved]=useState(true)
+   
     let [checked,setChecked]=useState([])
-    let [searched,setSearched]=useState([])
-    let [filter,setFilter]=useState([])
-
+    let [searched,setSearched]=useState('')
+    
     useEffect(()=>{
-        axios.get(`${BASE_URL}/cities`)
-        .then(response=>setcities(response.data.allcities))
-    },[])
 
+        if( typeof getCities== 'function' && aproved){
 
-    function listen(value){
+            dispatch(getCities('cities'))
+            setAproved(false)
+
+        }
+        else{
+            dispatch(getCitiesFilter({cities:'cities',search:searched,check:checked}))
+        }
+    
+    },[checked,searched]) 
+
+    function listen(value) {
         
         if(value.target.checked){
             if(value.target.type==="checkbox"){
@@ -32,15 +42,9 @@ export default function Cities() {
         if(value.target.type==="text"){
             setSearched(value.target.value)
         }
-       
     }
-
-    useEffect(()=>{
-        axios.get(`${BASE_URL}/cities?name=${searched}${checked.join('')}`)
-        .then(response=>setFilter(response.data.allcities))
-    },[checked,searched])
-    console.log(checked)
-    console.log(filter)
+    console.log(cities)
+    console.log(checked) 
 
   return ( 
     <div className=''>
@@ -50,21 +54,19 @@ export default function Cities() {
                             <input
                         type="text"
                         placeholder="Search"
-                        onChange={listen}
+                         onChange={listen} 
                                 />
                 </div>
                 <div className='w-100 flex j-center'>
-                    {
-                        Array.from(new Set(cities.map(city => city.continent))).map(element => {
-                            return (
-                                <label key={element}><input onClick={listen} type="checkbox" id={element} value={element} /> {element}</label>
-                            )
-                        })  
-                    }
+               
+                   { categories.map(element => <label key={element}><input onClick={listen} type="checkbox" id={element} value={element} /> {element}</label>)}
+               
                 </div>
             </div>
             <div className='w-100 grow'>
-                { filter.map(city=><CitiesCards key={city?._id} id={city?._id} name={city?.name} photo={city?.photo}/>)}
+                { cities!==undefined
+                ? cities.map(city=><CitiesCards key={city._id} id={city._id} name={city.name} photo={city.photo}/>)
+                : <h2>There are no results that match your search.</h2>}
             </div>
         </div>
     </div>
