@@ -12,7 +12,9 @@ import toDoActions from '../../redux/actions/toDoActions.js';
 
 
 export default function MyItineraries(props) {
+
     let {getItinerariesUser,getAndDestroy,getAndEdit,itineraryCreation}=itinerariesActions
+
     let {getCities}=toDoActions
     
     let {id}=props
@@ -24,6 +26,9 @@ export default function MyItineraries(props) {
 
     const {itinariesAdmin} = useSelector((state) => state.itinerary);
     const {cities} = useSelector((state) => state.cities);
+    let {token}= useSelector((token)=>token.usuario)
+
+    console.log(token)
 
     const [go, setGo] = useState('')
     let [cityIdGO,setCityIdGO]= useState('')
@@ -69,10 +74,11 @@ export default function MyItineraries(props) {
     let listenEdit = async (event) => {
             event.preventDefault()
             let cityid=cityIdGO
-            console.log(cityid)
+           
 
-            let data = { name,cityid,photo,price,description,duration}
-            console.log(data)
+            let data = {token, itinerary: {name,cityid,photo,price,description,duration}}
+            
+            
             if (name === '' || photo === '' || photo === null || description === '' || duration === '' || price === '') {
               Swal.fire({
                 icon: 'error',
@@ -115,8 +121,8 @@ export default function MyItineraries(props) {
 
       let listenDeleted= (idItinerary, e)=>{
         
-        console.log(idItinerary)
-        console.log(id)
+        let ItineryId=idItinerary
+        
         Swal.fire({
           title: 'Are you sure?',
           text: "You won't be able to revert this!",
@@ -135,7 +141,7 @@ export default function MyItineraries(props) {
             console.log(id)
             
            
-                dispatch(getAndDestroy({ItineryId: idItinerary}))
+                dispatch(getAndDestroy({ItineryId,token}))
                 dispatch(getItinerariesUser(id))
               
                 
@@ -149,15 +155,14 @@ export default function MyItineraries(props) {
 
           setCity(e.target.value)
       
-          console.log(e.target.value)
       }
       
-      console.log(city)
+      
 
       async function creation (event) {
+
         event.preventDefault()
-        console.log(city)
-        console.log(id)
+    
         let data = {}
         Array.from(form.current).forEach(input=>{
             if(input.name) {
@@ -172,8 +177,9 @@ export default function MyItineraries(props) {
         }
         
         data.userId=id;
+        
         try{
-            const res = await dispatch(itineraryCreation(data))
+            const res = await dispatch(itineraryCreation({data,token}))
             if(res.payload.success){
                 Swal.fire({
                     position: 'top-end',
@@ -205,8 +211,7 @@ export default function MyItineraries(props) {
     
 
 
-    console.log(id)
-    console.log(itinariesAdmin)
+    
   return (<>
     <div className='container-mycities'>
          { itinariesAdmin!==undefined 

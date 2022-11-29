@@ -15,30 +15,32 @@ export default function CreateNewCity(props) {
     const continentimputElement = useRef(null);
     const photoImputElement = useRef(null);
     const populationImputElement = useRef(null);
-    const adminImputElement = useRef(0);
-    let [form,setForm]=useState({});
     let nav=useNavigate()
     
     let{id}=props
     console.log(id)
 
+    let{token}=useSelector(state=>state.usuario)
+
+    console.log(token)
 
     let {newCity}=toDoActions
     let {alerta}=alertActions
 
     const dispatch= useDispatch()
-    const {cities} = useSelector((state) => state.cities);
 
 
     let handleCreateCity = async (event) => {
         event.preventDefault();
         const data = {
-            name: cityNameImputElement.current?.value,
-            continent: continentimputElement.current?.value,
-            photo: photoImputElement.current?.value,
-            population: populationImputElement.current?.value
-        };
-        data.userId=id
+            token,
+            city: { 
+                    name: cityNameImputElement.current?.value,
+                    continent: continentimputElement.current?.value,
+                    photo: photoImputElement.current?.value,
+                    population: populationImputElement.current?.value,
+                    userId:id}
+                };
         try{
             let res= await dispatch(newCity(data))
             if(res.payload.success){
