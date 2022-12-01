@@ -2,7 +2,22 @@ import {createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BASE_URL } from "../../api/url";
 
-
+    const getItinerariesAll = createAsyncThunk("getItinerariesAll", async () => {
+      
+      try {
+        const res = await axios.get(
+          `${BASE_URL}/itineraries`
+        );
+    
+        console.log(res.data.itinerary);
+        return { itinerary: res.data.itinerary };
+      } catch (error) {
+        console.log(error);
+        return {
+          payload: "Error",
+        };
+      }
+    });
 
   const getItinerariesUser = createAsyncThunk("getCitiesUser", async (userId) => {
   
@@ -106,7 +121,8 @@ const itinerariesActions = {
   getItinerariesUser,
   getAndDestroy,
   getAndEdit,
-  itineraryCreation
+  itineraryCreation,
+  getItinerariesAll
 };
 
 export default itinerariesActions;
