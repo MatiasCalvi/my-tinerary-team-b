@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import itinerariesActions from "../actions/itinerariesActions";
 
-const {getItinerariesUser,getAndEdit,getAndDestroy,itineraryCreation}= itinerariesActions
+const {getItinerariesAll,getItinerariesUser,getAndEdit,getAndDestroy,itineraryCreation}= itinerariesActions
 
 const initialState={
     itinariesAdmin:[],
@@ -12,6 +12,13 @@ const itineraryReducer = createReducer(initialState,
     (builder)=>{
         builder
 
+        .addCase(getItinerariesAll.fulfilled,(state,action)=>{
+            console.log(action.payload)
+            return {
+                ...state,
+                itinariesAdmin: action.payload.itinerary
+            }  
+        })
         .addCase(getItinerariesUser.fulfilled,(state,action)=>{
             console.log(action.payload)     
            return {
@@ -40,6 +47,7 @@ const itineraryReducer = createReducer(initialState,
                         state.itinariesAdmin.push(action.payload.response)
                 } 
         })
+
 })
 
 export default itineraryReducer;

@@ -13,7 +13,7 @@ export default function NavBar (props) {
     let {listen}=props
     let dispatch=useDispatch()
     let {exit}=userActions
-    let {logged,token,photo,name}=useSelector(store=>store.usuario)
+    let {logged,token,photo,name,role}=useSelector(store=>store.usuario)
     let navigate = useNavigate()
 
     let listen2=()=>{
@@ -102,6 +102,13 @@ export default function NavBar (props) {
                                                 <button className="bt-nav-c">Sign Up</button>
                                             </NavLink>   
                                    
+                                    </li>
+                                    <li>
+                                       
+                                            <NavLink to="/newreaction">
+                                                <button className="bt-nav-c">New Reaction</button>
+                                            </NavLink>
+                                       
                                     </li>
                                     <li>
 
