@@ -24,6 +24,8 @@ import MyProfile from "../src/pages/MyProfile";
 import { useDispatch, useSelector } from "react-redux";
 import userActions from './redux/actions/userActions';
 import { useEffect } from 'react';
+import NewReaction from "./pages/NewReaction/NewReaction";
+
 
 function App() {
   let {enterAgain}= userActions
@@ -57,7 +59,7 @@ function App() {
           <Route path="/cities" element={<Cities />} />
           <Route path="/detailsCities/:id" element={<Citiesdetails/>}/>
           <Route path="/detailsHotels/:id" element={<Hoteldetails/>} />
-
+          
     
            
               
@@ -72,7 +74,10 @@ function App() {
         ></Route>
         <Route path='/myhotels' element={
           <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <MyHotels id={id}/></ProtectedRoute>}
-        ></Route>  
+        ></Route>
+        <Route path='/newreaction' element={
+          <ProtectedRoute isAllowed={!!logged && role === "admin"} reDirect={"/"}> <NewReaction /></ProtectedRoute>}
+        ></Route>    
 
 
 
