@@ -1,6 +1,9 @@
 .itinerary-reaction-container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .double-reaction-container{
@@ -46,3 +49,9 @@
 .contador{
     margin-left: 19px;
 }
+
+@media (max-width: 430px) {
+    .itinerary-reaction-container{
+        flex-direction: row;
+    }
+  }
