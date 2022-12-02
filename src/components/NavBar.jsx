@@ -20,7 +20,6 @@ export default function NavBar (props) {
         listen(logged)
     }
 
-
     async function sesionOut(){
         
         let res= await dispatch(exit(token))
@@ -104,12 +103,9 @@ export default function NavBar (props) {
                                    
                                     </li>
                                     <li>
-                                       
-                                            <NavLink to="/newreaction">
-                                                <button className="bt-nav-c">New Reaction</button>
-                                            </NavLink>
-                                       
-                                    </li>
+                                    {logged  && role==='admin' ? <NavLink to="/newreaction"><button className="bt-nav-c">New Reaction</button></NavLink>
+                                                                : <hr className='d-none'/>}
+                                    </li> 
                                     <li>
 
                                     { logged?       

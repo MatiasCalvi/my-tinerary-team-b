@@ -30,7 +30,7 @@ const itineraryReducer = createReducer(initialState,
             console.log(action.payload)
             return {
                 ...state,
-                itineraryId : action.payload.Itinerary
+                itineraryId : action.payload.data
             }
         })
         .addCase(getAndEdit.fulfilled,(state,action)=>{

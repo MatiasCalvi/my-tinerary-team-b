@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import reactionsActions from "../actions/reactionsActions"
 
-const {newReactionCreation,getReactionItinerary,getReactionItinerary2,feedbackReaction}= reactionsActions
+const {newReactionCreation,getReactionItinerary,getReactionItinerary2,feedbackReaction,getUserReactions,deleteReaction}= reactionsActions
 
 const initialState={
     reactionsAdmin:[],
@@ -24,7 +24,9 @@ const initialState={
             name: "surprise",
             feedbacked: false
         }
-    ]
+    ],
+    reactionsProfile:[],
+    reactionsProfileId:''
 }
 
 const reactionsReducer = createReducer(initialState,
@@ -37,13 +39,13 @@ const reactionsReducer = createReducer(initialState,
                 } 
         })
         .addCase(getReactionItinerary.fulfilled,(state,action)=>{
-            return {
+             return {
                 ...state,
                 reactionsItinerary: action.payload.reactions
-            }
+            } 
         })
         .addCase(getReactionItinerary2.fulfilled,(state,action)=>{
-            console.log(action.payload)
+           
             return {
                 ...state,
                 reactionsItineray2: action.payload.reactions2
@@ -55,6 +57,20 @@ const reactionsReducer = createReducer(initialState,
                     reaction.feedbacked = !reaction.feedbacked
                 }
             })
+        })
+        .addCase(getUserReactions.fulfilled,(state,action)=>{
+          
+            return {
+                ...state,
+                reactionsProfile: action.payload
+            } 
+        })
+        .addCase(deleteReaction.fulfilled,(state,action)=>{
+          
+            return{
+                ...state,
+                reactionsProfileId: action.payload
+            }
         })  
 
 })

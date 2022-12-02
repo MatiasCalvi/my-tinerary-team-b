@@ -1,0 +1,33 @@
+.my-reaction-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    text-align: center;
+}
+.nosequeescribir-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px 0;
+}
+.hrMyReaction{
+    margin-bottom: 10px;
+}
+
+.user-reaction-container{
+    height: 350px;
+    margin: 25px;
+}
+
+.my-reaction-img{ 
+    object-fit: cover;
+    height: 350px;
+    width: 350px;
+}
+
+.delete-reactions {
+    cursor: pointer;
+}

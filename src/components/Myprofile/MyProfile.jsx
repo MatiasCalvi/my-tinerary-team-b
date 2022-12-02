@@ -5,6 +5,9 @@ import Swal from "sweetalert2";
 import ModalHotel from "../../components/Modal/Modal";
 import { useState,useEffect } from 'react'
 import userActions from '../../redux/actions/userActions'
+import MyReactions from '../MyReactions/MyReactions';
+import reactionsActions from '../../redux/actions/reactionsActions';
+import alertActions from '../../redux/actions/alertaCity';
 
 function MyProfile(props) {
   
@@ -12,6 +15,7 @@ function MyProfile(props) {
   const [photo, setPhoto] = useState('');
   const [lastName, setlastName] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const {alerta}=alertActions
 
 let{getOneUser,editUser}= userActions
 
@@ -20,7 +24,7 @@ console.log(id);
 let dispatch = useDispatch()
 
 
-let {profile} = useSelector(((state) => state.usuario))
+let {profile,token} = useSelector(((state) => state.usuario))
 console.log(profile);
 
 async function getUsers(){
@@ -66,12 +70,79 @@ console.log(data);
     console.log(error.message)
   }
 }
+/* ----------------------------------------------------------------------------------------------------------- */
+
+const { getUserReactions,deleteReaction } = reactionsActions
+
+const {reactionsProfile,reactionsProfileId} = useSelector((state) => state.newReaction);
 
 
+async function userReactions() {
+
+  await dispatch(getUserReactions({id,token}))
+}
+
+    useEffect (()=> {
+      userReactions()
+    }, []) 
+  console.log(reactionsProfile)
+
+
+  async function deleteReactionFx(e) {
+    console.log(e.target)
+    if(e.target.name){
+          Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, create it!'
+      })
+      .then(async(result)=>{
+
+          if (result.isConfirmed) {
+
+              try{
+                  const res = await dispatch(deleteReaction({id:e.target.name,token}))
+                  
+                  if(res.payload.success){
+                          Swal.fire(
+                              'Deleted',
+                              'Your reaction has been deleted.',
+                              'success'
+                          )                
+                      await dispatch(getUserReactions({id,token}))
+    
+                  }
+                  else{
+                          
+                      dispatch(alerta(Swal.fire({
+                          icon: 'error',
+                          title: 'Oops...',
+                          text: res.payload.response,
+                      })))
+                      
+                  }
+              }
+              catch(error){
+                  console.log(error)  
+              }
+              
+          }
+      }) 
+    }                   
+  }
+  useEffect(()=> {
+    deleteReactionFx()
+  }, [])
+
+  console.log(reactionsProfileId)
+ 
   return (
 <> 
 <div className='full-height'>
-
 <div className="content-profile-page">
    <div className="profile-user-page card">
       <div className="img-user-profile">
@@ -88,6 +159,12 @@ console.log(data);
       
       </div>
     </div>
+    <div className='nosequeescribir-container'>
+      {reactionsProfile.length>0 
+            ? reactionsProfile.map(e=><MyReactions id={e._id} name={e.itineraryId.name} icon={e.icon} deleteReaction={deleteReactionFx} photo={e.itineraryId.photo[0]} />)
+            : <h2>You haven't reactions</h2>}
+       </div>
+    
     <ModalHotel  open={isOpen} onClose={() => setIsOpen(false)}>
           <div className="edit-form-container">
             <input
