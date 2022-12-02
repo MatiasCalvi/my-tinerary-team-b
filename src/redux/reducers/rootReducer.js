@@ -8,6 +8,7 @@ import userReducer from "./userReducer";
 
 
 import showsReducer from "./showsReducer";
+import commentReducer from "./commentReducer";
 
 
 const rootReducer={
@@ -21,6 +22,7 @@ const rootReducer={
     usuario: userReducer,
     shows: showsReducer,
 
+    comments: commentReducer,
 }
 
 export default rootReducer;
