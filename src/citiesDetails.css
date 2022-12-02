@@ -20,6 +20,8 @@
 .c-containerDetailsYoung{
   display: flex;
   width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 .face3{
 display: flex;
@@ -109,8 +111,8 @@ letter-spacing: 1px;
 /* ------------------------------------------------------------------------------------------- */
 .card2{
   position:relative;
-  width: 50%;
-  height: 300px;
+  width: 300px;
+  min-height: 450px;
   margin: 1rem;
 }
 
@@ -158,6 +160,7 @@ letter-spacing: 1px;
   justify-content: space-between;
   text-align: center;
   box-shadow: 0 5px 10px black;
+  
 }
 
 .card2 .back2 .link2 {
@@ -187,3 +190,11 @@ letter-spacing: 1px;
 .card2:hover .back2 {
   transform: perspective(600px) rotateX(360deg);
 }
+
+.scroleable {
+  overflow-y: scroll;
+  max-width: 300px;
+  margin-top: 2vh;
+  padding-bottom: 5vh;
+}
+

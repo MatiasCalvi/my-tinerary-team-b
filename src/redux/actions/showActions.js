@@ -1,5 +1,6 @@
 import {createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BASE_URL } from "../../api/url";
 
 
 
@@ -8,7 +9,7 @@ import axios from "axios";
   
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/shows?userId=${userId}`
+        `${BASE_URL}/shows?userId=${userId}`
       );
 
       console.log(userId);
@@ -24,7 +25,7 @@ import axios from "axios";
   const getAndDestroy = createAsyncThunk("getAndDestroy", async ({id})=> {
     try {
       const res = await axios.delete(
-        `http://localhost:8000/api/shows/${id}`
+        `${BASE_URL}/shows/${id}`
       )
       if (res.data.success){
         return {
@@ -47,7 +48,7 @@ import axios from "axios";
 
   const getAndEdit = createAsyncThunk("getAndEdit", async ({data, go})=> {
 
-    let url = `http://localhost:8000/api/shows/${go}`
+    let url = `${BASE_URL}/shows/${go}`
     
     try {
       let res = await axios.patch(url,data)
@@ -74,7 +75,7 @@ import axios from "axios";
   
   const showCreator = createAsyncThunk("showCreator", async (data) => {
     
-    const url=`http://localhost:8000/api/shows`
+    const url=`${BASE_URL}/shows`
   
       try {
       

@@ -6,7 +6,8 @@
     background-color: #ffffff;
     padding: 100px;
     z-index: 1000;
-    min-height: 40%;
+    height: 400px!important;
+    width: 280px!important;
 }
 
 .modal-title {
@@ -40,6 +41,8 @@
     gap: 20px;
 }
 
-.input{
+.new-input{
+    margin-left: -50px;
     height: 30px;
+    width: 180px!important;
 }
