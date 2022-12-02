@@ -7,6 +7,7 @@ import {BASE_URL} from '../api/url';
 import HotelCardDetails from '../components/HotelCardDetails';
 import CardUserDetails from '../components/CardUserDetails';
 
+
 export default function Hoteldetails() {
     let a=useParams()
     let [filter,setFilter]=useState([])
@@ -27,6 +28,7 @@ export default function Hoteldetails() {
     },[])
     
     let show=shows.filter(e=>e.hotelId==a)
+    console.log(show)
     user.push(userId)
     console.log(photo)
     return (<>
@@ -51,8 +53,10 @@ export default function Hoteldetails() {
     </div>  
     <div className='c-containerDetailsYoung'>
         {
-            (show.length!=0)?show.map(e=><HotelCardDetails key={e?._id} name={e?.name} photo={e?.photo} description={e?.description} price={e?.price} date={e?.date.slice(0, 10)} />):console.log(true)
+            (show.length!=0)?show.map(e=><HotelCardDetails showId={e?._id} key={e?._id} name={e?.name} photo={e?.photo} description={e?.description} price={e?.price} date={e?.date.slice(0, 10) } />):console.log(true)
         }
    </div>
+
     </>)
 }
+
