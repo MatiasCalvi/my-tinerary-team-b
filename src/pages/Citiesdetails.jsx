@@ -41,16 +41,20 @@ export default function Citiesdetails() {
     let {getReactionItinerary,getReactionItinerary2}=reactionsActions
 
     const {reactionsItinerary,reactionsItineray2} = useSelector((state) => state.newReaction);
-
+    console.log(reactionsItinerary)
+    
+    let{token,logged}=useSelector(state=>state.usuario)
+    
 
     let idItinerary=show[0]?._id;
     let idItinerary2=show[1]?._id;
 
+    console.log(idItinerary)
     async function get(){
-        await dispatch(getReactionItinerary(idItinerary))
+        await dispatch(getReactionItinerary({idItinerary,token}))
     }
     async function get2(){
-        await dispatch(getReactionItinerary2(idItinerary2))
+        await dispatch(getReactionItinerary2({idItinerary2,token}))
     }
 
     useEffect(()=>{
@@ -60,6 +64,7 @@ export default function Citiesdetails() {
     useEffect(()=>{
         get2()
     },[idItinerary2])
+
 
     return (<>
     <div className='c-containerDetailsOld'>
@@ -87,17 +92,17 @@ export default function Citiesdetails() {
 
     {  show.length!==0
             ? <CardDetails  name={show[0].name} photo={show[0].photo[0]} description={show[0].description} price={show[0].price} duration={show[0].duration}/>
-            :   console.log(true)}
+            :   <></>}
 
-   {show.length!==0 ? < Reaction array={reactionsItinerary} />
-        : console.log("hola")}
+   {show.length!==0 && logged ? < Reaction array={reactionsItinerary} />
+        : <></>}
                 
     { show.length!==0
             ? <CardDetails  name={show[1].name} photo={show[1].photo[0]} description={show[1].description} price={show[1].price} duration={show[1].duration}/>
-            :   console.log(true)}
+            :   <></>}
 
-    {show.length!==0 ? < Reaction2 array={reactionsItineray2}/>
-            : console.log("hola")}
+    {show.length!==0 && logged ? < Reaction2 array={reactionsItineray2}/>
+            : <></>}
      
             
     </div> 

@@ -1,0 +1,71 @@
+.my-reaction-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    text-align: center;
+    padding: 20px;
+}
+.nosequeescribir-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px 0;
+}
+.hrMyReaction{
+    margin-bottom: 10px;
+}
+
+.user-reaction-container{
+    height: 350px;
+    margin: 25px;
+}
+
+.icon-margin{
+    margin-top: 10px;
+}
+.my-reaction-img{ 
+    object-fit: cover;
+    height: 350px;
+    width: 350px;
+}
+
+.delete-reactions {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.border-love {
+    border: 2px  solid lightcoral;
+    border-radius: 2rem;
+    padding: 10px 0;
+}
+
+.reaction-title{
+    margin-bottom: 12px;
+}
+
+.border-surprise {
+    border: 2px solid rgb(235, 206, 40);
+    border-radius: 2rem;
+    padding: 10px 0;
+}
+
+.border-like {
+    border: 2px solid lightskyblue;
+    border-radius: 2rem;
+    padding: 10px 0;
+}
+
+.border-note-like {
+    border: 2px solid rgb(63, 63, 233);
+    border-radius: 2rem;
+    padding: 10px 0;
+}
+.border-otaku{
+    border: 2px solid greenyellow;
+    border-radius: 2rem;
+    padding: 10px 0;
+}

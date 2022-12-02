@@ -8,9 +8,9 @@ import reactionsActions from '../../redux/actions/reactionsActions'
 export default function Reaction(props) {
    let {array}=props
 
-   let idItinerary=array[0]?.itineraryId
+   let idItinerary2=array[0]?.itineraryId
 
-   console.log(idItinerary)
+   console.log(idItinerary2)
     console.log(array)
 
    const [reload, setReload] = useState(true)
@@ -19,33 +19,39 @@ export default function Reaction(props) {
 
    let dispatch = useDispatch()
 
+   let { id , token } = useSelector(store=>store.usuario)
+
+
     useEffect(() => {
         updateReaction()
     }, [reload])
 
     async function updateReaction() {
 
-        await dispatch(getReactionItinerary2(idItinerary))
+        await dispatch(getReactionItinerary2({idItinerary2,token}))
     }
 
-    /* let { reactionsAdmin } = useSelector(store=>store.newReaction) */
-
-    let { id , token } = useSelector(store=>store.usuario)
 
     async function giveReaction(e) {
-
+       
+      
+        console.log(e.target.alt)
 
         let name = e.target.alt
+        
+        
+                try {
+                    await dispatch(feedbackReaction({token: token, name: name, itineraryId: idItinerary2}))
 
-        try {
-            await dispatch(feedbackReaction({token: token, name: name, itineraryId: idItinerary}))
+                    setReload(!reload)
+                } catch (error) {
+                    console.log(error)
+                }
+        
+        
 
-            setReload(!reload)
-        } catch (error) {
-            console.log(error)
-        }
     }
-                
+    
 
   return (<> 
             <div className='itinerary-reaction-container'>
@@ -61,14 +67,14 @@ export default function Reaction(props) {
                             user ? (
                                 <div className='double-reaction-container'>
                                     <div >
-                                        <img onClick={giveReaction} name={x.name} className='reaction-image' src={x.icon} alt={x.name} />
+                                        <img id={x._id} onClick={giveReaction} name={x.name} className='reaction-image' src={x.icon} alt={x.name} />
                                         <p>{quantity}</p>
                                     </div>
                                 </div>
                             ) : (
                                 <div className='double-reaction-container'>
                                     <div  >
-                                        <img onClick={giveReaction} name={x.name} className='reaction-image' src={x.iconBack} alt={x.name} />
+                                        <img id={x._id} onClick={giveReaction} name={x.name} className='reaction-image' src={x.iconBack} alt={x.name} />
                                         <p>{quantity}</p>
                                     </div>
                                 </div>
