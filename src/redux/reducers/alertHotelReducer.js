@@ -8,8 +8,7 @@ const initialState = {
     mensaje: ''
 }
 
-const alertReducer = createReducer(initialState,
-    (builder) => {
+const alertReducer = createReducer(initialState,(builder) => {
         builder
         .addCase(alerta, (state, action) => {
             console.log(action.payload)

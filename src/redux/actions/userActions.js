@@ -3,7 +3,7 @@ import axios from "axios";
 import { BASE_URL } from "../../api/url";
 
     const enter = createAsyncThunk('enter', async (datos) => { 
-        let url = `http://localhost:8000/api/auth/signin`
+        let url = `${BASE_URL}/auth/signin`
         try {
             let user = await axios.post(url,datos)
            
@@ -31,7 +31,7 @@ import { BASE_URL } from "../../api/url";
         }
     })
     const enterAgain = createAsyncThunk('enterAgain', async (token) => {
-        let url = `http://localhost:8000/api/auth/token`
+        let url = `${BASE_URL}/auth/token`
         let headers = {headers: {'Authorization': `Bearer ${token}`}}
         try {
             let user = await axios.post(url,null,headers)
@@ -54,7 +54,7 @@ import { BASE_URL } from "../../api/url";
         }
     })
     const editUser = createAsyncThunk("editHotel", async  ({id,data})=>{
-      let url = `http://localhost:8000/api/auth/me/${id}`
+      let url = `${BASE_URL}/auth/me/${id}`
       try {
         let res = await axios.patch(url,data)
         if(res.data.id)  {
@@ -79,7 +79,7 @@ import { BASE_URL } from "../../api/url";
   const getOneUser = createAsyncThunk("getOneUser", async (id) => {
       try {
         const res = await axios.get(
-          `http://localhost:8000/api/auth/me/${id}`
+          `${BASE_URL}/auth/me/${id}`
           );
   
   
