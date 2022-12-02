@@ -42,7 +42,7 @@ header{
 	width: 100%;
   margin-right: 20px;
 	margin-bottom: 30px;
-	background: #fff;
+	
 
 }
 
@@ -323,3 +323,31 @@ background: radial-gradient(circle, rgba(43,75,156,1) 22%, rgba(252,206,79,1) 10
   margin-top: 20px;
 }
 
+.New-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.New-text{
+   padding: 10px;
+   width: 50%;
+   text-align: center;
+   border-radius: 10px;
+}
+.new-title-SignUp{
+  margin-bottom: 50px;
+}
+
+.New-title-Submit{
+  padding: 15px;
+  width: 20%;
+  border-radius: 10px;
+}
+
+.New-title-Submit:hover{
+  opacity: .8;
+  cursor: pointer;
+}

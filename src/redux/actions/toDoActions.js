@@ -40,20 +40,24 @@ const getCitiesFilter = createAsyncThunk("getCitiesFilter", async ({ search ,che
 });
 
 const newCity = createAsyncThunk("newCity", async (data) => {
-  let url=`${BASE_URL}/cities`  
+  
+  let url=`${BASE_URL}/cities`
+  let headers = {headers: {'Authorization': `Bearer ${data.token}`}}
+
   try {
       
-      let res = await axios.post(url,data);
+      let res = await axios.post(url,data.city,headers);
+      console.log(res)
       if(res.data.id){
           
-          return {success:true, response:data, id: res.data.id}
+          return {success:true, response:data.city, id: res.data.id}
 
       }
       else{
           
           return {success:false, response: res.data.message}
 
-      }
+      } 
     } catch (error) {
     
       return {success:false, response:"ocurrio un error"}  

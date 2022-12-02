@@ -7,7 +7,9 @@ const initialState = {
   hotels: [],
   valueSearch: "",
   value: "",
-  filter: " "
+  filter: " ",
+  hotelId: " ",
+  
  
 };
 
@@ -41,17 +43,18 @@ const hotelsReducers = createReducer(initialState, (builder) => {
             }
         })
     .addCase(getAndDestroy.fulfilled,(state,action)=>{
+        console.log(action)
         return {
             ...state,
-            hotelId : action.payload.hotelId
+            hotelId : action.payload.id
         }
         })
     .addCase(getAndEdit.fulfilled,(state,action)=>{
-        console.log(action.payload.success)
+        console.log(action)
         if (action.payload.success) {
             return {
                     ...state,
-                    hotelId : action.payload.hotelId
+                     ...action.payload.responseid
                     }
                 }
             })

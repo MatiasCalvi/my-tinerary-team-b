@@ -1,45 +1,98 @@
-import React from 'react'
-import Input from '../components/Input';
-import { Link as Navlink } from 'react-router-dom';
-import { useRef } from 'react';
+
+import { useNavigate } from 'react-router-dom'
+import { useRef } from 'react'
+import { useDispatch } from 'react-redux'
 import "../newcity.css"
+import { Link as Navlink } from 'react-router-dom';
 
-export default function BoxSignIn() {
+import Swal from "sweetalert2";
+import userActions from '../redux/actions/userActions'
 
-    const emailInputElement = useRef(null);
-    const passwordInputElement = useRef(null);
-    
-    let handleSubmit = (event) => {
-    event.preventDefault();
-        const data = {
-            email: emailInputElement.current?.value,
-            password: passwordInputElement.current?.value
-        };
+function SignIn() {
+let dispatch = useDispatch()
+let navigate = useNavigate()
 
-    localStorage.setItem('user-access', JSON.stringify(data))
 
-    alert("Welcome to MyTinerary!")
+  let {enter}=userActions
+  let form = useRef()
 
-    emailInputElement.current.value=''
-    passwordInputElement.current.value=''
+
+  async function singIn(event) {
+    event.preventDefault()
+    let data = {}
+    Array.from(form.current).forEach(input=>{
+        if(input.name) {
+            data[input.name] = input.value.trim()
+            console.log(data);
+        }
+    })
+    try {
+        let res = await dispatch(enter(data))
+        console.log(res)
+        if (res.payload.success) {
+            console.log(res);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: "Welcome" + " " + res.payload.response.user.name,
+                showConfirmButton: false,
+                timer: 2000
+              })
+              navigate(`/`)
+
+        }
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Enter valid credentials or verify your email',
+                footer: 'Try Again'
+              })
+        }
+    } catch(error) {
+        console.log(error.message)
     }
-
-    return (
-    <div className='flex j-center a-center total bg column'>
-        <h1>Log In</h1>
-        <form className='flex column g-10'>
-            <div className='flex column g-10'>
-                <Input ref={emailInputElement} type='email' placeholder='Email:'/>
-                <Input ref={passwordInputElement} type='password' placeholder='Password:'/>
-            </div>
-            <div className='c-form-form-signIn-buttons'>
-                <button type='submit' onClick={handleSubmit} className='c-access'>Sign In</button>
-                <p>Don't have an account yet?</p>
-                <Navlink to='/signup'><button >Register now</button></Navlink>
-                <h6>or</h6>
-                <Navlink to="#"><button>Access with Google</button></Navlink>
-            </div>
-        </form>
-    </div>
-  )
 }
+
+    
+
+
+  return (<>
+
+    <div className='flex j-center a-center total bg column'>
+        <div className='bg-next'>
+        </div>
+        <div className='container-input'>
+        <h2 className='text-sign'>Welcome Again!</h2>
+        <div className='img-circle'></div>
+                <form onSubmit={singIn} ref={form}>
+                    <div className='container-input-box'>
+                        <label htmlFor="email">
+                            <div className='input-space'>
+                                <input className='input-signup' name='email' id='email' placeholder='Email' type='email'></input>
+                            </div>
+                        </label>
+                        <hr />
+                        <label htmlFor='password'>
+                            <div className='input-space'>
+                                <input className='input-signup' name='password' id='password' placeholder='Password' type='password'></input>
+                            </div>
+                        </label>
+                        <hr />
+
+                        <button type='submit' className="button-signup">Sign In</button>
+
+                        <p>or</p>
+                        <button className='btn-google'>access with google<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAepJREFUSEvlVu1NAkEUnAl7Cf/UCoQOsAK1AzoQK1A6gArUCsQKtAO1A+gAK5CfJLvkmbeHgWN37w7UEOL7B/d2533OLLEn455wcXjAkmUdrRatHe9StdoZizEXELkC2QVwXAATmYJ8gTEPnM+ndQKpBPaZidwBuKhzIURGWCz6BGZl/qXAkmW9JWgxw+oIZnCuXQaeBF6CPlZjRDzIa1o72jrjZXlfg17mN01AjqF9ze3Y913k1P+qAerdYlGJMW8AziPfhnRukDgzADmtyvT7bAAsjUYX5HNwOXm26+rEAg2Bs2zk12bdyD6tvd+p34lDIbAxugZHa/4TOufJ4jetACw6KMZ8bmT7RGt7ib5KzWCC2SgCKzsBOs0rKymzGHPgwJpmkAX596VeAheHS2TKxaKd6HHI32QLIkXGi5BKvXUCksSxGZAYo2t3U/jfuZNN3o6tUzhgORVWEkiCaqPruC1lDujcMFr2tJJd0jml4OKyJC5RDVbndSLJXXPRV4HILxNpea3W3ob2TueiOp6WxRRn12QMkB+wtpPS5PKHQE4oL9HMywNQ6eyViUr106fZbME5FfWYTIbw5BOsvf3R02f9Vv/YA1QyV6K/cpj4nhtz/2uPvVRFVVCqsirrRmWp687Stn7/D/gLxTzYH1closIAAAAASUVORK5CYII="/></button>
+
+                    </div>
+                </form>  
+        </div>
+    </div>
+
+
+  </>)
+
+}
+
+export default SignIn

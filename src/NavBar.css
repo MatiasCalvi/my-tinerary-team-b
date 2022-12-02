@@ -21,23 +21,29 @@ header{
 }
 
 .navegation{
-	width: 100%;
+	width: 100px!important;
+  height:100px;
   margin-right: 20px;
 	margin-bottom: 30px;
-	background: #fff;
-
 }
 
 .navegation ul{
 	list-style: none;
+  width: 100%;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border-radius: 10px;
 }
 
-
+/* .dNone{
+  display: none;
+} */
 
 .menu > li{
 	position: relative;
 	display: inline-block;
-  width: 60px;
+  width: 100px;
 }
 
 .menu > li > p{
@@ -52,6 +58,8 @@ header{
 	color: #CE7D35;
 	transition: all .3s;
 }
+
+
 
 .submenu{
 	position: absolute;
@@ -113,9 +121,9 @@ header{
     margin-top: -48%;
   }
   .navegation{
-    width: 60%;
+    width: 100px!important;
     margin: 5px;
-    background: #fff;
+    /* background: #fff; */
   }
   
   .NavBar {

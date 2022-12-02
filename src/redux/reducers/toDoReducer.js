@@ -36,6 +36,7 @@ const toDoReducer = createReducer(initialState,
             if(action.payload.success){
                 state.cities.push(action.payload.response)
             }
+            console.log(action.payload)
         })
         .addCase(getCitiesUser.fulfilled,(state,action)=>{
             console.log(action.payload)     

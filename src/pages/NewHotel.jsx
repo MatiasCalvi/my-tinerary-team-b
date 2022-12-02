@@ -1,10 +1,15 @@
 import React from 'react'
 import Input from '../components/Input';
-import { useRef,useEffect } from 'react';
+import { useRef, } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import {BASE_URL} from '../api/url';
 import "../newcity.css"
+import { useNavigate } from 'react-router-dom';
+import { useDispatch,useSelector } from 'react-redux';
+import hotelActions from '../redux/actions/hotelActions.js';
+import alertActions from '../redux/actions/alertaCity';
+import Swal from 'sweetalert2'
 
 
 
@@ -15,10 +20,18 @@ export default function NewHotel() {
     const cityIdInputElement = useRef(null);
     const userIdImputElement = useRef(0);
     let [form,setForm]=useState({})
+
+    let nav=useNavigate()
+
+    let {newHotel}=hotelActions
+    let {alerta}=alertActions
+
+    const dispatch= useDispatch()
+    const {hotels} = useSelector((state) => state.hotels);
     
 
     let handleCreateHotel = async (event) => {
-    event.preventDefault();
+        event.preventDefault();
         const data = {
             name: hotelNameImputElement.current?.value,
             photo: photoImputElement.current?.value,
@@ -27,9 +40,31 @@ export default function NewHotel() {
             userId: userIdImputElement.current?.value,
         };
 
-        axios.post((`${BASE_URL}/hotels`),data)
-        .then(respon=>console.log(respon))
-        .catch(err=>{console.log(err)})
+        try{
+            let res= await dispatch(newHotel(data))
+            if(res.payload.success){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Created',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                nav(`/detailsHotels/:${res.payload.id}`)
+            }
+            else{
+
+                dispatch(alerta(Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: res.payload.response,
+                  })))
+            }
+        }
+        catch(error){
+
+            console.log(error)
+        }
     
     }
 
@@ -40,11 +75,13 @@ export default function NewHotel() {
 
         <form className='flex column m20'>
             <div className='flex column g-10 '>
+
                 <Input ref={hotelNameImputElement}  type='text' id='hotelName' placeholder='Hotel Name:'/>
                 <Input ref={cityIdInputElement}  type='text' id='cityName' placeholder='City Name:'/>
                 <Input ref={photoImputElement}  type='text' id='photo' placeholder='photo url:'/>
                 <Input ref={capacityInputElement}  type='text' id='Capacity' placeholder='Capacity:'/>
                 <Input ref={userIdImputElement}  type='text' name='admin' value='' placeholder='admin code'/>
+
                 <div className='flex j-between'>
                     <input className='w-50 fs-2 input-form-newHotel' type="reset" value="Clear Form" />
                     <input className='w-50 fs-2 input-form-newHotel' onClick={handleCreateHotel} type="submit" value="Submit" />

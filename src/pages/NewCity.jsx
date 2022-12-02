@@ -9,32 +9,38 @@ import toDoActions from '../redux/actions/toDoActions.js';
 import alertActions from '../redux/actions/alertaCity';
 import Swal from 'sweetalert2'
 
-export default function CreateNewCity() {
+export default function CreateNewCity(props) {
 
     const cityNameImputElement = useRef(null)
     const continentimputElement = useRef(null);
     const photoImputElement = useRef(null);
     const populationImputElement = useRef(null);
-    const adminImputElement = useRef(0);
-    let [form,setForm]=useState({});
     let nav=useNavigate()
+    
+    let{id}=props
+    console.log(id)
+
+    let{token}=useSelector(state=>state.usuario)
+
+    console.log(token)
 
     let {newCity}=toDoActions
     let {alerta}=alertActions
 
     const dispatch= useDispatch()
-    const {cities} = useSelector((state) => state.cities);
 
 
     let handleCreateCity = async (event) => {
         event.preventDefault();
         const data = {
-            name: cityNameImputElement.current?.value,
-            continent: continentimputElement.current?.value,
-            photo: photoImputElement.current?.value,
-            population: populationImputElement.current?.value,
-            userId: adminImputElement.current?.value
-        };
+            token,
+            city: { 
+                    name: cityNameImputElement.current?.value,
+                    continent: continentimputElement.current?.value,
+                    photo: photoImputElement.current?.value,
+                    population: populationImputElement.current?.value,
+                    userId:id}
+                };
         try{
             let res= await dispatch(newCity(data))
             if(res.payload.success){
@@ -73,7 +79,6 @@ export default function CreateNewCity() {
                 <Input ref={continentimputElement} type='text' id='lastName' placeholder='Continent:'/>
                 <Input ref={photoImputElement} type='text' id='email' placeholder='photo url:'/>
                 <Input ref={populationImputElement} type='text' id='population' placeholder='Population:'/>
-                <Input ref={adminImputElement} type='text' id='userId' placeholder='AdminCode:'/>
                 <div className='flex j-between'>
                     <input className='w-50 fs-2 input-form-newHotel' type="reset" value="Clear Form" />
                     <input className='w-50 fs-2 input-form-newHotel' onClick={handleCreateCity} type="submit" value="Submit" />

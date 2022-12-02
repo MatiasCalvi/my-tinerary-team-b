@@ -3,27 +3,40 @@ import "./myItineraries.css"
 import { useDispatch,useSelector } from 'react-redux';
 import itinerariesActions from '../../redux/actions/itinerariesActions';
 import MyCitiesCard from '../../components/MyCitiesCard';
-import { useState } from 'react';
+import { useState,useRef } from 'react';
 import alertActions from '../../redux/actions/alertaCity';
 import Swal from 'sweetalert2'
 import Modal from '../../components/Modal/Modal'
+import { useEffect } from 'react';
+import toDoActions from '../../redux/actions/toDoActions.js';
 
 
-export default function MyItineraries() {
-    let {getItinerariesUser,getAndDestroy,getAndEdit}=itinerariesActions
+export default function MyItineraries(props) {
+
+    let {getItinerariesUser,getAndDestroy,getAndEdit,itineraryCreation}=itinerariesActions
+
+    let {getCities}=toDoActions
+    
+    let {id}=props
+    let form = useRef()
+
+    console.log(id)
 
     const dispatch= useDispatch()
 
-    let [userId,setUserId]=useState('')
-
     const {itinariesAdmin} = useSelector((state) => state.itinerary);
+    const {cities} = useSelector((state) => state.cities);
+    let {token}= useSelector((token)=>token.usuario)
+
+    console.log(token)
 
     const [go, setGo] = useState('')
+    let [cityIdGO,setCityIdGO]= useState('')
+    let [city,setCity]=useState('')
 
     const [isOpen, setIsOpen] = useState(false)
 
     const [name, setName] = useState('');
-    const [cityId,  setCityId] = useState('')
     const [photo, setPhoto] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
@@ -31,6 +44,22 @@ export default function MyItineraries() {
 
     let { alerta } = alertActions
 
+    async function get(){
+      await dispatch(getItinerariesUser(id))
+    } 
+
+    useEffect(()=>{
+      get()
+    },[])
+
+    async function getCitiesF(){
+      await dispatch(getCities())
+    } 
+
+    useEffect(()=>{
+      getCitiesF()
+    },[])
+    
 
     let listenEditGO = (id) => {
         
@@ -38,12 +67,19 @@ export default function MyItineraries() {
 
     }
 
+    let cityIdGo=(cityId)=>{
+      setCityIdGO(cityId)
+    }
+
     let listenEdit = async (event) => {
             event.preventDefault()
-        
-            let data = { name,cityId,photo,price,description,duration}
-        
-            if (name === '' || cityId === '' || photo === '' || photo === null || description === '' || duration === '' || price === '') {
+            let cityid=cityIdGO
+           
+
+            let data = {token, itinerary: {name,cityid,photo,price,description,duration}}
+            
+            
+            if (name === '' || photo === '' || photo === null || description === '' || duration === '' || price === '') {
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -64,7 +100,7 @@ export default function MyItineraries() {
                   imageAlt: 'image',
                 })
                 setIsOpen(false)
-                dispatch(getItinerariesUser(userId))
+                dispatch(getItinerariesUser(id))
               } else {
                 dispatch(alerta(
                   Swal.fire({
@@ -83,11 +119,10 @@ export default function MyItineraries() {
 
     }
 
-      let listenDeleted= (id, e)=>{
+      let listenDeleted= (idItinerary, e)=>{
         
-        console.log(id)
-        console.log(userId)
-
+        let ItineryId=idItinerary
+        
         Swal.fire({
           title: 'Are you sure?',
           text: "You won't be able to revert this!",
@@ -100,52 +135,87 @@ export default function MyItineraries() {
           if (result.isConfirmed) {
             Swal.fire(
               'Deleted!',
-              'Your city has been deleted.',
+              'Your Itinerary has been deleted.',
               'success'
             )
             console.log(id)
             
            
-                dispatch(getAndDestroy({ItineryId: id}))
-
+                dispatch(getAndDestroy({ItineryId,token}))
+                dispatch(getItinerariesUser(id))
+              
                 
-                if (userId.length !== 24){
-                    alert('el admin id es invalido')
-                    dispatch(getItinerariesUser())
-                }
-                dispatch(getItinerariesUser(userId))
             }
-            dispatch(getItinerariesUser(userId))
-            })
+              dispatch(getItinerariesUser(id))  
+          })
     
-            
       }
+      
+      let a=(e)=>{
 
-    let listenInput=()=>{
+          setCity(e.target.value)
+      
+      }
+      
+      
 
-        if(userId.length != 24){
-            alert('no se pudo')
+      async function creation (event) {
+
+        event.preventDefault()
+    
+        let data = {}
+        Array.from(form.current).forEach(input=>{
+            if(input.name) {
+                data[input.name] = input.value.trim()
+            }
+           
+        })
+        if(city){
+          data.cityId=city;
         }else{
-            dispatch(getItinerariesUser(userId))
+          data.cityId=cities[0]._id  
         }
         
+        data.userId=id;
         
-    }
+        try{
+            const res = await dispatch(itineraryCreation({data,token}))
+            if(res.payload.success){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Created',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+               event.target.reset()
+               dispatch(getItinerariesUser(id))
+            }
+            else{
+               
+                dispatch(alerta(Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: res.payload.response,
+                  })))
+                  console.log(res)
+            }
+        }
+        catch(error){
 
+            console.log(error)
+        }
+        
+        console.log(data)
+    }
     
 
-    console.log(itinariesAdmin)
+
+    
   return (<>
-    <div className='inputSearch-mycities'>
-        <input type="text"  onChange={e=>setUserId(e.target.value)}   placeholder="CodeAdmin..." />
-        <button type='submit'
-        className='save-new-button' onClick={listenInput}>
-            send adminCode
-         </button> 
-    </div>
     <div className='container-mycities'>
          { itinariesAdmin!==undefined 
-          ? itinariesAdmin.map(e=><MyCitiesCard key={e._id} name={e.name} event1={listenDeleted} event2={()=> setIsOpen(true)} go={listenEditGO} id={e._id} img={e.photo[0]} />)
+          ? itinariesAdmin.map(e=><MyCitiesCard key={e._id} cityId={e.cityId} name={e.name} event1={listenDeleted} event2={()=> setIsOpen(true)} go={listenEditGO} cityIdGo={cityIdGo} id={e._id} img={e.photo[0]} />)
           : <h2>No hay Resultados</h2> } 
     </div>
     <Modal editId={go} open={isOpen} onClose={()=> setIsOpen(false)}>
@@ -153,9 +223,6 @@ export default function MyItineraries() {
       <input htmlFor='name' className='new-input input' name='name' type="text"
         placeholder='Enter city name' required 
         onChange={(e) => setName(e.target.value)} />
-        <input htmlFor='cityId' className='new-input input' name='cityId' type="text"
-        placeholder='Enter Itinerary CityID' required 
-        onChange={(e) => setCityId(e.target.value)} />
         <input htmlFor='photo' className='new-input input' name='photo' type="text"
         placeholder='Enter Itinerary photos' required 
         onChange={(e) => setPhoto(e.target.value)} />
@@ -174,5 +241,21 @@ export default function MyItineraries() {
             </button>  
       </div>
     </Modal>
+    <div className='flex j-center a-center total bg column'>
+
+        <h1 className='new-title-SignUp'>Create Itinerary</h1>
+        <form onSubmit={creation} ref={form} className='New-container'>
+                <select className='New-text' onClick={a}>
+                  { cities.map(e=><option className='New-text' name={e.name} value={e._id}>{e.name}</option>) }
+                </select>
+                <input type='text' name='name' placeholder='Enter name' className='New-text'/>
+                <input type='text' name='photo' placeholder='Enter photo' className='New-text'/>
+                <input type='text' name='description' placeholder='Enter description of itinerary' className='New-text'/>
+                <input type='number' name='price' placeholder='Enter price of itinerary' className='New-text'/>
+                <input type='number' name='duration' placeholder='Enter duration of itinerary' className='New-text'/>
+                <input type="submit" className='New-title-Submit' required value='register!' />
+        </form>
+                
+    </div>
   </>)
 }
