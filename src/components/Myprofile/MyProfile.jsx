@@ -161,7 +161,7 @@ async function userReactions() {
     </div>
     <div className='nosequeescribir-container'>
       {reactionsProfile.length>0 
-            ? reactionsProfile.map(e=><MyReactions id={e._id} name={e.itineraryId.name} icon={e.icon} deleteReaction={deleteReactionFx} photo={e.itineraryId.photo[0]} />)
+            ? reactionsProfile.map(e=><MyReactions iconName={e.name} id={e._id} name={e.itineraryId.name} icon={e.icon} deleteReaction={deleteReactionFx} photo={e.itineraryId.photo[0]} />)
             : <h2>You haven't reactions</h2>}
        </div>
     
