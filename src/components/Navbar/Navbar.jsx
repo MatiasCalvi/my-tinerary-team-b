@@ -65,48 +65,10 @@ export default function NavbarOne() {
   
 
   return (<>
-    {/* <nav>
-        <div class="nav-wrapper">
-            <div class="logo-container">
-                <img class="logo" src="./img/logo.png" alt="Logo"/>
-            </div>
-            <nav>
-                <input class="hidden" type="checkbox" id="menuToggle"/>
-                <label class="menu-btn" for="menuToggle">
-                    <div class="menu"></div>
-                    <div class="menu"></div>
-                    <div class="menu"></div>
-                </label>
-                <div class="nav-container">
-                    <ul class="nav-tabs">
-                    <NavLink to="/">
-                        <li class="nav-tab"><button class="custom-btn btn-5 margin-cero" >Home</button></li>
-                    </NavLink>
-                    <NavLink to="/cities">
-                        <li class="nav-tab"><button class="custom-btn btn-5 margin-cero" >Cities</button></li>
-                    </NavLink>
-                    <NavLink to="/hotels">
-                        <li class="nav-tab"><button class="custom-btn btn-5 margin-cero" >Hotels</button></li>
-                    </NavLink>
-                    <NavLink to="/signin">
-                        <li class="nav-tab"><button class="custom-btn btn-5 margin-cero" >SignIn</button></li>
-                    </NavLink>
-                    <NavLink to="/signup">
-                        <li class="nav-tab"><button class="custom-btn btn-5 margin-cero" >SignUp</button></li>
-                    </NavLink>
-                    <NavLink to="/profile" className='mg10'>
-                        <li className='container-icon '>
-                            <img src="https://images.pexels.com/photos/261169/pexels-photo-261169.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
-                        </li>
-                    </NavLink>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </nav> */}
+    
         <Navbar bg="dark" expand={'lg'}>
           <Container fluid>
-            <Navbar.Brand href="#"><img class="logo" src="./img/logo.png" alt="Logo"/></Navbar.Brand>
+            <Navbar.Brand href="/"><img class="logo" src="./img/logo.png" alt="Logo"/></Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${'lg'}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${'lg'}`}
