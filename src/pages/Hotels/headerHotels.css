@@ -45,3 +45,21 @@
     letter-spacing: 7.4px;
 }
 
+@media screen and (max-width: 560px) {
+
+    .heading-primary3{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .heading-primary-main7{
+        margin-bottom: 0;
+    }
+  }
+  @media screen and (max-width: 560px) {
+
+    .heading-primary3{
+        gap: 50px;
+    }
+    
+  }
