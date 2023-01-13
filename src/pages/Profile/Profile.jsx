@@ -402,7 +402,7 @@ async function userReactions() {
   };
   let clickPage4 = () => {
     setTimeout(function () {
-      navigate("/myshows");
+      navigate("/myhotels");
     }, 500);
   };
   console.log(profile)

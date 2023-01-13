@@ -89,7 +89,7 @@ export default function MyItineraries(props) {
         
         if (res.payload.success) {
           Swal.fire({
-            title: `${name} city has been updated`,
+            title: `${name} itinerary has been updated`,
             imageUrl: photo,
             imageWidth: 400,
             imageHeight: 200,

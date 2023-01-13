@@ -120,7 +120,7 @@ export default function MyCities(props) {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Deleted!", "Your city has been deleted.", "success");
+        Swal.fire("Deleted!", "Your hotel has been deleted.", "success");
         console.log(id);
 
         dispatch(getAndDestroy(idCities));
@@ -158,7 +158,7 @@ export default function MyCities(props) {
             />
           ))
         ) : (
-          <h2>No hay Resultados</h2>
+          <h2 className="titleNot">No hay Resultados</h2>
         )}
       </div>
       <Modal editId={go} open={isOpen} onClose={() => setIsOpen(false)}>
@@ -168,17 +168,17 @@ export default function MyCities(props) {
             className="new-input input"
             name="title"
             type="text"
-            placeholder="Enter city name"
+            placeholder="Enter hotel name"
             required
             onChange={(e) => setName(e.target.value)}
           />
 
           <input
-            htmlFor="image"
+            htmlFor="photo"
             className="new-input input"
-            name="image"
+            name="photo"
             type="text"
-            placeholder="Enter city photo"
+            placeholder="Enter hotel photo"
             required
             onChange={(e) => setPhoto(e.target.value)}
           />
@@ -190,12 +190,12 @@ export default function MyCities(props) {
             ))}
           </select>
           <input
-            htmlFor="population"
+            htmlFor="capacity"
             className="new-input input"
-            name="population"
-            type="number"
+            name="capacity"
+            type="text"
             min="0"
-            placeholder="Enter city population"
+            placeholder="Enter hotel capacity"
             required
             onChange={(e) => Number(setCapacity(e.target.value))}
           />
