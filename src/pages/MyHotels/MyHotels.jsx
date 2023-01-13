@@ -107,8 +107,7 @@ export default function MyCities(props) {
   };
 
   let listenDeleted = (idCities, e) => {
-    console.log(idCities);
-    console.log(id);
+    
 
     Swal.fire({
       title: "Are you sure?",
@@ -158,7 +157,7 @@ export default function MyCities(props) {
             />
           ))
         ) : (
-          <h2 className="titleNot">No hay Resultados</h2>
+          <h2 className="titleNot">No Results, please add hotels</h2>
         )}
       </div>
       <Modal editId={go} open={isOpen} onClose={() => setIsOpen(false)}>

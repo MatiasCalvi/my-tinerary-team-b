@@ -5,13 +5,15 @@ import { useRef } from 'react'
 import Searchbar from '../../components/SearchBar/Searchbar'
 import Checkbox from '../../components/Checkbox/Checkbox'
 import Cards from '../../components/Cards/Cards'
+import { useDispatch,useSelector } from 'react-redux';
+import toDoActions from '../../redux/actions/toDoActions.js';
 import axios from 'axios';
 import {BASE_URL} from '../../api/url';
 
 
 export default function Cities() {
 
-    let [cities,setcities]=useState([])
+    /* let [cities,setcities]=useState([])
     let [checked,setChecked]=useState([])
     let [searched,setSearched]=useState([])
     let [filter,setFilter]=useState([])
@@ -41,9 +43,47 @@ export default function Cities() {
     useEffect(()=>{
         axios.get(`${BASE_URL}/cities?name=${searched}${checked.join('')}`)
         .then(response=>setFilter(response.data.allcities))
-    },[checked,searched])
+    },[checked,searched]) */
    
-    console.log(filter)
+    let {getCitiesFilter,getCities}=toDoActions
+    const dispatch= useDispatch()
+    
+   const {cities,categories} = useSelector((state) => state.cities);
+   let [aproved,setAproved]=useState(true)
+   
+    let [checked,setChecked]=useState([])
+    let [searched,setSearched]=useState('')
+    
+    useEffect(()=>{
+
+        if( typeof getCities== 'function' && aproved){
+
+            dispatch(getCities())
+            setAproved(false)
+
+        }
+        else{
+            dispatch(getCitiesFilter({cities:'cities',search:searched,check:checked}))
+        }
+    
+    },[checked,searched]) 
+    console.log(categories)
+    function listen(value) {
+        
+        if(value.target.checked){
+            if(value.target.type==="checkbox"){
+            setChecked(checked.concat("&continent="+value.target.value))
+        }
+        }else{
+            setChecked(checked.filter(element=>element!=="&continent="+value.target.value))
+        }
+
+        if(value.target.type==="text"){
+            setSearched(value.target.value)
+        }
+    }
+    console.log(cities)
+    console.log(checked) 
 
   return (<>
     <header class="header2">
@@ -60,19 +100,18 @@ export default function Cities() {
                 <Searchbar event={listen}/>
             </div>
             <div className="box-checkbox">
-                {   Array.from(new Set(cities.map(city => city.continent))).map(element => {
-                    return (
-                        <Checkbox key={element} id={element} event={listen} value={element} name={element}/>)}) 
+                {  
+                   categories.map(element=><Checkbox key={element} id={element} event={listen} value={element} name={element}/>) 
                 }
             </div>
         </div>
     </div>
     <div className='body-container-Cards-general'>
         <div class="box">
-            {
-                filter.map(element=><Cards key= {element._id} name={element.name} location={"citiesDetails"} continent={element.continent} id={element._id} photo={element.photo} ></Cards>)
-                                
-                }
+            {cities!==undefined
+            ?  cities.map(element=><Cards key= {element._id} name={element.name} location={"citiesDetails"} continent={element.continent} id={element._id} photo={element.photo} ></Cards>)
+            :  <h2>No Results</h2>               
+            }
         </div>
     </div>
    </>)

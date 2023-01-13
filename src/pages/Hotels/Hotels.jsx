@@ -6,17 +6,37 @@ import Cards from '../../components/Cards/Cards'
 import axios from 'axios';
 import {BASE_URL} from '../../api/url';
 import Select from '../../components/Select/Select'
+import { useDispatch , useSelector } from 'react-redux';
+import hotelActions from '../../redux/actions/hotelActions';
 
 export default function Hotels() {
-    let [hotels,sethotels]=useState([])
-    let [searched,setSearched]=useState([])
+   
+    let [searched,setSearched]=useState('')
     let [order,setOrder]=useState('')
- 
+    let [Aproved, setAproved ] = useState(true)
+    let [message,setMessage]=useState('')
+
+
+
+    let{ getHotels, getHotelsFilter } = hotelActions
+
+    const dispatch= useDispatch()
+
+    const {hotels,messageError} = useSelector(state => state.hotels);
+    
     
     useEffect(()=>{
-        axios.get(`${BASE_URL}/hotels?order=${order}&name=${searched}`)
-        .then(response=>sethotels(response.data.allhotels))
-    },[order,searched])
+
+        if (getHotels && Aproved) {
+            dispatch(getHotels())
+            setAproved(false)
+
+          }else {
+            setMessage(dispatch(getHotelsFilter({hotels:'hotels',searched:searched ,order:order})))
+        }
+    },[searched,order]) 
+
+
 
     function onFilterValueSelected(value){
         
@@ -42,8 +62,7 @@ export default function Hotels() {
                     }
             
             }
-    }
-    console.log(hotels)
+        }
   return (<>
     <header class="header3">
 	            <div class="text-box3">
@@ -63,9 +82,9 @@ export default function Hotels() {
     </div>
     <div className='body-container-Cards-general'>
         <div class="box">
-            {
-                hotels.map(element=><Cards key= {element._id} name={element.name} continent={element.capacity} id={element._id} photo={element.photo[0]} location={"hotelsDetails"} text={"Capacity"} clas1={"fontsize-h2Card"} clas2={"fontsize-spanCard"}></Cards>)
-                                
+            {messageError.payload===undefined
+                ? hotels?.map(element=><Cards key= {element._id} name={element.name} continent={element.capacity} id={element._id} photo={element.photo[0]} location={"hotelsDetails"} text={"Capacity"} clas1={"fontsize-h2Card"} clas2={"fontsize-spanCard"}></Cards>)
+                : <h2>{messageError.payload}</h2>              
                 }
         </div>
     </div>

@@ -8,7 +8,8 @@ const initialState = {
   valueSearch: "",
   value: "",
   filter: " ",
-  hotelAdmin:[]
+  hotelAdmin:[],
+  messageError:''
 };
 
 const hotelsReducers = createReducer(initialState, (builder) => {
@@ -22,10 +23,12 @@ const hotelsReducers = createReducer(initialState, (builder) => {
         };
       })
       .addCase(getHotelsFilter.fulfilled, (state, action) => {
+      
         return {
           ...state,
           ...action.payload,
           filter: "aplied",
+          messageError:action.payload,
         };
       })      
       .addCase( newHotel.fulfilled,(state,action)=>{

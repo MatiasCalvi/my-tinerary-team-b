@@ -27,9 +27,9 @@ const getHotels = createAsyncThunk("getHotels", async () => {
           valueOrder: order,
         };
       } catch (error) {
-        console.log(error);
+        console.log(error.response.data.message);
         return {
-          payload: "Error",
+          payload: error.response.data.message,
         };
       }
     }
