@@ -1,0 +1,63 @@
+.header5{
+    height: 100vh;
+    background-size: cover;
+    object-fit: cover;
+    position: relative;
+    background-image: linear-gradient(0deg,
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)), url("https://images.pexels.com/photos/2404370/pexels-photo-2404370.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    /* clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); */
+}
+
+.brand-box5 {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+
+.brand5 { font-size: 20px; }
+
+.text-box5 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.text-box-buttons2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.heading-primary5{
+    color: #fff;
+    text-transform: uppercase; 
+    backface-visibility: hidden;
+    margin-bottom: 80px;
+}
+
+.heading-primary-main5 {
+    display: block;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    margin-bottom: 28px;
+}
+
+.heading-primary-main7 {
+    display: block;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    margin-bottom: 28px;
+    height: 50px;
+}
+
+.heading-primary-sub5 {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 7.4px;
+}

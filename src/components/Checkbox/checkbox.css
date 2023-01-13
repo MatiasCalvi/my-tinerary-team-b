@@ -1,0 +1,42 @@
+.container-searchAndChecks{
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    background: #060606;
+    font-family: sans-serif;
+    padding: 20px 0;
+    flex-wrap: wrap;
+}
+
+.box-checkbox{
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.my-checkbox {
+    transform: scale(2);
+    margin-right: 11px;
+    height: auto!important;
+    order: 0;
+    width: auto;
+    line-height: auto!important;
+    margin-top: 0!important;
+}
+.letra-checkbox{
+    color: #fff;
+    display: flex!important;
+    flex-direction: row!important;
+}
+@media (max-width: 870px) {
+    .box-checkbox{
+        margin-bottom: 20px;
+        padding: 20px;
+        justify-content: center;
+    }
+    .container-searchAndChecks{
+        flex-direction: column;
+        gap: 50px;
+        padding-top: 30px!important;
+    }
+}

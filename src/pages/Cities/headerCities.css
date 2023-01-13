@@ -1,0 +1,55 @@
+.header2{
+    height: 100vh;
+    background-size: cover;
+    object-fit: cover;
+    position: relative;
+    background-image: linear-gradient(0deg,
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)), url("https://images.pexels.com/photos/9329805/pexels-photo-9329805.jpeg?cs=srgb&dl=pexels-bakr-magrabi-9329805.jpg&fm=jpg");
+    /* clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); */
+}
+
+.brand-box2 {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+
+.brand2 { font-size: 20px; }
+
+.text-box2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.text-box-buttons2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.heading-primary2{
+    color: #fff;
+    text-transform: uppercase; 
+    backface-visibility: hidden;
+    margin-bottom: 80px;
+}
+
+.heading-primary-main2 {
+    display: block;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    margin-bottom: 28px;
+}
+
+.heading-primary-sub2 {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 7.4px;
+}
+

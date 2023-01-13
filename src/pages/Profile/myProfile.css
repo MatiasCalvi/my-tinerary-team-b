@@ -1,0 +1,355 @@
+.full-height{
+    min-height: 100vh;
+    width: 100%;
+}
+
+
+
+
+.profile-user-page .img-user-profile {
+	margin: 0 auto;
+  text-align: center; 
+  width: 100%;
+  
+}
+.profile-user-page .img-user-profile .profile-bgHome {
+	border-bottom: .2em solid hwb(44 31% 1% / 0.898);
+  width: 100%;
+  height: 40vh;
+  object-fit: cover;
+  }
+.profile-user-page .img-user-profile .avatar {
+	margin: 0 auto;
+  background: hwb(44 31% 1% / 0.898);
+  width: 17em;
+  height: 17em;
+  padding: 0.25em;
+  border-radius: 5rem;
+  margin-top: -10em;
+  box-shadow: 0 0 .1em rgba(0, 0, 0, 0.35);
+  object-fit: cover;
+}
+
+
+
+.profile-user-page .user-profile-data, .profile-user-page .description-profile {
+  text-align: center;
+  padding: 0 1.5em; 
+}
+
+.profile-user-page .user-profile-data h1 {
+  color: #8899a6; 
+  font-size: 3rem;
+  margin-top: 10px;
+  margin-bottom: 0.5em; 
+}
+
+.profile-user-page .user-profile-data bt-nav-cc {
+    background-color: white;
+    overflow: hidden;
+  
+}
+.bt-nav-cc{
+    color: #fff;
+    background-color: black;
+    overflow: hidden;
+    letter-spacing: 2px;
+    font-weight: 600;
+    width: 98%;
+    padding: 10px;
+    border-radius: 10px;
+}
+.bt-nav-cc:hover{
+    background-color: #FC3434;
+    color: black;
+}
+.profile-user-page .description-profile {
+  color: #75787b;
+  font-size: 3rem; 
+}
+.profile-user-page .data-user {
+	font-family: "Quicksand", sans-serif;
+  margin-bottom: 0;
+  cursor: pointer;
+  padding: 0;
+  list-style: none;
+  display: table;
+  width: 100.15%; 
+}
+
+
+
+
+.mc-containerPerfil{
+  padding: 0 20%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  min-height: 80vh;
+}
+.mainPerfil{
+min-height: 100vh;
+width: 100%;
+background-image: url("https://c0.wallpaperflare.com/path/753/14/394/macbook-pro-magic-mouse-and-monitor-on-desk-479772b44f464221a558d039f51aacab.jpg");
+background-color: rgba(0, 0, 0, 0.596);
+background-blend-mode: color;
+background-attachment: fixed;
+background-size: cover;
+background-position: center;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.mc-cardPerfil{
+  height: 25%;
+  min-width: 45%;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  margin-bottom: 40px;
+}
+.mc-iconoAvatar{
+  width: 70px!important;
+  height: 70px!important;
+  
+}
+
+.mc-titulosPerfilMisDatos{
+  margin-bottom: 40px;
+  font-size: 25px;
+}
+.mc-titulosDatosPersonales{
+  margin-bottom: 40px;
+  margin-top: 40px;
+  font-size: 25px;
+}
+.mc-inputsPerfil{
+  margin-bottom: 30px!important;
+  display: flex;
+  gap: 10px;
+}
+.mc-inputsPerfilAcordion{
+  width: 95%;
+}
+.mc-buttonAcordion,.mc-buttonAcordionContra{
+  width: 5%;
+  background-color: #FF5733!important;
+}
+.mc-containerButtonContra{
+  display: flex;
+  align-items: center;
+}
+.mc-buttonAcordionContra{
+  height: 45%;
+}
+.mc-iconButtonPerfil{
+  width: 55%!important;
+}
+.mc-iconButtonPerfilContra{
+  width: 65%!important;
+}
+.mc-inputsPerfilContra{
+  display: flex;
+  gap: 2%;
+  margin-bottom: 30px;
+}
+.mc-inputsPerfilContraSub{
+  display: flex;
+  flex-direction: column;
+  width: 92%;
+  gap:30px
+}
+.css-o4b71y-MuiAccordionSummary-content{
+  justify-content: center!important;
+}
+.mc-titulosAcordionConsultas{ 
+    font-size: 22px!important;
+    letter-spacing: 2px!important;
+}
+.container-generalPerfil{
+  display: flex;
+  justify-content: center;
+}
+.mc-containerMisDatos{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  width: 90%;
+}
+.mc-containerDatosPersonales{
+  display: flex;
+  flex-direction: column;
+}
+.mc-tituloCartelFactura{
+  font-weight: 600!important;
+  letter-spacing: 0;
+  font-size: 18px!important;
+}
+.mc-spanFactura{
+  font-weight: 400;
+  letter-spacing: 0;
+  font-size: 18px!important;
+}
+.mc-containerFacturas{
+  margin-top: 30px;
+}
+.mc-containerSubCardFacturas{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mc-containerFacturasYPreguntas{
+  margin-top: 70px;
+}
+.mc-cardPerfilFacturas{
+  margin-bottom: 30px;
+}
+.mc-containerPregYCoins{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
+}
+.mc-titulosFacturas{
+  text-align: center;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.mc-tituloCartelCoins{
+  font-size: 18px!important;
+}
+.mc-subContainerFactura{
+  display: flex;
+  flex-direction: column;
+}
+.mc-buttonCoins{
+  background-color: #ef837b !important;
+  margin-top: 20px!important;
+}
+.mc-subContainerCoins{
+  display: flex;
+  flex-direction: column;
+}
+.mc-titulosCoins{
+  font-size: 18px!important;
+  margin-bottom: 10px!important;
+}
+.mc-containerCardCoinsYPreguntas{
+  display: flex;
+  align-items: center;
+  padding-left: 35px!important;
+}
+.mc-renderInput,.mc-renderInput2{
+  height: 112px;
+  /* border: .5px solid rgba(165, 165, 165, 0.825); */
+  border: .5px solid #ef837b;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 30px;
+}
+.mc-renderInput2{
+  height: 280px;
+}
+.mc-renderLetra{
+  font-weight: 600;
+}
+.mc-titulosCardsPerfil{
+  font-size: 20px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  letter-spacing: 2px; 
+}
+.containerPerfilPages{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.mc-cardPerfil2{
+  width: 90%;
+}
+.mc-containerSubCard2{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mc-tituloPerfil{
+  text-align: center;
+  font-size: 22px!important;
+  letter-spacing: 2px!important;
+}
+.mc-SubcontainerPages{
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+.mc-containerCardPages{
+  min-width: 10%;
+  display: flex;
+  justify-content: center;
+}
+.mc-containerCardPages:hover{
+  cursor: pointer;
+  opacity: .7;
+}
+.pages{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media screen and (max-width: 1005px) {
+
+  .mc-containerPerfil{
+      padding: 15px;
+  }
+  .mc-containerSubCardFacturas{
+      justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 890px) {
+
+  .mc-containerPerfil{
+      padding: 15px;
+  }
+  .mc-inputsPerfilContra{
+      flex-direction: column;
+  }
+  .mc-containerSubCardFacturas{
+      justify-content: space-between;
+  }
+  .mc-renderInput{
+      height: 250px;
+  }
+  .mc-renderInput2{
+      height: 400px;
+  }
+  .mc-containerButtonContra{
+      margin-top: 30px;
+      margin-bottom: 15px;
+      justify-content: center;
+  }
+  .mc-buttonAcordionContra{
+      width: 30%;
+      height: 100%;
+  }
+  .mc-iconButtonPerfilContra{
+      width: 45%!important;
+  }
+  .mc-inputsPerfilContraSub{
+      width: 100%;
+  }
+  .mc-tituloPerfil{
+    font-size: 18px!important;
+  }
+  .mc-titulosAcordionConsultas{ 
+    font-size: 18px!important;
+  }
+}

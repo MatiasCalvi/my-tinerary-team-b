@@ -1,0 +1,54 @@
+.headerSignUp{
+    height: 100vh;
+    background-size: cover;
+    object-fit: cover;
+    position: relative;
+    background-image: linear-gradient(0deg,
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)), url("https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    /* clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); */
+}
+
+.brand-boxSignUp {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+
+.brandSignUp { font-size: 20px; }
+
+.text-boxSignUp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.text-box-buttonsSignUp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.heading-primarySignUp{
+    color: #fff;
+    text-transform: uppercase; 
+    backface-visibility: hidden;
+    margin-bottom: 80px;
+}
+
+.heading-primary-mainSignUp {
+    display: block;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    margin-bottom: 28px;
+}
+
+.heading-primary-subSignUp {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 7.4px;
+}

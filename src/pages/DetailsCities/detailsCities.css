@@ -1,0 +1,96 @@
+    .title{
+        font-size:2em;
+        color:#000000;
+        display:block;
+        margin-bottom: 15px;
+    }
+    
+    .sub-title{
+        font-size:0.8em;
+        color:gray;
+        display:block;
+    }
+
+    .p-sectionDetails{
+        margin-bottom: 10px;    
+    }
+
+    .heading-primary-main3{
+        display: block;
+        font-size: 30px;
+        font-weight: 600;
+        letter-spacing: 5px;
+        margin-bottom: 28px;
+        padding-top: 6px;
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        height: 50px;
+    }
+    
+    .title:before{
+    font-family:"FontAwesome";
+    font-size:30px;
+    }
+    
+    a{
+    text-decoration:none;
+    }
+    
+    .section2,.section3{
+    width:90%;
+    margin:5% 0%;
+    margin-left:auto;
+    margin-right:auto;
+    }
+    
+    .section2 table,.section3 table{
+    width:100%;
+    }
+    
+    .section2 table td,.section3 table td{
+    width:50%;
+    }
+    
+    .section2 table td img,.section3 table td img{
+    width:80%;
+    height:70%;
+    margin-left:auto;
+    margin-right:auto;
+    box-shadow:0px 6px 16px -6px rgba(1,1,1,0.5);
+    }
+    
+    .section3 table td img{
+    float:right;
+    }
+    
+    
+@media (max-width:720px){
+    
+    .title{
+        margin-top: 20px;
+    }
+    .section2 table td, .section3 table td{
+        width:100%;
+        display:block;
+    }
+    .section3 table td img{
+        float:none;
+        margin-top:4%;
+    }
+    .section2 table td img,.section3 table td img{
+        width:100%;
+        height:60%;
+        }
+    }
+
+@media (max-width:300px){
+
+    .section2,.section3{
+        font-size:12px;
+    }
+    .section3 table td img{
+        float:none;
+        margin-top:8%;
+    }
+}

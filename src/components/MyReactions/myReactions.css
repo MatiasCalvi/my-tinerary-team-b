@@ -1,0 +1,106 @@
+/* .my-reaction-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+} */
+.containerGeneralReactions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #212529;
+}
+.tituloMyReactionsPerfile{
+    color: #fff;
+    margin-top: 30px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-decoration: underline;
+}
+.nosequeescribir-container{
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background-color: #212529;
+  padding: 80px 10px;
+  gap: 40px;
+  min-height: 40vh;
+}
+.hrMyReaction{
+    margin-bottom: 10px;
+}
+
+.user-reaction-container{
+    height: 350px;
+    margin: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon-margin{
+    margin-top: 10px;
+}
+.my-reaction-img{ 
+    object-fit: cover;
+    height: 250px;
+    width: 250px;
+}
+
+.delete-reactions {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.border-love {
+    border: 2px  solid lightcoral;
+    border-radius: 2rem;
+    padding: 5px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reaction-title{
+    margin-bottom: 12px;
+}
+
+.border-surprise {
+    border: 2px solid rgb(235, 206, 40);
+    border-radius: 2rem;
+    padding: 5px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.border-like {
+    border: 2px solid lightskyblue;
+    border-radius: 2rem;
+    padding: 5px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.border-note-like {
+    border: 2px solid rgb(63, 63, 233);
+    border-radius: 2rem;
+    padding: 5px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.border-otaku{
+    border: 2px solid greenyellow;
+    border-radius: 2rem;
+    padding: 5px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

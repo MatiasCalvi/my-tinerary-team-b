@@ -1,19 +1,19 @@
 import React from "react"
-import NavBar from "../components/NavBar"
-import Footer from "../components/Footer"
+import NavbarOne from "../components/Navbar/Navbar"
+import Footer from "../components/Footer/Footer"
 import AutoToTop from "../components/AutoToTop"
-import ScrollToTop from "../components/ScrollToTop"
+import BackToTopButton from "../components/BackToTopButton/BackToTopButton"
+/* import ScrollToTop from "../components/ScrollToTop" */
 
-const Layout = ({ children }) => {
-    return (
-      <>
+const Layout = ({ children,logged,role }) => {
+    return (<>
         <AutoToTop />
-        <NavBar />
+        <NavbarOne role={role}/>
         <main>{children}</main>
-        <ScrollToTop />
-        <Footer />
-      </>
-    )
+        {/* <ScrollToTop/> */}
+        <BackToTopButton/>
+        <Footer logged={logged} role={role}/>
+    </>)
   }
   
   export default Layout

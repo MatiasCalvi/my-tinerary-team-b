@@ -5,7 +5,7 @@
 		"lastName": "Nieto",
 		"age": 33,
 		"email": "sem.semper@yahoo.edu",
-		"pasword": "magna.",
+		"password": "magna.",
 		"code": "bibendumsedest.Nunc",
 		"verified": true,
 		"logged": true
@@ -16,7 +16,7 @@
 		"lastName": "Alonso",
 		"age": 42,
 		"email": "lacinia.at@icloud.net",
-		"pasword": "sitamet",
+		"password": "sitamet",
 		"code": "nullamagnamalesuada",
 		"verified": true,
 		"logged": true
@@ -27,7 +27,7 @@
 		"lastName": "Ramirez",
 		"age": 30,
 		"email": "vivamus.nisi.mauris@aol.edu",
-		"pasword": "maurissagittisplacerat",
+		"password": "maurissagittisplacerat",
 		"code": "vestibulum.Mauris",
 		"verified": true,
 		"logged": true
@@ -38,7 +38,7 @@
 		"lastName": "Gomez",
 		"age": 35,
 		"email": "parturient.montes@hotmail.edu",
-		"pasword": "etultrices",
+		"password": "etultrices",
 		"code": "Suspendisseseddolor.",
 		"verified": true,
 		"logged": true

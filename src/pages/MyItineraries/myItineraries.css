@@ -1,0 +1,125 @@
+.container-mycities{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: 60vh;
+    padding: 30px 0;
+    background-color: #1154a0;
+}
+
+.card-My {
+    width: 300px;
+    height: 350px;
+    background: rgb(255, 255, 255);
+    border-radius: 0.4em;
+    box-shadow: 0.3em 0.3em 0.7em #00000015;
+    transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: rgb(250, 250, 250) 0.2em solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   }
+   
+.card-My:hover {
+    border: #006fff 0.2em solid;
+}
+.option-mycities-edit{
+    color: black;
+    width: 100%;
+    background-color: #006fff;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 0!important;
+}
+.option-mycities-edit:hover{
+    box-shadow: 15px 15px 30px #5e8ec5,
+                -15px -15px 30px #1154a0;
+    cursor:pointer;
+}
+.option-mycities-delet:hover{
+    box-shadow: 15px 15px 30px indianred,
+    -15px -15px 30px rgb(145, 68, 68);
+    cursor:pointer;
+}
+.option-mycities-delet{
+    color: black;
+    width: 100%;
+    background-color: #ff0000;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 0!important;
+}
+.name-mycities{
+    padding: 10px;
+    color: black;
+    text-align: center;
+}
+
+.containerImage-mycities{
+   height: 65%; 
+}
+
+.image-mycities{
+    width: 100%;
+    height: 100%;
+}
+.inputSearch-mycities{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    height: 30px;
+}
+.containerForm-mycities{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+.form-mycities{
+    width: 25%;
+}
+
+
+.formItinerary{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 0 40px 0;
+}
+
+.New-text2{
+    padding: 10px;
+    width: 50%;
+    text-align: center;
+    border-radius: 10px;
+ }
+ .border2{
+    border: 1px black solid!important ;
+ }
+ .title-Itinerary{
+    text-align: center;
+    margin-top: 15px;
+    text-decoration: underline;
+    
+ }
+ .titleNotResults{
+    color: white;
+ }
+
+ .New-Submit-Itinerary{
+    padding: 10px;
+    width: 15%;
+    border-radius: 10px;
+    font-weight: 600;
+ }
+
+ .New-Submit-Itinerary:hover{
+    background-color: #004dff;
+    color: aliceblue;
+    cursor: pointer;
+   }
+
+   

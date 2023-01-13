@@ -1,4 +1,4 @@
-.home2{
+/*.home2{
   width: 100%;
   height: 100vh;
   background-color: #313D52;
@@ -43,8 +43,13 @@ footer{
   flex-direction: column;
   margin: 40px;
 }
-.c-box__footer .logo img{
+
+.c-box__footer .logo{
   width: 150px;
+}
+.c-box__footer .logo img{
+  width: 100%;
+  object-fit: cover;
 }
 .c-box__footer .c_terms{
   max-width: 300px;
@@ -115,7 +120,7 @@ font-size: 20px;
 .c-imgCarousel{
   width: 100%;
   height: 100%;
-  background-size: cover;
+  object-fit: cover;
 }
 .arrows-container{
   display: flex;
@@ -280,7 +285,7 @@ font-size: 20px;
 /* .blog-card .details .tags ul:before {
   content: "\f02b";
   margin-right: 15px;
-} */
+} *//*
 .blog-card .details .tags li {
   margin-right: 2px;
 }
@@ -318,7 +323,7 @@ font-size: 20px;
   position: relative;
 }
 .blog-card .description .read-more a:after {
-  /* content: "\f061"; */
+  /* content: "\f061"; 
   margin-left: -10px;
   opacity: 0;
   vertical-align: middle;
@@ -437,4 +442,20 @@ font-size: 20px;
   .c-topnav input[type=text] {
     border: 1px solid #ccc;
   }
+} */
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+window {
+  scroll-behavior: smooth;
+  
+}
+
+body{
+  background-color: #fff;
 }

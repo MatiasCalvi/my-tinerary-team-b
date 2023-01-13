@@ -1,0 +1,26 @@
+.containerAddCity{
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+.containerForm{
+  width: 60%;
+}
+.subContainerInputsForm{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.inputAddCity{
+  padding: 10px;
+  width: 100%;
+  border-radius: 7px;
+  border: .5px solid #000;
+}
+.inputAddSelect{
+  width: 100%!important;
+}
