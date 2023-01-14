@@ -18,12 +18,12 @@ export default function MyCities(props) {
 
   let { id } = props;
 
-  console.log(id);
+  
 
   const { cities } = useSelector((state) => state.cities);
   const { hotelAdmin } = useSelector((state) => state.hotels);
   
-  console.log(cities)
+  
 
   const [go, setGo] = useState("");
 
@@ -78,7 +78,7 @@ export default function MyCities(props) {
     } else {
       try {
         let res = await dispatch(getAndEdit({ data,go }));
-        console.log(res);
+       
         if (res.payload.success) {
           Swal.fire({
             title: `${name} city has been updated`,
@@ -120,7 +120,7 @@ export default function MyCities(props) {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Deleted!", "Your hotel has been deleted.", "success");
-        console.log(id);
+       
 
         dispatch(getAndDestroy(idCities));
         dispatch(getHotelUser(id));
@@ -133,16 +133,10 @@ export default function MyCities(props) {
     setCityID(e.target.value);
   };
 
-  console.log(hotelAdmin);
+
   return (
     <>
-      {/* <div className='inputSearch-mycities'>
-        <input type="text"  onChange={e=>setUserId(e.target.value)}   placeholder="CodeAdmin..." />
-        <button type='submit'
-        className='save-new-button' onClick={listenInput}>
-            send adminCode
-         </button> 
-    </div> */}
+
       <div className="container-mycities">
         {hotelAdmin !== undefined ? (
           hotelAdmin.map((e) => (

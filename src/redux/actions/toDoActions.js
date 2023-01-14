@@ -20,7 +20,7 @@ const getCities = createAsyncThunk("getCities", async () => {
 const getCitiesFilter = createAsyncThunk("getCitiesFilter", async ({ search ,check }) => {
   /* let url=`${BASE_URL}/${value}` */
   try {
-    console.log(check);
+    
     const res = await axios.get(
       `${BASE_URL}/cities?name=${search}${check.join('')}`
     );

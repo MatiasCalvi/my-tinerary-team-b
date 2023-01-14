@@ -7,7 +7,6 @@ const enter = createAsyncThunk("enter", async (datos) => {
   try {
     let user = await axios.post(url, datos);
 
-    console.log(user);
     if (user.data.response.user.id) {
       return {
         success: true,
@@ -116,8 +115,7 @@ const editUser = createAsyncThunk("editUser", async ({ id, data, token }) => {
   }
 });
 const getOneUser = createAsyncThunk("getOneUser", async ({id,token}) => {
-  console.log(id)
-  console.log(token)
+  
   let url=`${BASE_URL}/auth/me/${id}`
   let headers = { headers: { Authorization: `Bearer ${token}` } };
   try {

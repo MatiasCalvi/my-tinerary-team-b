@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 /* import ModalHotel from "../../components/Modal/Modal"; */
 import { useState, useEffect } from "react";
-import userActions from '../../redux/actions/userActions' 
- import MyReactions from '../../components/MyReactions/MyReactions';  
-import reactionsActions from '../../redux/actions/reactionsActions'; 
+import userActions from "../../redux/actions/userActions";
+import MyReactions from "../../components/MyReactions/MyReactions";
+import reactionsActions from "../../redux/actions/reactionsActions";
 import alertActions from "../../redux/actions/alertaCity";
 import { toast, ToastContainer } from "react-toastify";
 import { Link as NavLink, useNavigate } from "react-router-dom";
@@ -33,21 +33,17 @@ import EditIcon from "@mui/icons-material/Edit";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import AddIcon from "@mui/icons-material/Add";
 
-
-
 function MyProfile(props) {
-  const [name2, setName2] = useState('');
-  const [email,setEmail]=useState('')
-  const [password,setPassword]=useState('')
-  const [verifiedPass,setVerifiedPass]=useState('')
-  const [passwordBefore,setPasswordBefore]=useState('')
+  const [name2, setName2] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [verifiedPass, setVerifiedPass] = useState("");
+  const [passwordBefore, setPasswordBefore] = useState("");
   const [url, setUrl] = React.useState(null);
-  
+
   const [lastName, setlastName] = useState("");
-  
 
   const [isOpen, setIsOpen] = useState(false);
-  
 
   const [showPassword, setShowPassword] = React.useState(false);
   const [showPassword2, setShowPassword2] = React.useState(false);
@@ -61,30 +57,26 @@ function MyProfile(props) {
     event.preventDefault();
   };
 
-  let{getOneUser,editUser,exit}= userActions
-  const {alerta}=alertActions
+  let { getOneUser, editUser, exit } = userActions;
+  const { alerta } = alertActions;
 
   let { id } = props;
- 
+
   let dispatch = useDispatch();
   const navigate = useNavigate();
 
-  let {role,token,photo,name } = useSelector((state) => state.usuario);
+  let { role, token, photo, name } = useSelector((state) => state.usuario);
 
-   async function getUsers(){
-  
-  await dispatch(getOneUser({id,token}))
-} 
+  async function getUsers() {
+    await dispatch(getOneUser({ id, token }));
+  }
 
-   useEffect( ()=>{
+  useEffect(() => {
+    getUsers();
+  }, []);
 
-  getUsers()
-},[]) 
-
-
-
-let editName = async (e) => {
-    if (name2 === '') {
+  let editName = async (e) => {
+    if (name2 === "") {
       toast.error("You must complete all fields !", {
         position: "top-right",
         autoClose: 5000,
@@ -96,55 +88,43 @@ let editName = async (e) => {
         theme: "light",
       });
     } else {
+      let data = { name: name2 };
 
-          let data = { name: name2}
+      try {
+        let res = await dispatch(editUser({ id, data, token }));
 
-          try {
-
-              let res = await dispatch(editUser({ id, data,token }));
-          
-
-              if (res.payload.success) {
-                    toast.success(`The field was edited successfully`, {
-                        position: "bottom-left",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                });
-                dispatch(getOneUser({id,token}))
-              } else {
-                
-                    toast.error(res.payload.response, {
-                        position: "bottom-left",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                      })
-                   
-                    
-              }
-              dispatch(getOneUser({id,token}))
-          }
-          catch(error){
-
-              console.log(error.message)
-
-          }
+        if (res.payload.success) {
+          toast.success(`The field was edited successfully`, {
+            position: "bottom-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          dispatch(getOneUser({ id, token }));
+        } else {
+          toast.error(res.payload.response, {
+            position: "bottom-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
-    
+        dispatch(getOneUser({ id, token }));
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
   };
 
   let editMail = async () => {
-  
-
     if (email === "") {
       toast.error("You must complete all fields !", {
         position: "top-right",
@@ -157,73 +137,62 @@ let editName = async (e) => {
         theme: "light",
       });
     } else {
+      let data = { email: email };
 
-          let data = { email: email}
+      try {
+        let res = await dispatch(editUser({ id, data, token }));
 
-          try {
-
-              let res = await dispatch(editUser({ id, data,token }));
-          
-
-              if (res.payload.success) {
-                    toast.success(`The field was edited successfully`, {
-                        position: "bottom-left",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                });
-              } else {
-                
-                    toast.error(res.payload.response, {
-                        position: "bottom-left",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                      })
-                   
-                   
-              }
-
-          }
-          catch(error){
-
-              console.log(error.message)
-
-          }
+        if (res.payload.success) {
+          toast.success(`The field was edited successfully`, {
+            position: "bottom-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        } else {
+          toast.error(res.payload.response, {
+            position: "bottom-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
     }
   };
 
-  async function sesionOut(){
-        
-    let res= await dispatch(exit(token))
+  async function sesionOut() {
+    let res = await dispatch(exit(token));
     if (res.payload.success) {
+      toast.success(
+        "The field was edited successfully, you will be logged out, please login again with your new password",
+        {
+          position: "bottom-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
 
-      toast.success("The field was edited successfully, you will be logged out, please login again with your new password", {
-        position: "bottom-right",
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-  
       setTimeout(function () {
         navigate("/signin");
         url.reload();
       }, 2000);
-
-    }
-    else {
+    } else {
       toast.error(res.payload.response, {
         position: "bottom-right",
         autoClose: 8000,
@@ -233,53 +202,32 @@ let editName = async (e) => {
         draggable: true,
         progress: undefined,
         theme: "light",
-      })
+      });
     }
   }
 
   let editContra = async () => {
-   
+    if (
+      password.length !== 0 &&
+      verifiedPass.length !== 0 &&
+      passwordBefore.length !== 0
+    ) {
+      if (password === verifiedPass) {
+        let data = {
+          password: password,
+          passwordCurrent: passwordBefore,
+          token,
+        };
 
-    if(password.length!==0 && verifiedPass.length!==0 && passwordBefore.length!==0){
+        try {
+          let res = await dispatch(editUser({ id, data, token }));
 
-        if(password===verifiedPass){
-            
-                let data = { password: password, passwordCurrent: passwordBefore,token}
-        
-            try {
-        
-                let res = await dispatch(editUser({ id, data,token }));
-                  
-                      if (res.payload.success) {
-                        sesionOut()
-                      } else {
-                        
-                            toast.error(res.payload.response, {
-                                position: "bottom-left",
-                                autoClose: 3000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                                theme: "light",
-                              })
-                           
-                          
-                      }
-        
-                  }
-                  catch(error){
-        
-                      console.log(error.message)
-        
-                  }
-          }
-          else{
-
-            toast.error("Characters do not match", {
-              position: "top-right",
-              autoClose: 5000,
+          if (res.payload.success) {
+            sesionOut();
+          } else {
+            toast.error(res.payload.response, {
+              position: "bottom-left",
+              autoClose: 3000,
               hideProgressBar: false,
               closeOnClick: true,
               pauseOnHover: true,
@@ -287,12 +235,12 @@ let editName = async (e) => {
               progress: undefined,
               theme: "light",
             });
-
           }
-    }
-    else{
-
-        toast.error("You must complete all fields !", {
+        } catch (error) {
+          console.log(error.message);
+        }
+      } else {
+        toast.error("Characters do not match", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -302,81 +250,82 @@ let editName = async (e) => {
           progress: undefined,
           theme: "light",
         });
-
+      }
+    } else {
+      toast.error("You must complete all fields !", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
-    
   };
 
   /* ----------------------------------------------------------------------------------------------------------- */
 
-  const { getUserReactions,deleteReaction } = reactionsActions
+  const { getUserReactions, deleteReaction } = reactionsActions;
 
-const {reactionsProfile,reactionsProfileId} = useSelector((state) => state.newReaction);
+  const { reactionsProfile, reactionsProfileId } = useSelector(
+    (state) => state.newReaction
+  );
 
+  async function userReactions() {
+    await dispatch(getUserReactions({ id, token }));
+  }
 
-async function userReactions() {
-
-  await dispatch(getUserReactions({id,token}))
-}
-
-    useEffect (()=> {
-      userReactions()
-    }, []) 
- 
-
+  useEffect(() => {
+    userReactions();
+  }, []);
 
   async function deleteReactionFx(e) {
-   
-    if(e.target.name){
-          Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, create it!'
-      })
-      .then(async(result)=>{
+    if (e.target.name) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, create it!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            const res = await dispatch(
+              deleteReaction({ id: e.target.name, token })
+            );
 
-          if (result.isConfirmed) {
-
-              try{
-                  const res = await dispatch(deleteReaction({id:e.target.name,token}))
-                  
-                  if(res.payload.success){
-                          Swal.fire(
-                              'Deleted',
-                              'Your reaction has been deleted.',
-                              'success'
-                          )                
-                      await dispatch(getUserReactions({id,token}))
-    
-                  }
-                  else{
-                          
-                      dispatch(alerta(Swal.fire({
-                          icon: 'error',
-                          title: 'Oops...',
-                          text: res.payload.response,
-                      })))
-                      
-                  }
-              }
-              catch(error){
-                  console.log(error)  
-              }
-              
+            if (res.payload.success) {
+              Swal.fire(
+                "Deleted",
+                "Your reaction has been deleted.",
+                "success"
+              );
+              await dispatch(getUserReactions({ id, token }));
+            } else {
+              dispatch(
+                alerta(
+                  Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: res.payload.response,
+                  })
+                )
+              );
+            }
+          } catch (error) {
+            console.log(error);
           }
-      }) 
-    }                   
+        }
+      });
+    }
   }
-  useEffect(()=> {
-    deleteReactionFx()
-  }, [])
-
- 
-  
+  useEffect(() => {
+    deleteReactionFx();
+  }, []);
 
   let clickPage = () => {
     setTimeout(function () {
@@ -398,7 +347,7 @@ async function userReactions() {
       navigate("/myhotels");
     }, 500);
   };
-  
+
   return (
     <>
       <div className="full-height">
@@ -409,17 +358,11 @@ async function userReactions() {
                 className="profile-bgHome"
                 src="https://images.photowall.com/products/44351/island-paradise.jpg?h=699&q=85"
               />
-              <img
-                className="avatar"
-                src={photo}
-                alt="foto de perfil" 
-              /> 
+              <img className="avatar" src={photo} alt="foto de perfil" />
             </div>
 
             <div className="user-profile-data">
-    
-             <h1>{name}</h1>
-              
+              <h1>{name}</h1>
             </div>
           </div>
         </div>
@@ -447,13 +390,13 @@ async function userReactions() {
                       label="Name"
                       variant="outlined"
                       className="mc-inputsPerfilAcordion"
-                      onChange={(text) => setName2(text.target.value)} 
+                      onChange={(text) => setName2(text.target.value)}
                     />
                     <Button
                       variant="contained"
                       size="small"
                       className="mc-buttonAcordion"
-                      onClick={editName} 
+                      onClick={editName}
                     >
                       {<EditIcon className="mc-iconButtonPerfil" />}
                     </Button>
@@ -470,16 +413,18 @@ async function userReactions() {
                       variant="contained"
                       size="small"
                       className="mc-buttonAcordion"
-                        onClick={editMail} 
+                      onClick={editMail}
                     >
                       {<EditIcon className="mc-iconButtonPerfil" />}
                     </Button>
                   </div>
                   <div className="mc-inputsPerfilContra">
                     <div className="mc-inputsPerfilContraSub ">
-                    <FormControl
+                      <FormControl
                         variant="outlined"
-                         onChange={(text) => setPasswordBefore(text.target.value)} 
+                        onChange={(text) =>
+                          setPasswordBefore(text.target.value)
+                        }
                       >
                         <InputLabel htmlFor="password">Password</InputLabel>
                         <OutlinedInput
@@ -506,7 +451,7 @@ async function userReactions() {
                       </FormControl>
                       <FormControl
                         variant="outlined"
-                         onChange={(text) => setPassword(text.target.value)} 
+                        onChange={(text) => setPassword(text.target.value)}
                       >
                         <InputLabel htmlFor="password">New Password</InputLabel>
                         <OutlinedInput
@@ -533,12 +478,10 @@ async function userReactions() {
                       </FormControl>
                       <FormControl
                         variant="outlined"
-                        onChange={(text) =>
-                            setVerifiedPass(text.target.value)
-                      } 
+                        onChange={(text) => setVerifiedPass(text.target.value)}
                       >
                         <InputLabel htmlFor="confirmacionPassword">
-                            Check your password{" "}
+                          Check your password{" "}
                         </InputLabel>
                         <OutlinedInput
                           id="confirmacionPassword"
@@ -568,7 +511,7 @@ async function userReactions() {
                         variant="contained"
                         size="small"
                         className="mc-buttonAcordionContra"
-                         onClick={editContra} 
+                        onClick={editContra}
                       >
                         {<EditIcon className="mc-iconButtonPerfilContra" />}
                       </Button>
@@ -632,14 +575,27 @@ async function userReactions() {
       </div>
       <div className="containerGeneralReactions">
         <h2 className="tituloMyReactionsPerfile">My Reactions</h2>
-        {reactionsProfile!==undefined
-        ? <div className='nosequeescribir-container'>
-            { reactionsProfile.map(e=><MyReactions iconName={e.name} id={e._id} name={e.itineraryId.name} icon={e.icon} deleteReaction={deleteReactionFx} photo={e.itineraryId.photo[0]} />)}
+        {reactionsProfile !== undefined ? (
+          <div className="nosequeescribir-container">
+            {reactionsProfile.map((e) => (
+              <MyReactions
+                iconName={e.name}
+                id={e._id}
+                name={e.itineraryId.name}
+                icon={e.icon}
+                deleteReaction={deleteReactionFx}
+                photo={e.itineraryId.photo[0]}
+              />
+            ))}
           </div>
-        :  <div className='nosequeescribir-container px-5'>
-              <h2 className="titleNotResults text-center">No reactions found, if you prefer you can react to any itinerary/show</h2>
+        ) : (
+          <div className="nosequeescribir-container px-5">
+            <h2 className="titleNotResults text-center">
+              No reactions found, if you prefer you can react to any
+              itinerary/show
+            </h2>
           </div>
-        }     
+        )}
       </div>
     </>
   );

@@ -88,7 +88,7 @@ export default function MyShows(props) {
     } else {
       try {
         let res = await dispatch(getAndEdit({ data, go, token }));
-        console.log(res.payload.success);
+       
         if (res.payload.success) {
           Swal.fire({
             title: `${name} Show has been updated`,
@@ -141,14 +141,10 @@ export default function MyShows(props) {
 
   let a = (e) => {
     setHotel(e.target.value);
-
-    console.log(e.target.value);
   };
 
   async function creation(event) {
     event.preventDefault();
-    console.log(hotel);
-    console.log(id);
     let data = {};
     Array.from(form.current).forEach((input) => {
       if (input.name) {
@@ -184,7 +180,7 @@ export default function MyShows(props) {
             })
           )
         );
-        console.log(res);
+        
       }
     } catch (error) {
       console.log(error);
@@ -196,7 +192,7 @@ export default function MyShows(props) {
   return (
     <>
       <div className="container-mycities">
-        {showUsers !== undefined ? (
+        {showUsers.length !== 0 ? (
           showUsers.map((e) => (
             <MyHotelsCard
               key={e._id}
@@ -208,9 +204,9 @@ export default function MyShows(props) {
               img={e.photo}
             />
           ))
-        ) : 
-          <h2 className="titleNotResults">No hay Resultados</h2>
-        }
+          ) : 
+          <h2 className="titleNotResults">There are no results, if you prefer you can create a new show</h2>
+          }
       </div>
       <Modal2 editId={go} open={isOpen} onClose={() => setIsOpen(false)}>
         <div className="edit-form-container">

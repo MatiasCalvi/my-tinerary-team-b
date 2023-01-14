@@ -23,8 +23,7 @@ import { BASE_URL } from "../../api/url";
   });
 
   const getAndDestroy = createAsyncThunk("getAndDestroy", async ({id, token})=> {
-    console.log(id)
-    console.log(token)
+    
     let headers = {headers: {'Authorization': `Bearer ${token}`}}
     const url=`${BASE_URL}/shows/${id}`
 

@@ -49,7 +49,7 @@ export default function BoxSignUp() {
   const registro = async () => {
    
     const respuesta = await dispatch(userCreation(nuevoUsuario))
-    console.log(respuesta)
+  
     if (respuesta.payload.success) {
       toast.success(
         `Your account was created correctly, verify it to enter`,

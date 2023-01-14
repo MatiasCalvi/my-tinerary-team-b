@@ -10,7 +10,7 @@ const newReactionCreation = createAsyncThunk("newReactionCreation", async ({data
       try {
       
         let res = await axios.post(url,data,headers)
-        console.log(res)
+        
         if(res.data.success){
             
             return {success:true, response:data}
@@ -29,14 +29,14 @@ const newReactionCreation = createAsyncThunk("newReactionCreation", async ({data
 });
 const getReactionItinerary = createAsyncThunk("getReactionItinerary", async ({idItinerary,token}) => {
   
-  console.log(idItinerary)
+ 
   let headers = { headers: {'Authorization': `Bearer ${token}`}}
   const url=`${BASE_URL}/reactions?itineraryId=${idItinerary}`;
     if(idItinerary!==undefined){
         try {
           const res = await axios.get(url,headers);
           
-          console.log(res)
+         
          return { reactions: res.data.reactions } 
           
         } catch (error) {
@@ -57,7 +57,7 @@ const getReactionItinerary2 = createAsyncThunk("getReactionItinerary2", async ({
           `${BASE_URL}/reactions?itineraryId=${idItinerary2}`
         ,headers);
         
-        console.log(res)
+     
          return { reactions2: res.data.reactions } 
         
       } catch (error) {
@@ -102,7 +102,7 @@ const deleteReaction = createAsyncThunk("deleteReaction", async ({ id, token }) 
   let headers = { headers: { 'Authorization': `Bearer ${token}` } }
   try {
       const res = await axios.put(`${BASE_URL}/reactions/${id}`, null, headers)
-      console.log(res.data)
+    
       return res.data
   } catch (error) {
       return {

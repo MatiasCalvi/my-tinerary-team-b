@@ -121,7 +121,12 @@
     color: aliceblue;
     cursor: pointer;
    }
-
+.option-mycities-delet{
+    font-size:larger!important
+}
+.option-mycities-edit{
+    font-size:larger!important
+}
 @media screen and (max-width: 1000px) {
     
     .New-text2{

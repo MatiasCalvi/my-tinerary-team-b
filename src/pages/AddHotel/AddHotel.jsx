@@ -47,7 +47,7 @@ export default function CreateNewHotel(props) {
                     capacity: populationImputElement.current?.value,
                     userId:id
         }
-        console.log(data)      
+             
         try{
             let res= await dispatch(newHotel({data,token}))
             if(res.payload.success){

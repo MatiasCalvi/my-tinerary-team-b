@@ -16,7 +16,6 @@ export default function MyCities(props) {
   let [userId, setUserId] = useState("");
   let { id } = props;
 
-  console.log(id);
 
   const { citiesAdmin } = useSelector((state) => state.cities);
 
@@ -63,7 +62,7 @@ export default function MyCities(props) {
     } else {
       try {
         let res = await dispatch(getAndEdit({ go, data }));
-        console.log(res.payload.success);
+        
         if (res.payload.success) {
           Swal.fire({
             title: `${name} city has been updated`,
@@ -92,8 +91,7 @@ export default function MyCities(props) {
   };
 
   let listenDeleted = (idCities, e) => {
-    console.log(idCities);
-    console.log(id);
+    
 
     Swal.fire({
       title: "Are you sure?",
@@ -106,7 +104,7 @@ export default function MyCities(props) {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Deleted!", "Your city has been deleted.", "success");
-        console.log(id);
+        
 
         dispatch(getAndDestroy({ cityId: idCities }));
         dispatch(getCitiesUser(id));
@@ -115,7 +113,7 @@ export default function MyCities(props) {
     });
   };
 
-  console.log(citiesAdmin);
+  
   return (
     <>
       {/* <div className='inputSearch-mycities'>

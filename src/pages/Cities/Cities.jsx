@@ -67,7 +67,7 @@ export default function Cities() {
         }
     
     },[checked,searched]) 
-    console.log(categories)
+   
     function listen(value) {
         
         if(value.target.checked){
@@ -82,8 +82,7 @@ export default function Cities() {
             setSearched(value.target.value)
         }
     }
-    console.log(cities)
-    console.log(checked) 
+    
 
   return (<>
     <header class="header2">

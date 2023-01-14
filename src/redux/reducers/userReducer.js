@@ -14,7 +14,7 @@ const initialState = {
 const userReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(enter.fulfilled, (state, action) => {
-      //console.log(action.payload.response)
+     
       const { success, response } = action.payload;
      
       if (success) {
@@ -43,7 +43,7 @@ const userReducer = createReducer(initialState, (builder) => {
     })
 
     .addCase(enterAgain.fulfilled, (state, action) => {
-      //console.log(action.payload.response)
+      
       const { success, response } = action.payload;
       
       if (success) {
@@ -89,7 +89,7 @@ const userReducer = createReducer(initialState, (builder) => {
       }
     })
     .addCase(getOneUser.fulfilled,(state,action)=>{
-      console.log(action.payload);
+     
       return{
           ...state,
       profile: action.payload.user

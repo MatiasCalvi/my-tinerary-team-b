@@ -39,7 +39,7 @@ export default function SignIn() {
 
   const ingresar = async () => {
     const respuesta = await dispatch(enter(loginUsuario));
-    console.log(respuesta)
+  
     if (respuesta.payload.success) {
       toast.success(
         `Welcome ${respuesta.payload.response.user.name} `,

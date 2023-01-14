@@ -193,25 +193,25 @@ export default function MyItineraries(props) {
   
   return (
     <>
-      <div className="container-mycities">
-        {itinariesAdmin !== undefined ? (
-          itinariesAdmin.map((e) => (
-            <MyItinerariesCard
-              key={e._id}
-              cityId={e.cityId}
-              name={e.name}
-              event1={listenDeleted}
-              event2={() => setIsOpen(true)}
-              go={listenEditGO}
-              cityIdGo={cityIdGo}
-              id={e._id}
-              img={e.photo[0]}
-            />
-          ))
-        ) : (
-          <h2 className="titleNotResults">No hay Resultados</h2>
-        )}
-      </div>
+      
+        {itinariesAdmin !== undefined 
+        ?  <div className="container-mycities">
+             { itinariesAdmin.map((e) => 
+                <MyItinerariesCard
+                  key={e._id}
+                  cityId={e.cityId}
+                  name={e.name}
+                  event1={listenDeleted}
+                  event2={() => setIsOpen(true)}
+                  go={listenEditGO}
+                  cityIdGo={cityIdGo}
+                  id={e._id}
+                  img={e.photo[0]}
+                />)}
+          </div>
+       : <div className="container-mycities px-5 text-center">
+              <h2 className="titleNotResults">There are no results, if you prefer you can create a new itinerary</h2>
+          </div> }
       <Modal2 editId={go} open={isOpen} onClose={() => setIsOpen(false)}>
         <div className="edit-form-container">
           <input

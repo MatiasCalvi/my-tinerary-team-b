@@ -15,11 +15,11 @@ export default function CreateNewCity(props) {
     let nav=useNavigate()
     
     let{id}=props
-    console.log(id)
+    
 
     let{token}=useSelector(state=>state.usuario)
 
-    console.log(token)
+    
 
     let {newCity}=toDoActions
     let {alerta}=alertActions

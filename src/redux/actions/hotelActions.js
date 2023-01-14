@@ -10,7 +10,7 @@ const getHotels = createAsyncThunk("getHotels", async () => {
       
       return res.data.allhotels;
     } catch (error) {
-      console.log(error);
+     
       return {
         payload: "Error",
       };
@@ -27,7 +27,7 @@ const getHotels = createAsyncThunk("getHotels", async () => {
           valueOrder: order,
         };
       } catch (error) {
-        console.log(error.response.data.message);
+       
         return {
           payload: error.response.data.message,
         };
@@ -58,7 +58,7 @@ const getHotels = createAsyncThunk("getHotels", async () => {
       }
   }); 
   const getHotelUser = createAsyncThunk("getHotelUser", async (id) => {
-    console.log(id)
+    
     try {
       const res = await axios.get(
         `${BASE_URL}/hotels?userId=${id}`

@@ -9,7 +9,7 @@ const userCreation = createAsyncThunk("userCreation", async (data) => {
       try {
       
         let res = await axios.post(url,data)
-        console.log(res)
+        
         if(res.data.success){
             
             return {success:true, response:data}

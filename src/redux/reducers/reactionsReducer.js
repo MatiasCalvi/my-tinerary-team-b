@@ -60,7 +60,7 @@ const reactionsReducer = createReducer(initialState,
             })
         })
         .addCase(getUserReactions.fulfilled,(state,action)=>{
-          console.log(action)
+         
             if(action.payload.length>0){
                return{
                     ...state,
