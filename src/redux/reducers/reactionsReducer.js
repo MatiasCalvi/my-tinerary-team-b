@@ -26,7 +26,8 @@ const initialState={
         }
     ],
     reactionsProfile:[],
-    reactionsProfileId:''
+    reactionsProfileId:'',
+    message:''
 }
 
 const reactionsReducer = createReducer(initialState,
@@ -59,11 +60,21 @@ const reactionsReducer = createReducer(initialState,
             })
         })
         .addCase(getUserReactions.fulfilled,(state,action)=>{
-          
-            return {
-                ...state,
-                reactionsProfile: action.payload
-            } 
+          console.log(action)
+            if(action.payload.length>0){
+               return{
+                    ...state,
+                    reactionsProfile: action.payload
+                }
+            }
+            if(!action.payload.success){
+                return {
+                
+                    message: action.payload.message
+
+                    } 
+                }
+             
         })
         .addCase(deleteReaction.fulfilled,(state,action)=>{
           

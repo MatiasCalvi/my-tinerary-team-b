@@ -1,3 +1,4 @@
+
 .full-height{
     min-height: 100vh;
     width: 100%;
@@ -40,8 +41,8 @@
 .profile-user-page .user-profile-data h1 {
   color: #8899a6; 
   font-size: 3rem;
-  margin-top: 10px;
-  margin-bottom: 0.5em; 
+  margin-top: 30px;
+  margin-bottom: 2rem; 
 }
 
 .profile-user-page .user-profile-data bt-nav-cc {
@@ -276,6 +277,7 @@ align-items: center;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 .mc-tituloPerfil{
   text-align: center;

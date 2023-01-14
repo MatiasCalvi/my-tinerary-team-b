@@ -40,19 +40,22 @@ function MyProfile(props) {
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
   const [verifiedPass,setVerifiedPass]=useState('')
+  const [passwordBefore,setPasswordBefore]=useState('')
   const [url, setUrl] = React.useState(null);
   
   const [lastName, setlastName] = useState("");
-  const [photo, setPhoto] = useState("");
+  
 
   const [isOpen, setIsOpen] = useState(false);
   
 
   const [showPassword, setShowPassword] = React.useState(false);
   const [showPassword2, setShowPassword2] = React.useState(false);
+  const [showPassword3, setShowPassword3] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleClickShowPassword2 = () => setShowPassword2((show) => !show);
+  const handleClickShowPassword3 = () => setShowPassword3((show) => !show);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -66,11 +69,11 @@ function MyProfile(props) {
   let dispatch = useDispatch();
   const navigate = useNavigate();
 
-  let {profile,role,token } = useSelector((state) => state.usuario);
+  let {role,token,photo,name } = useSelector((state) => state.usuario);
 
    async function getUsers(){
   
-  await dispatch(getOneUser(id))
+  await dispatch(getOneUser({id,token}))
 } 
 
    useEffect( ()=>{
@@ -78,7 +81,7 @@ function MyProfile(props) {
   getUsers()
 },[]) 
 
-console.log(name2)
+
 
 let editName = async (e) => {
     if (name2 === '') {
@@ -98,7 +101,7 @@ let editName = async (e) => {
 
           try {
 
-              let res = await dispatch(editUser({ id, data }));
+              let res = await dispatch(editUser({ id, data,token }));
           
 
               if (res.payload.success) {
@@ -112,7 +115,7 @@ let editName = async (e) => {
                         progress: undefined,
                         theme: "light",
                 });
-                dispatch(getOneUser(id))
+                dispatch(getOneUser({id,token}))
               } else {
                 
                     toast.error(res.payload.response, {
@@ -128,7 +131,7 @@ let editName = async (e) => {
                    
                     
               }
-              dispatch(getOneUser(id))
+              dispatch(getOneUser({id,token}))
           }
           catch(error){
 
@@ -159,7 +162,7 @@ let editName = async (e) => {
 
           try {
 
-              let res = await dispatch(editUser({ id, data }));
+              let res = await dispatch(editUser({ id, data,token }));
           
 
               if (res.payload.success) {
@@ -203,9 +206,9 @@ let editName = async (e) => {
     let res= await dispatch(exit(token))
     if (res.payload.success) {
 
-      toast.success("You will be logged out, please login again with your new password", {
+      toast.success("The field was edited successfully, you will be logged out, please login again with your new password", {
         position: "bottom-right",
-        autoClose: 3000,
+        autoClose: 4000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -237,27 +240,17 @@ let editName = async (e) => {
   let editContra = async () => {
    
 
-    if(password.length!==0 && verifiedPass.length!==0){
+    if(password.length!==0 && verifiedPass.length!==0 && passwordBefore.length!==0){
 
         if(password===verifiedPass){
             
-                let data = { password: password}
+                let data = { password: password, passwordCurrent: passwordBefore,token}
         
             try {
         
-                let res = await dispatch(editUser({ id, data }));
+                let res = await dispatch(editUser({ id, data,token }));
                   
                       if (res.payload.success) {
-                            toast.success(`The field was edited successfully`, {
-                                position: "bottom-left",
-                                autoClose: 1500,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                                theme: "light",
-                        });
                         sesionOut()
                       } else {
                         
@@ -329,11 +322,11 @@ async function userReactions() {
     useEffect (()=> {
       userReactions()
     }, []) 
-  console.log(reactionsProfile)
+ 
 
 
   async function deleteReactionFx(e) {
-    console.log(e.target)
+   
     if(e.target.name){
           Swal.fire({
           title: 'Are you sure?',
@@ -382,7 +375,7 @@ async function userReactions() {
     deleteReactionFx()
   }, [])
 
-  console.log(reactionsProfileId)
+ 
   
 
   let clickPage = () => {
@@ -405,7 +398,7 @@ async function userReactions() {
       navigate("/myhotels");
     }, 500);
   };
-  console.log(profile)
+  
   return (
     <>
       <div className="full-height">
@@ -416,16 +409,16 @@ async function userReactions() {
                 className="profile-bgHome"
                 src="https://images.photowall.com/products/44351/island-paradise.jpg?h=699&q=85"
               />
-              {profile ? <img
+              <img
                 className="avatar"
-                src={profile[0]?.photo}
-                alt="foto de perfil"
-              /> : null}
+                src={photo}
+                alt="foto de perfil" 
+              /> 
             </div>
 
             <div className="user-profile-data">
     
-            { profile ? <h1>{profile[0]?.name}</h1> : null }
+             <h1>{name}</h1>
               
             </div>
           </div>
@@ -484,9 +477,9 @@ async function userReactions() {
                   </div>
                   <div className="mc-inputsPerfilContra">
                     <div className="mc-inputsPerfilContraSub ">
-                      <FormControl
+                    <FormControl
                         variant="outlined"
-                         onChange={(text) => setPassword(text.target.value)} 
+                         onChange={(text) => setPasswordBefore(text.target.value)} 
                       >
                         <InputLabel htmlFor="password">Password</InputLabel>
                         <OutlinedInput
@@ -508,20 +501,16 @@ async function userReactions() {
                               </IconButton>
                             </InputAdornment>
                           }
-                          label="Contraseña"
+                          label="Password"
                         />
                       </FormControl>
                       <FormControl
                         variant="outlined"
-                        onChange={(text) =>
-                            setVerifiedPass(text.target.value)
-                      } 
+                         onChange={(text) => setPassword(text.target.value)} 
                       >
-                        <InputLabel htmlFor="confirmacionPassword">
-                            Check your password{" "}
-                        </InputLabel>
+                        <InputLabel htmlFor="password">New Password</InputLabel>
                         <OutlinedInput
-                          id="confirmacionPassword"
+                          id="password"
                           type={showPassword2 ? "text" : "password"}
                           endAdornment={
                             <InputAdornment position="end">
@@ -539,7 +528,38 @@ async function userReactions() {
                               </IconButton>
                             </InputAdornment>
                           }
-                          label="Verifique su contraseña"
+                          label="New Password"
+                        />
+                      </FormControl>
+                      <FormControl
+                        variant="outlined"
+                        onChange={(text) =>
+                            setVerifiedPass(text.target.value)
+                      } 
+                      >
+                        <InputLabel htmlFor="confirmacionPassword">
+                            Check your password{" "}
+                        </InputLabel>
+                        <OutlinedInput
+                          id="confirmacionPassword"
+                          type={showPassword3 ? "text" : "password"}
+                          endAdornment={
+                            <InputAdornment position="end">
+                              <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword3}
+                                onMouseDown={handleMouseDownPassword}
+                                edge="end"
+                              >
+                                {showPassword3 ? (
+                                  <VisibilityOff />
+                                ) : (
+                                  <Visibility />
+                                )}
+                              </IconButton>
+                            </InputAdornment>
+                          }
+                          label="Check your password"
                         />
                       </FormControl>
                     </div>
@@ -613,9 +633,10 @@ async function userReactions() {
       <div className="containerGeneralReactions">
         <h2 className="tituloMyReactionsPerfile">My Reactions</h2>
         <div className='nosequeescribir-container'>
-        {reactionsProfile.length>0 
-              ? reactionsProfile.map(e=><MyReactions iconName={e.name} id={e._id} name={e.itineraryId.name} icon={e.icon} deleteReaction={deleteReactionFx} photo={e.itineraryId.photo[0]} />)
-              : <h2>You haven't reactions</h2>}
+        {reactionsProfile!==undefined
+            ?  reactionsProfile.map(e=><MyReactions iconName={e.name} id={e._id} name={e.itineraryId.name} icon={e.icon} deleteReaction={deleteReactionFx} photo={e.itineraryId.photo[0]} />)
+            :  <h2 className="titleNotResults">No reactions found</h2>
+        }     
         </div>
       </div>
     </>

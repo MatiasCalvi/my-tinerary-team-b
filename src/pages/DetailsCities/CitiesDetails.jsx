@@ -78,9 +78,9 @@ let show=shows.filter(e=>e.cityId==a.id)
     <h2 className='heading-primary-main3'>City</h2>
     <SectionDetailsUno name={name} population={population} photo={photo} continent={continent}/>
 		{ (show[0]!=undefined||show[1]!=undefined)?<h2 className='heading-primary-main3'>Itineraries</h2>:null}
-    < Reaction2 array={reactionsItineray2} /> 
+    {(show[1]!=undefined && logged )?< Reaction2 array={reactionsItineray2} /> : null} 
 		{(show[1]!=undefined )?<SectionDetailsDos name={show[1]?.name} photo={show[1]?.photo[0]} description={show[1]?.description} price={show[1]?.price} duration={show[1]?.duration}/>:null}
-    < Reaction array={reactionsItinerary} /> 
+    {(show[0]!=undefined && logged )?< Reaction array={reactionsItinerary} /> : null} 
     {(show[0]!=undefined)?<SectionDetailsTres name={show[0]?.name} photo={show[0]?.photo[0]} description={show[0]?.description} price={show[0]?.price} duration={show[0]?.duration}/>:null}
   </>)
 }

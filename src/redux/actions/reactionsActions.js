@@ -85,7 +85,6 @@ const feedbackReaction = createAsyncThunk('feedbackReaction', async ({token, nam
 
 const getUserReactions = createAsyncThunk('getUserReactions', async ({id, token})=> {
 
-  
   let headers = { headers: { 'Authorization': `Bearer ${token}` } }
  
   try {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './navbar.css' 
 import { Link as NavLink,useLocation, useNavigate} from 'react-router-dom'
 
@@ -14,6 +14,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 import { useDispatch, useSelector } from "react-redux";
 import userActions from "../../redux/actions/userActions";
+
 
 export default function NavbarOne() {
   
@@ -32,7 +33,7 @@ export default function NavbarOne() {
     let res= await dispatch(exit(token))
     if (res.payload.success) {
 
-      toast.success(`Cerraste tu sesion exitosamente, vuelva pronto!`, {
+      toast.success(`You successfully logged out, come back soon!`, {
         position: "bottom-right",
         autoClose: 1500,
         hideProgressBar: false,
@@ -63,6 +64,9 @@ export default function NavbarOne() {
     }
   }
   
+  useEffect(()=>{
+
+  },[])
 
   return (<>
     
