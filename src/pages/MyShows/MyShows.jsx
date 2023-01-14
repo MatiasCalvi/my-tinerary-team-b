@@ -191,7 +191,7 @@ export default function MyShows(props) {
 
   return (
     <>
-      <div className="container-mycities">
+      <div className="container-myhotelsShows">
         {showUsers.length !== 0 ? (
           showUsers.map((e) => (
             <MyHotelsCard
@@ -205,7 +205,7 @@ export default function MyShows(props) {
             />
           ))
           ) : 
-          <h2 className="titleNotResults">There are no results, if you prefer you can create a new show</h2>
+          <h2 className="titleNotResults px-5 text-center">There are no results, if you prefer you can create a new show</h2>
           }
       </div>
       <Modal2 editId={go} open={isOpen} onClose={() => setIsOpen(false)}>

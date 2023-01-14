@@ -590,7 +590,7 @@ function MyProfile(props) {
           </div>
         ) : (
           <div className="nosequeescribir-container px-5">
-            <h2 className="titleNotResults text-center">
+            <h2 className="titleNotResults">
               No reactions found, if you prefer you can react to any
               itinerary/show
             </h2>

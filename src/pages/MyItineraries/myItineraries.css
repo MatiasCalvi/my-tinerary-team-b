@@ -1,4 +1,4 @@
-.container-mycities{
+.container-mycities,.container-myhotelsShows{
     display: flex;
     justify-content: space-evenly;
     gap: 20px;
@@ -6,7 +6,10 @@
     align-items: center;
     min-height: 60vh;
     padding: 30px 0;
-    background-color: #1154a0;
+    background-color: rgba(255, 166, 0, 0.81);
+}
+.container-myhotelsShows{
+    background-color: #1154a0c8;
 }
 
 .card-My {
