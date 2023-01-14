@@ -111,7 +111,7 @@
 
  .New-Submit-Itinerary{
     padding: 10px;
-    width: 15%;
+    min-width: 15%;
     border-radius: 10px;
     font-weight: 600;
  }
@@ -122,4 +122,10 @@
     cursor: pointer;
    }
 
-   
+@media screen and (max-width: 1000px) {
+    
+    .New-text2{
+        min-width: 80%;
+     }
+    
+}
