@@ -31,7 +31,7 @@ useEffect (()=>{
 
 let show=shows.filter(e=>e.hotelId==a.id)
 
-console.log(show)
+
   return (<>
     <header class="header5">
 	            <div class="text-box5">
