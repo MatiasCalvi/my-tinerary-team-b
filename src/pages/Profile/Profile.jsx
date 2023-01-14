@@ -632,12 +632,14 @@ async function userReactions() {
       </div>
       <div className="containerGeneralReactions">
         <h2 className="tituloMyReactionsPerfile">My Reactions</h2>
-        <div className='nosequeescribir-container'>
         {reactionsProfile!==undefined
-            ?  reactionsProfile.map(e=><MyReactions iconName={e.name} id={e._id} name={e.itineraryId.name} icon={e.icon} deleteReaction={deleteReactionFx} photo={e.itineraryId.photo[0]} />)
-            :  <h2 className="titleNotResults">No reactions found</h2>
+        ? <div className='nosequeescribir-container'>
+            { reactionsProfile.map(e=><MyReactions iconName={e.name} id={e._id} name={e.itineraryId.name} icon={e.icon} deleteReaction={deleteReactionFx} photo={e.itineraryId.photo[0]} />)}
+          </div>
+        :  <div className='nosequeescribir-container px-5'>
+              <h2 className="titleNotResults text-center">No reactions found, if you prefer you can react to any itinerary/show</h2>
+          </div>
         }     
-        </div>
       </div>
     </>
   );
