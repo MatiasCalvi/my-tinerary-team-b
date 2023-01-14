@@ -311,7 +311,7 @@ export default function MyItineraries(props) {
           />
           <input
             type="submit"
-            className="New-Submit-Itinerary"
+            className="New-Submit-Shows"
             required
             value="Register!"
           />

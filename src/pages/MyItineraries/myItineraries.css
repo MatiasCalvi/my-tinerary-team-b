@@ -112,17 +112,21 @@
     color: white;
  }
 
- .New-Submit-Itinerary{
+ .New-Submit-Itinerary,.New-Submit-Shows{
     padding: 10px;
     min-width: 15%;
     border-radius: 10px;
     font-weight: 600;
  }
 
- .New-Submit-Itinerary:hover{
+ .New-Submit-Itinerary:hover,.New-Submit-Shows:hover{
     background-color: #004dff;
     color: aliceblue;
     cursor: pointer;
+   }
+   .New-Submit-Shows:hover{
+    background-color: rgba(255, 166, 0, 0.81);
+    color: #000;
    }
 .option-mycities-delet{
     font-size:larger!important
